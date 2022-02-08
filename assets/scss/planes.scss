@@ -1,0 +1,219 @@
+.planes-component {
+
+	.message {
+		background: var(--color-text);
+		color: var(--color-bg);
+		padding: 1rem;
+		text-align: center;
+	}
+	
+	
+	/* Slideshow demo 1 */
+	.slideshow {
+		display: grid;
+		width: 100%;
+		height: 100vh;
+		grid-template-columns: 90% 10%;
+		grid-template-rows: auto auto;
+	}
+	
+	.slideshow__intro {
+		grid-area: 1 / 1 / 3 / 3;
+		align-self: center;
+		justify-self: center;
+		position: relative;
+	}
+	
+	.slideshow__intro-title {
+		font-family: vortice-concept, sans-serif;
+		font-weight: 400;
+		font-size: 9vw;
+		line-height: 0.5;
+		margin: 5vw 0 0 0;
+		-webkit-text-stroke: 2px var(--color-primary);
+		text-stroke: 2px var(--color-primary);
+		-webkit-text-fill-color: transparent;
+		text-fill-color: transparent;
+		color: transparent;
+	}
+	
+	.slideshow__intro-subline {
+		text-align: center;
+		width: 100%;
+		display: block;
+		color: var(--color-primary);
+		font-size: 1.25rem;
+	}
+	
+	.slideshow__intro-description {
+		margin: 2rem 0 0 1rem;
+		max-width: 300px;
+	}
+	
+	.slideshow__img-wrap {
+		position: relative;
+		grid-area: 1 / 1 / 3 / 2;
+		justify-self: end;
+		display: grid;
+		grid-template-columns: auto;
+		grid-template-rows: auto;
+		overflow: hidden;
+		width: 47%;
+	}
+	
+	
+	.slideshow__img {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		max-width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	
+	.slideshow__img--current {
+		opacity: 1;
+	}
+	
+	.slideshow__nav {
+		grid-area: 2 / 1 / 3 / 3;
+		display: flex;
+		flex-direction: column;
+		align-self: end;
+		align-items: end;
+		justify-content: space-between;
+		padding: 2rem 3rem;
+		z-index: 100;
+	}
+	
+	.slideshow__nav-item {
+		font-family: vortice-concept, sans-serif;
+		font-weight: 400;
+		color: var(--color-secondary);
+		font-size: 1rem;
+		cursor: pointer;
+	}
+	
+	.slideshow__nav-item--current {
+		color: var(--color-link-hover);
+	}
+	
+	/* Grid demo 2 */
+	
+	.content {
+		display: grid;
+		// --column-gap: 2rem;
+		// --row-gap: 10vh;
+		// --mwidth: 400px;
+		// --columns: 3;
+		// max-width: calc(var(--mwidth) * var(--columns) + (var(--columns) - 1) * var(--column-gap));
+		width: 100%;
+		margin: 0 auto;
+		// grid-template-columns: repeat(auto-fill, minmax(calc(var(--mwidth)/2), var(--mwidth)));
+		// grid-column-gap: var(--column-gap);
+		// grid-row-gap: var(--row-gap);
+		justify-content: center;
+		// padding: 4rem 0 20rem;
+		// margin-top: 13rem;
+
+		@include breakpoint('medium') {
+			// grid-template-columns : 1fr 1fr;
+			max-width             : 725px;
+		}
+	}
+	
+	.item {
+		margin: 0;
+		padding: 2rem;
+		align-self: end;
+		// display: grid;
+		// grid-template-areas:
+		// 	"... ... ..."
+		// 	"pretitle pretitle pretitle"
+		// 	"title title tile"
+		// 	"... counter counter"
+		// 	"... description ...";
+		// grid-template-columns: 10% 1fr 1rem;
+		// grid-template-rows: 3rem auto 1fr 2rem auto;
+
+		.fig {
+			position: relative;
+			max-width: 100%;
+			// grid-area: 1 / 2 / 4 / 3;
+			margin: 0;
+		}
+		
+		.aspect {
+			padding-top: var(--aspect);
+		}
+		
+		.img {
+			display   : none;
+			position  : absolute;
+			top       : 0;
+			left      : 0;
+			max-width : 100%;
+		}
+		
+		.pretitle {
+			font-family    : vortice-concept, sans-serif;
+			font-weight    : 400;
+			color          : var(--color-secondary);
+			font-size      : 1rem;
+			margin         : 0 0 0.75rem;
+			grid-area      : pretitle;
+			// display        : flex;
+			// pointer-events : none;
+		}
+		
+		.title {
+			font-family             : vortice-concept, sans-serif;
+			font-weight             : 400;
+			margin                  : 0;
+			-webkit-text-stroke     : 1px var(--color-primary);
+			text-stroke             : 1px var(--color-primary);
+			-webkit-text-fill-color : transparent;
+			text-fill-color         : transparent;
+			color                   : transparent;
+			font-size               : 2.5rem;
+			grid-area               : title;
+			pointer-events          : none;
+		}
+		
+		.counter {
+			font-family    : vortice-concept, sans-serif;
+			font-weight    : 400;
+			color          : var(--color-primary);
+			font-size      : 3rem;
+			grid-area      : counter;
+			align-self     : end;
+			justify-self   : end;
+			line-height    : 1;
+			pointer-events : none;
+		}
+		
+		.description {
+			// max-width: 200px;
+			grid-area : description;
+			font-size : 0.85rem;
+			color     : white;
+			// color: var(--color-description);
+		}
+
+	}
+	
+	
+	
+	
+	/* Canvas */
+	.dom-gl {
+		position: fixed;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+}

@@ -1,0 +1,54 @@
+
+/*
+||--------------------------||
+||         Palette          ||
+||--------------------------||
+*/
+$color-primary   : #29CBA7;
+$color-secondary : #B0FF00;
+$white           : #fff;
+$black           : #000;
+$grey            : #707070;
+$green           : #22AA0A;
+$red             : #C10F00;
+
+/*
+||--------------------------||
+||     Responsiveness       ||
+||--------------------------||
+*/
+
+$breakpoints: (
+  'small'   : ( min-width:  767px ),
+  'medium'  : ( min-width:  992px ),
+  'large'   : ( min-width: 1024px ),
+  'xlarge'  : ( min-width: 1200px ),
+  'xxlarge' : ( min-width: 1440px )
+);
+
+/*
+||--------------------------||
+||        Typography        ||
+||--------------------------||
+*/
+
+$font-family : 'Raleway', sans-serif;
+
+/*
+||--------------------------||
+||         Effects          ||
+||--------------------------||
+*/
+
+$bottom-shadow : 0px 0px 20px -15px #000;
+$top-shadow    : 0px -30px 15px -40px #000;
+$left-shadow   : 0px 2px 15px -10px #000;
+
+
+/*
+||--------------------------||
+||        Transitions       ||
+||--------------------------||
+*/
+
+$responsive-transition-duration : 1s;

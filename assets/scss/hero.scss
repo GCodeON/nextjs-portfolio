@@ -1,0 +1,42 @@
+.hero {
+    display: grid;
+    width: 100%;
+    height: 75vh;
+	grid-template-areas: 'navigation' 'intro ''side';
+    // grid-template-columns: 90% 10%;
+    // grid-template-rows: 10% 1fr 0%;
+
+	.intro {
+		grid-area: intro;
+		align-self: center;
+		justify-self: center;
+		position: relative;
+	}
+	
+	.title {
+		font-family: vortice-concept, sans-serif;
+		font-weight: 400;
+		font-size: 9vw;
+		line-height: 0.5;
+		margin: 5vw 0 0 0;
+		-webkit-text-stroke: 2px var(--color-primary);
+		text-stroke: 2px var(--color-primary);
+		-webkit-text-fill-color: transparent;
+		text-fill-color: transparent;
+		color: transparent;
+		text-align: center;
+	}
+	
+	.subline {
+		text-align: center;
+		width: 100%;
+		display: block;
+		color: var(--color-primary);
+		font-size: 1.25rem;
+	}
+	
+	.description {
+		margin: 2rem 0 0 1rem;
+		max-width: 300px;
+	}
+}
