@@ -12,8 +12,14 @@ let objectA, objectB;
 function animate () {
   requestAnimationFrame( animate );
   // objectA.rotation.y += 0.03;
-  objectA.rotation.z += 0.01;
-  objectB.rotation.y += -0.03;
+  objectA.rotation.z += 0.02;
+  // objectA.rotation.x += 0.03;
+  // objectA.rotation.y += 0.01;
+
+  objectB.rotation.z += -0.01;
+  // objectB.rotation.x += 0.01;
+  objectB.rotation.y += 0.01;
+  
   renderer.render( scene, camera );
 };
 
@@ -49,7 +55,7 @@ export default class threeD extends React.Component {
 
 
   createRing() {
-    geometry = new THREE.RingGeometry(4.5, 10, 16);
+    geometry = new THREE.RingGeometry(2.5, 1, 16);
     material = new THREE.MeshBasicMaterial( {
       color     : '0xFF6347',
       wireframe : true
@@ -60,7 +66,7 @@ export default class threeD extends React.Component {
   }
 
   createDodecahedron() {
-    geometry = new THREE.TetrahedronGeometry(2, 1);
+    geometry = new THREE.IcosahedronGeometry(7);
     material = new THREE.MeshBasicMaterial( {
       wireframe : true
     })
