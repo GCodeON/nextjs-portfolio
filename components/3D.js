@@ -7,11 +7,13 @@ let scene, camera, renderer;
 let geometry, mesh, material;
 let mouse, center;
 
-let objectA;
+let objectA, objectB;
 
-function animate (callback) {
+function animate () {
   requestAnimationFrame( animate );
-  objectA.rotation.y += 0.03;
+  // objectA.rotation.y += 0.03;
+  objectA.rotation.z += -0.04;
+  objectB.rotation.y += 0.03;
   renderer.render( scene, camera );
 };
 
@@ -33,11 +35,20 @@ export default class threeD extends React.Component {
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth , window.innerHeight )
 
-    camera.position.setZ(30);
+    camera.position.setZ(15);
     renderer.render(scene, camera);
     console.log("scene loaded", scene, camera, renderer);
     
 
+    this.createRing()
+    this.createDodecahedron()
+
+    window.addEventListener( 'resize', this.onWindowResize );
+    animate();
+  }
+
+
+  createRing() {
     geometry = new THREE.RingGeometry(10, 3, 16);
     material = new THREE.MeshBasicMaterial( {
       color     : '0xFF6347',
@@ -45,13 +56,18 @@ export default class threeD extends React.Component {
     })
 
     objectA = new THREE.Mesh(geometry, material);
-
     scene.add(objectA);
-    
-    renderer.render(scene, camera);
+  }
 
-    window.addEventListener( 'resize', this.onWindowResize );
-    animate();
+  createDodecahedron() {
+    geometry = new THREE.DodecahedronGeometry(2);
+    material = new THREE.MeshBasicMaterial( {
+      color     : '0xFF6347',
+      wireframe : true
+    })
+
+    objectB = new THREE.Mesh(geometry, material);
+    scene.add(objectB);
   }
 
   onWindowResize() {

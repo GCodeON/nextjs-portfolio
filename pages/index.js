@@ -27,7 +27,7 @@ export default function Home({props}) {
           <a className="item" href="#experience">Experience</a>
           <a className="item" href="#contact">Contact</a>
       </nav> */}
-      {/* <CircularText></CircularText> */}
+      <CircularText></CircularText>
       <ThreeD></ThreeD>
        
       <style jsx>{`
