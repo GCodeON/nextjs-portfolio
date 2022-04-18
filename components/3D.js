@@ -9,8 +9,11 @@ let mouse, center;
 
 let torus;
 
-
-
+function animate () {
+  requestAnimationFrame( animate );
+  torus.rotation.x += 0.01;
+  renderer.render( scene, camera );
+};
 export default class threeD extends React.Component {
   constructor(props) {
     super(props);
@@ -53,7 +56,7 @@ export default class threeD extends React.Component {
     console.log("object geo", torus );
 
     window.addEventListener( 'resize', this.onWindowResize );
-    
+    animate();
   }
 
 
@@ -64,7 +67,6 @@ export default class threeD extends React.Component {
 
     renderer.setSize( window.innerWidth, window.innerHeight );
     console.log('onResize');
-
   }
 
   render() {
