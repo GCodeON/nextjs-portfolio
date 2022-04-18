@@ -26,6 +26,7 @@
 	--font-weight-circle-4 : 300;
 
 	.enter {
+		position: fixed !important;
 		display     : block;
 		border      : 0;
 		width       : var(--dim-button);

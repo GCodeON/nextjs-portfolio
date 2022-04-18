@@ -12,8 +12,8 @@ let objectA, objectB;
 function animate () {
   requestAnimationFrame( animate );
   // objectA.rotation.y += 0.03;
-  objectA.rotation.z += -0.04;
-  objectB.rotation.y += 0.03;
+  objectA.rotation.z += 0.01;
+  objectB.rotation.y += -0.03;
   renderer.render( scene, camera );
 };
 
@@ -49,7 +49,7 @@ export default class threeD extends React.Component {
 
 
   createRing() {
-    geometry = new THREE.RingGeometry(10, 3, 16);
+    geometry = new THREE.RingGeometry(4.5, 10, 16);
     material = new THREE.MeshBasicMaterial( {
       color     : '0xFF6347',
       wireframe : true
@@ -87,13 +87,13 @@ export default class threeD extends React.Component {
       </Head>
       <canvas className="bg"></canvas>
         <div >
-          <div className="content">
+          {/* <div className="content">
             <div className="item">
 
               <span className="pretitle">Test</span>
               <h2 className="title">3D</h2>
             </div>
-          </div>
+          </div> */}
         </div>
       <style jsx>{`
 

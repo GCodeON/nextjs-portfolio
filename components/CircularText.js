@@ -223,7 +223,10 @@ export default class CircularText extends React.Component {
         `}</style>
   
         <style jsx global>{`
-    
+        .circular-text-component {
+          position: absolute;
+          z-index: 2;
+        }
         `}</style>
       </div>
     )

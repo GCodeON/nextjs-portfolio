@@ -21,14 +21,14 @@ export default function Home({props}) {
         <link rel="stylesheet" href="https://use.typekit.net/kxo3pgz.css"></link>
         <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
       </Head>
-      {/* <nav className="nav">
+      <nav className="nav">
           <a className="item current" href="#about">About</a>
           <a className="item"  href="#work">Work</a>
           <a className="item" href="#experience">Experience</a>
           <a className="item" href="#contact">Contact</a>
-      </nav> */}
-      <CircularText></CircularText>
+      </nav>
       <ThreeD></ThreeD>
+      <CircularText></CircularText>
        
       <style jsx>{`
 
