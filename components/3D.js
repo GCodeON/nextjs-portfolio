@@ -15,7 +15,19 @@ export default class threeD extends React.Component {
 
   async componentDidMount() {
     const scene = new THREE.Scene();
-    console.log("scene loaded", scene);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    const renderer =  new THREE.WebGLRenderer({
+      canvas: document.querySelector('.bg')
+    });
+
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth , window.innerHeight )
+
+    camera.position.setZ(30);
+    
+    renderer.render(scene, camera);
+
+    console.log("scene loaded", scene, camera, renderer);
 
   }
 
@@ -41,6 +53,9 @@ export default class threeD extends React.Component {
           position : fixed;
           top      : 0;
           left     : 0;
+        }
+        .content {
+          position: relative;
         }
                   
       `}</style>
