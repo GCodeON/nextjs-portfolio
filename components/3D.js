@@ -60,9 +60,8 @@ export default class threeD extends React.Component {
   }
 
   createDodecahedron() {
-    geometry = new THREE.DodecahedronGeometry(2);
+    geometry = new THREE.TetrahedronGeometry(2, 1);
     material = new THREE.MeshBasicMaterial( {
-      color     : '0xFF6347',
       wireframe : true
     })
 
