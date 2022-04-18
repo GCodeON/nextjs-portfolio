@@ -7,21 +7,18 @@ let scene, camera, renderer;
 let geometry, mesh, material;
 let mouse, center;
 
-let torus;
+let objectA;
 
-function animate () {
+function animate (callback) {
   requestAnimationFrame( animate );
-  torus.rotation.x += 0.01;
+  objectA.rotation.y += 0.03;
   renderer.render( scene, camera );
 };
+
 export default class threeD extends React.Component {
   constructor(props) {
     super(props);
-    this.torus = {},
-    // this.renderer = {},
-    // this.scene = {},
-    // this.camera = {},
-    this.smooth = null
+
   }
   
 
@@ -41,24 +38,21 @@ export default class threeD extends React.Component {
     console.log("scene loaded", scene, camera, renderer);
     
 
-    geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+    geometry = new THREE.RingGeometry(10, 3, 16);
     material = new THREE.MeshBasicMaterial( {
       color     : '0xFF6347',
       wireframe : true
     })
 
-    torus = new THREE.Mesh(geometry, material);
+    objectA = new THREE.Mesh(geometry, material);
 
-    scene.add(torus);
+    scene.add(objectA);
     
     renderer.render(scene, camera);
-
-    console.log("object geo", torus );
 
     window.addEventListener( 'resize', this.onWindowResize );
     animate();
   }
-
 
   onWindowResize() {
  
@@ -93,7 +87,7 @@ export default class threeD extends React.Component {
           left     : 0;
         }
         .content {
-          position: relative;
+          position : relative;
         }
                   
       `}</style>
