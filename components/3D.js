@@ -29,17 +29,16 @@ export default class threeD extends React.Component {
 
   }
   
-
-
   async componentDidMount() {
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     renderer =  new THREE.WebGLRenderer({
       canvas: document.querySelector('.bg')
     });
-
-    renderer.setPixelRatio( window.devicePixelRatio );
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    
     renderer.setSize( window.innerWidth , window.innerHeight )
+    renderer.setPixelRatio( window.devicePixelRatio );
+
 
     camera.position.setZ(15);
     renderer.render(scene, camera);
@@ -76,7 +75,7 @@ export default class threeD extends React.Component {
   }
 
   onWindowResize() {
- 
+    renderer.setSize( window.innerWidth, window.innerHeight );
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
