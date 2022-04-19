@@ -3,8 +3,6 @@ import Head from 'next/head'
 import { gsap } from 'gsap';
 
 import Hero from './hero'
-import Work from './work'
-import Planes from './planes'
 
 export default class CircularText extends React.Component {
   constructor(props) {
@@ -14,28 +12,30 @@ export default class CircularText extends React.Component {
       this.content         = null
       this.enterBackground = null
       this.enterCtrl       = null
-      this.startTL         = null,
-      this.active          = false,
-      this.nav             = null,
-      this.slides          = null
+      this.enterText       = null
+      this.startTL         = null
+      this.active          = false
   }
   componentDidMount() {
     this.circleText      = document.querySelectorAll('text.circles__text')
     this.content         = document.querySelector('.content')
     this.enterCtrl       = document.querySelector('.enter')
     this.enterBackground = document.querySelector('.enter__bg')
+    this.enterText = document.querySelector('.enter__text')
     this.circleTextTotal = this.circleText.length
 
-    this.nav    = document.querySelector('.nav'),
-    this.slides = document.querySelector('.work-component'),
-
     this.setup(); 
+
+    // this.nav    = document.querySelector('.nav'),
+    // this.slides = document.querySelector('.work-component'),
+
   }
 
   setup() {
+    gsap.set(this.enterCtrl, {opacity: '0'});
+    gsap.set([this.circleText, this.content.children], {opacity: 0});
     gsap.set('body', { overflow: 'hidden' });
     gsap.set(this.circleText, { transformOrigin: '50% 50%' });
-    gsap.set([this.circleText, this.content.children], {opacity: 0});
     gsap.set(this.enterCtrl, {pointerEvents: 'none'});
 
     this.start();
@@ -144,15 +144,26 @@ export default class CircularText extends React.Component {
         }
     }, 'start+=0.2')
     .to([this.content.children], {
-        duration : 2,
-        ease     : 'back.out',
-        startAt  : {opacity: 0, scale: 1},
-        scale    : 1,
-        opacity  : 1,
-        stagger  : {
-            amount : 0.1
-        }
+      duration : 2,
+      ease     : 'back.out',
+      startAt  : {opacity: 0, scale: 1},
+      scale    : 1,
+      opacity  : 1,
+      stagger  : {
+          amount : 0.1
+      }
     }, 'start+=1.5')
+    .to(this.enterText, {
+      duration : 0.6,
+      ease     : 'back.in',
+      opacity  : 0
+    }, 'start+=1')
+    .to(this.enterCtrl, {
+      duration : 1,
+      ease     : 'back.out',
+      opacity  : 0.8,
+      scale    : 1.2
+    }, 'start+=1.75')
   }
   
     
