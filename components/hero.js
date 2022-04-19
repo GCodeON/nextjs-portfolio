@@ -4,6 +4,8 @@ import Head from 'next/head'
 import Kinect from './kinect'
 import Planes from './planes'
 
+import Nav from './nav'
+
 export default class Hero extends React.Component {
   // constructor(props) {
   //   super(props)
@@ -18,6 +20,7 @@ export default class Hero extends React.Component {
       <Head>
         <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
       </Head>
+      {/* <Nav></Nav> */}
       <div className="overlay">
         <div className="hero">
             <div className="intro">
@@ -27,7 +30,6 @@ export default class Hero extends React.Component {
             </div>
         </div>
 
-        <Planes></Planes>
 
       </div>
     </div>
