@@ -69,12 +69,12 @@
 		flex-direction  : column;
 		width           : 100vw;
 		padding         : 2rem;
-		height          : calc(100vh - 13rem);
+		height          : calc(100vh - 5rem);
 		position        : relative;
 		justify-content : flex-start;
 		align-items     : center;
 		text-align      : center;
-		height: 100%;
+		height          : 100%;
 
 
 	}
@@ -87,12 +87,12 @@
 		font-size      : 2rem;
 		// font-size      : clamp(1.25rem,6vw,2.15rem);
 		line-height    : 1.25;
-		max-width      : 900px;
+		// max-width      : 900px;
 		margin         : 0 auto;
 		pointer-events : none;
 		will-change    : transform;
 		text-align     : center;
-		max-width: 70%;
+		max-width: 100%;
 	}
 	
 	.circles {
@@ -143,12 +143,14 @@
 		fill        : var(--color-text-circle-4);
 	}
 	
-	@media screen and (min-width: 53em) {
-		.content {
-			// height          : 100vh;
-			justify-content : center;
-			text-align      : left;
-		}
-	}
+	// @media screen and (min-width: 53em) {
+	// 	.content {
+	// 		height          : 100vh;
+	// 		justify-content : center;
+	// 		text-align      : center;
+	// 		width           : 100vw;
+
+	// 	}
+	// }
 
 }
