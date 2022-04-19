@@ -4,10 +4,7 @@
     height          : 100vh;
     justify-content : center;
     align-items     : center;
-	// grid-template-areas: 'navigation' 'intro ''side';
-    // grid-template-columns: 90% 10%;
-    // grid-template-rows: 10% 1fr 0%;
-
+	
 	.intro {
 		grid-area    : intro;
 		align-self   : center;

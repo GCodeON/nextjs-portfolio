@@ -9,24 +9,24 @@ import Planes from './planes'
 export default class CircularText extends React.Component {
   constructor(props) {
       super(props);
-      this.circleText = null
+      this.circleText      = null
       this.circleTextTotal = null
-      this.content = null
+      this.content         = null
       this.enterBackground = null
-      this.enterCtrl = null
-      this.startTL = null,
-      this.active = false,
-      this.nav = null,
-      this.slides = null
+      this.enterCtrl       = null
+      this.startTL         = null,
+      this.active          = false,
+      this.nav             = null,
+      this.slides          = null
   }
   componentDidMount() {
-    this.circleText = document.querySelectorAll('text.circles__text')
-    this.content = document.querySelector('.content')
-    this.enterCtrl = document.querySelector('.enter')
+    this.circleText      = document.querySelectorAll('text.circles__text')
+    this.content         = document.querySelector('.content')
+    this.enterCtrl       = document.querySelector('.enter')
     this.enterBackground = document.querySelector('.enter__bg')
     this.circleTextTotal = this.circleText.length
 
-    this.nav = document.querySelector('.nav'),
+    this.nav    = document.querySelector('.nav'),
     this.slides = document.querySelector('.work-component'),
 
     this.setup(); 
@@ -46,18 +46,18 @@ export default class CircularText extends React.Component {
     gsap.killTweensOf([this.enterBackground,this.circleText]);
     
     gsap.to(this.enterBackground, {
-        duration: 1.3,
-        ease: 'expo',
-        scale: 1.4
+        duration : 1.3,
+        ease     : 'expo',
+        scale    : 1.4
     });
     gsap.to(this.circleText, {
-        duration: 0.5,
-        ease: 'expo',
-        rotation: '+=120',
-        scale: 0.5,
-        opacity: 0.9,
-        stagger: {
-            amount: -0.15
+        duration : 0.5,
+        ease     : 'expo',
+        rotation : '+=120',
+        scale    : 0.5,
+        opacity  : 0.9,
+        stagger  : {
+            amount : -0.15
         }
     });
   };
@@ -66,18 +66,18 @@ export default class CircularText extends React.Component {
     gsap.killTweensOf([this.enterBackground, this.circleText]);
 
     gsap.to(this.enterBackground, {
-        duration: 1,
-        ease: 'expo',
-        scale: 1
+        duration : 1,
+        ease     : 'expo',
+        scale    : 1
     });
     gsap.to(this.circleText, {
-        duration: 1,
-        ease: 'expo',
-        scale: 0.8,
-        rotation: i => i%2 ? '+=120' : '-=120',
-        opacity: 1,
-        stagger: {
-            amount: -0.2
+        duration : 1,
+        ease     : 'expo',
+        scale    : 0.8,
+        rotation : i => i%2 ? '+=120' : '-=120',
+        opacity  : 1,
+        stagger  : {
+            amount : -0.2
         }
     });
   };
@@ -86,30 +86,30 @@ export default class CircularText extends React.Component {
       this.startTL = gsap.timeline()
       .addLabel('start', 0)
       .to(this.circleText, {
-          duration: 3,
-          ease: 'expo.inOut',
-          rotation: 90,
-          stagger: {
-              amount: 0.4
+          duration : 3,
+          ease     : 'expo.inOut',
+          rotation : 90,
+          stagger  : {
+              amount : 0.4
           }
       }, 'start')
       .to([this.circleText, this.enterCtrl], {
-          duration: 3,
-          ease: 'expo.inOut',
-          startAt: {opacity: 0, scale: 0.8 },
-          scale: 1,
-          opacity: 1,
-          stagger: {
-              amount: 0.4
+          duration : 3,
+          ease     : 'expo.inOut',
+          startAt  : {opacity: 0, scale: 0.8 },
+          scale    : 1,
+          opacity  : 1,
+          stagger  : {
+              amount : 0.4
           }
       }, 'start')
       .to(this.circleText, {
-        duration: 3,
-        ease: 'expo.inOut',
-        rotation: 270,
-        scale: 0.5,
-        stagger: {
-            amount: 0.1
+        duration : 3,
+        ease     : 'expo.inOut',
+        rotation : 270,
+        scale    : 0.5,
+        stagger  : {
+            amount : 0.1
         }
       })
       .add(() => {
@@ -128,29 +128,29 @@ export default class CircularText extends React.Component {
     .addLabel('start', 0)
     .to('body', { overflow: 'visible' })
     .to(this.enterCtrl, {
-        duration: 0.6,
-        ease: 'back.in',
-        scale: 0.2,
-        opacity: 0
+        duration : 0.6,
+        ease     : 'back.in',
+        scale    : 0.2,
+        opacity  : 0
     }, 'start')
     .to(this.circleText, {
-        duration: 1.5,
-        ease: 'back.in',
-        scale: 0.2,
-        opacity: 0,
-        rotation: '-=270',
-        stagger: {
-            amount: 0.3
+        duration : 1.5,
+        ease     : 'back.in',
+        scale    : 0.2,
+        opacity  : 0,
+        rotation : '-=270',
+        stagger  : {
+            amount : 0.3
         }
     }, 'start+=0.2')
     .to([this.content.children], {
-        duration: 2,
-        ease: 'back.out',
-        startAt: {opacity: 0, scale: 1},
-        scale: 1,
-        opacity: 1,
-        stagger: {
-            amount: 0.1
+        duration : 2,
+        ease     : 'back.out',
+        startAt  : {opacity: 0, scale: 1},
+        scale    : 1,
+        opacity  : 1,
+        stagger  : {
+            amount : 0.1
         }
     }, 'start+=1.5')
   }
@@ -223,10 +223,10 @@ export default class CircularText extends React.Component {
         `}</style>
   
         <style jsx global>{`
-        .circular-text-component {
-          position: absolute;
-          z-index: 2;
-        }
+          .circular-text-component {
+            position : absolute;
+            z-index  : 2;
+          }
         `}</style>
       </div>
     )
