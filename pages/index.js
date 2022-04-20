@@ -11,7 +11,7 @@ import CircularText from '../components/CircularText'
 import Work from '../components/work'
 import Kinect from '../components/kinect'
 import Planes from '../components/planes'
-import Hero from '../components/Hero'
+
 import ThreeD from '../components/3D'
 
 
@@ -33,7 +33,7 @@ export default function Home({props}) {
       </nav> */}
       <ThreeD></ThreeD>
       <CircularText></CircularText>
-      {/* <Hero></Hero>   */}
+
       <div className="links">
         <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank">
           <FaLinkedin className="linkedin icon"></FaLinkedin>
