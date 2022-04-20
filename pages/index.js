@@ -11,6 +11,7 @@ import CircularText from '../components/CircularText'
 import Work from '../components/work'
 import Kinect from '../components/kinect'
 import Planes from '../components/planes'
+import Hero from '../components/Hero'
 import ThreeD from '../components/3D'
 
 
@@ -32,27 +33,21 @@ export default function Home({props}) {
       </nav> */}
       <ThreeD></ThreeD>
       <CircularText></CircularText>
+      {/* <Hero></Hero>   */}
       <div className="links">
         <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank">
-            <FaLinkedin className="linkedin icon"></FaLinkedin>
-          </a>
+          <FaLinkedin className="linkedin icon"></FaLinkedin>
+        </a>
         <a href="https://github.com/GCodeON" target="_blank">
-        <FaGithub className="github icon"></FaGithub>
+          <FaGithub className="github icon"></FaGithub>
         </a>
       </div>
 
       
       <style jsx>{`
-          .icon {
-            display   : inline;
-            font-size : xxx-large;
-            color     : white;
-            margin    : 2em 10px;
-          }
-
           .links {
             position        : absolute;
-            bottom          : 5vh;
+            bottom          : 0;
             left            : 0;
             right           : 0;
             display         : inline-flex;

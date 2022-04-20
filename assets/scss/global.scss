@@ -241,18 +241,7 @@ a:focus {
 	pointer-events: none;
 }
 
-/* Icons */
-.icon {
-	display: block;
-	width: 2em;
-	height: 2em;
-	margin: 0 25px;
-	fill: currentColor;
 
-	&:hover {
-		transform: scale(1.2);
-	}
-}
 
 .icon--keyboard {
 	display: none;

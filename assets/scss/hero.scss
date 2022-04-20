@@ -58,3 +58,23 @@
 		max-width: 300px;
 	}
 }
+
+.icon {
+	display          : block;
+	width            : 2em;
+	height           : 2em;
+	margin           : 0 25px;
+	fill             : currentColor;
+	// background-color : #000;
+	transition       : 0.5s all ease-in-out ;
+
+	&:hover {
+		transform : scale(1.2);
+		color     : #88e7c4;
+	}
+
+	@include breakpoint(medium) {
+		width   : 2.5em;
+		height  : 2.5em;
+	}
+}
