@@ -2,8 +2,11 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
 import Layout from '../components/layout'
 import CircularText from '../components/CircularText'
+
 
 import Work from '../components/work'
 import Kinect from '../components/kinect'
@@ -29,9 +32,33 @@ export default function Home({props}) {
       </nav> */}
       <ThreeD></ThreeD>
       <CircularText></CircularText>
-       
-      <style jsx>{`
+      <div className="links">
+        <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank">
+            <FaLinkedin className="linkedin icon"></FaLinkedin>
+          </a>
+        <a href="https://github.com/GCodeON" target="_blank">
+        <FaGithub className="github icon"></FaGithub>
+        </a>
+      </div>
 
+      
+      <style jsx>{`
+          .icon {
+            display   : inline;
+            font-size : xxx-large;
+            color     : white;
+            margin    : 2em 10px;
+          }
+
+          .links {
+            position        : absolute;
+            bottom          : 5vh;
+            left            : 0;
+            right           : 0;
+            display         : inline-flex;
+            justify-content : center;
+            z-index         : 2;
+          }
       `}</style>
 
       <style jsx global>{`
