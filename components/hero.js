@@ -26,7 +26,7 @@ export default class Hero extends React.Component {
       <div className="overlay">
         <div className="hero">
             <div className="intro">
-                <span className="subline">Software Developer</span>
+               
                 <h2 className="title">Gerardo</h2>
                 <h2 className="title">Soto</h2>
 
@@ -39,6 +39,9 @@ export default class Hero extends React.Component {
                     <FaLinkedin className="linkedin icon"></FaLinkedin>
                   </a>
                 </div>
+{/* 
+                <span className="subline">Software Developer</span> */}
+
             </div>
         </div>
 
