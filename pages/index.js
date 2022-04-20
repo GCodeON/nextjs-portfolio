@@ -47,7 +47,7 @@ export default function Home({props}) {
       <style jsx>{`
           .links {
             position        : absolute;
-            bottom          : 0;
+            bottom          : 50px;
             left            : 0;
             right           : 0;
             display         : inline-flex;
