@@ -1,8 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
 
-import Kinect from './kinect'
-import Planes from './planes'
+import Link from 'next/link'
+
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
 
 import Nav from './nav'
 
@@ -24,14 +26,34 @@ export default class Hero extends React.Component {
       <div className="overlay">
         <div className="hero">
             <div className="intro">
-                <span className="subline"></span>
+                <span className="subline">Software Developer</span>
                 <h2 className="title">Gerardo</h2>
                 <h2 className="title">Soto</h2>
+
+                <div className="links">
+                  <a href="https://github.com/GCodeON">
+                    <FaGithub className="github icon"></FaGithub>
+                   </a>
+
+                  <a href="/test">
+                    <FaLinkedin className="linkedin icon"></FaLinkedin>
+                  </a>
+                </div>
             </div>
         </div>
 
 
       </div>
+
+  
+      <style jsx global>{`
+          .icon {
+            display   : inline;
+            font-size : x-large;
+            color     : white;
+            margin    : 2em 10px;
+          }
+        `}</style>
     </div>
     )
   }

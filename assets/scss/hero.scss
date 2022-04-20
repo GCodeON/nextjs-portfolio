@@ -33,11 +33,24 @@
 	}
 	
 	.subline {
-		text-align : center;
-		width      : 100%;
-		display    : block;
-		color      : var(--color-primary);
-		font-size  : 1.25rem;
+		font-family             : vortice-concept, sans-serif;
+		font-weight             : 400;
+		font-size               : 1em;
+		line-height             : 1;
+		// margin                  : 3vw 0 0 0;
+		-webkit-text-stroke     : 0.75px var(--color-button);
+		text-stroke             : 0.75px var(--color-button);
+		-webkit-text-fill-color : transparent;
+		text-fill-color         : transparent;
+		color                   : transparent;
+		text-align              : center;
+		transition              : 1s all ease-in-out;
+
+		@include breakpoint(large) {
+			font-size: 3em;
+			-webkit-text-stroke     : 1px var(--color-button);
+			text-stroke             : 1px var(--color-button);
+		}
 	}
 	
 	.description {

@@ -320,13 +320,13 @@ main {
 	font-weight: bold;
 }
 
-.github {
-	display: block;
-	align-self: end;
-	grid-area: github;
-	justify-self: start;
-	margin: 0.5em;
-}
+// .github {
+// 	display: block;
+// 	align-self: end;
+// 	grid-area: github;
+// 	justify-self: start;
+// 	margin: 0.5em;
+// }
 
 .demos {
 	position: relative;
@@ -1075,11 +1075,11 @@ a.demo--current {
 		padding-bottom: 0.25em;
 		text-align: center;
 	}
-	.github {
-		display: block;
-		margin: 1em auto;
-	}
-	.codrops-links {
-		margin: 0;
-	}
+	// .github {
+	// 	// display: block;
+	// 	// margin: 1em auto;
+
+	// 	font-size: 30px;
+
+	// }
 }
