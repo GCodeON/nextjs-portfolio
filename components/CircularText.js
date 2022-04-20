@@ -164,6 +164,16 @@ export default class CircularText extends React.Component {
       opacity  : 0.8,
       scale    : 1.2
     }, 'start+=1.75')
+    .to(this.circleText, {
+      duration : 1,
+      ease     : 'back.out',
+      scale    : 1,
+      opacity  : 1,
+      rotation : '-=270',
+      stagger  : {
+          amount : 0.3
+      }
+  }, 'start+=2')
   }
   
     
