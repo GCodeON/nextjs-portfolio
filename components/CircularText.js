@@ -34,6 +34,7 @@ export default class CircularText extends React.Component {
   setup() {
     gsap.set(this.enterCtrl, {opacity: '0'});
     gsap.set([this.circleText, this.content.children], {opacity: 0});
+    gsap.set([this.content], {display: 'none'});
     gsap.set('body', { overflow: 'hidden' });
     gsap.set(this.circleText, { transformOrigin: '50% 50%' });
     gsap.set(this.enterCtrl, {pointerEvents: 'none'});
@@ -117,7 +118,7 @@ export default class CircularText extends React.Component {
       }, 'start+=2');
   }
   enter() {
-
+    gsap.set([this.content], {display: 'flex'});
     gsap.killTweensOf([this.circleText]);
     gsap.set(this.enterCtrl, {pointerEvents: 'none'});
     // this.startTL.pause().kill();

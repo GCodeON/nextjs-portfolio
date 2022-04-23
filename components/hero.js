@@ -29,12 +29,15 @@ export default class Hero extends React.Component {
 
             </div>
         </div>
-
+        {/* <div className="quote container">
+          <p className="subline">Software Developer experienced building full stack web applications </p>
+        </div> */}
 
       </div>
 
   
       <style jsx global>{`
+        
 
         `}</style>
     </div>
@@ -42,3 +45,19 @@ export default class Hero extends React.Component {
   }
 }
 
+// export async function getStaticProps(context) {
+//   const res = await fetch(`https://stoicquotesapi.com/v1/api/quotes/random`)
+//   const data = await res.json()
+
+//   console.log("static props", data);
+
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     }
+//   }
+
+//   return {
+//     props: { data }, // will be passed to the page component as props
+//   }
+// }
