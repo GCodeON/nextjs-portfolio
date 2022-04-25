@@ -229,6 +229,7 @@ export default class CircularText extends React.Component {
           </svg>
 
           <div className="content">
+            
             <Hero></Hero>  
           </div>
           

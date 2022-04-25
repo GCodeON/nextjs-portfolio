@@ -1,48 +1,61 @@
-import React from 'react'
+import { React, useEffect} from 'react'
 import Head from 'next/head'
-
 import Link from 'next/link'
+
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 import Nav from './nav'
 
-export default class Hero extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
-  componentDidMount() {
+gsap.registerPlugin(ScrollTrigger);
 
-  }
+export default function Hero() {
 
-  render() {
-    return (
-      <div>
-      <Head>
-        <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
-      </Head>
-      {/* <Nav></Nav> */}
-      <div className="overlay">
-        <div className="hero">
-            <div className="intro">
-              {/* <span className="subline">Software Developer</span> */}
-                <h2 className="title">Gerardo</h2>
-                <h2 className="title">Soto</h2>
+  let text = 'Gerardo Soto';
+  let letters = text.split("");
 
-            </div>
-        </div>
-        {/* <div className="quote container">
-          <p className="subline">Software Developer experienced building full stack web applications </p>
-        </div> */}
+   useEffect(() => {
 
-      </div>
-
+      console.log('gsap timeline');
   
-      <style jsx global>{`
-        
+  }, []);
 
-        `}</style>
+  return (
+    <div>
+    <Head>
+      <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
+    </Head>
+    {/* <Nav></Nav> */}
+    <div className="overlay">
+      <div className="hero">
+          <div className="intro">
+
+              <h2 className="title">
+                {letters.map((letter, idx) => (
+                  <span 
+                    className={`letter-${ idx + 1}`}
+                    key={`letter-'${ idx + 1 }`}>
+                      { letter }
+                  </span>
+                ))}
+              </h2>
+              {/* <span className="subline">Software <br></br> Engineer</span> */}
+          </div>
+      </div>
+      {/* <div className="quote container">
+        <p className="subline">Software Developer experienced building full stack web applications </p>
+      </div> */}
+
     </div>
-    )
-  }
+
+
+    <style jsx global>{`
+      
+
+      `}</style>
+  </div>
+  )
+
 }
 
 // export async function getStaticProps(context) {
