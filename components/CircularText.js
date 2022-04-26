@@ -181,24 +181,6 @@ export default class CircularText extends React.Component {
     // this.typeInit();
 
   }
-
-  typeInit() {
-
-      // If you want to pass more options as props, simply add
-      // your desired props to this destructuring assignment.
-      const { strings } = this.props;
-      // You can pass other options here, such as typing speed, back speed, etc.
-      const options = {
-        strings   : strings,
-        typeSpeed : 100,
-        backSpeed : 120,
-        loop: true
-      };
-      // this.el refers to the <span> in the render() method
-      this.typed = new Typed(this.el, options);
-  }
-
-
   
     
   render() {

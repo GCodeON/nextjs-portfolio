@@ -5,43 +5,16 @@ import Image from 'next/image'
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 import Layout from '../components/layout'
+
 import CircularText from '../components/CircularText'
-
-import Typed from 'typed.js';
-
-import Hero from '../components/hero'
-// import Work from '../components/work'
-// import Kinect from '../components/kinect'
-import Planes from '../components/planes'
-
 import ThreeD from '../components/3D'
-
-
+import Hero from '../components/hero'
+import Planes from '../components/planes'
+import Work from '../components/work'
+// import Kinect from '../components/kinect'
 
 export default function Home({props}) {
 
-  // useEffect(() => {
-  //   const options = {
-  //     strings: [
-  //       'Some <i>strings</i> are slanted',
-  //       'Some <strong>strings</strong> are bold',
-  //       'HTML characters &times; &copy;'
-  //     ],
-  //     typeSpeed: 50,
-  //     backSpeed: 50,
-  //   };
-    
-  //   // elRef refers to the <span> rendered below
-  //   typed.current = new Typed(el.current, options);
-    
-  //   return () => {
-  //     // Make sure to destroy Typed instance during cleanup
-  //     // to prevent memory leaks
-  //     typed.current.destroy();
-  //   }
-  // }, [])
-
-  
   return (
     <Layout>
       <Head>
@@ -57,16 +30,8 @@ export default function Home({props}) {
           <a className="item" href="#contact">Contact</a>
       </nav> */}
       <ThreeD></ThreeD>
-      <CircularText 
-        strings={[]}
-      >
+      <CircularText strings={[]}>
         <div className='overlay'>
-
-        {/* <span 
-              className='typed'
-              style={{ whiteSpace: 'pre' }} 
-              ref={(el) => { this.el = el; }}
-            /> */}
           <Hero></Hero>  
           <Planes></Planes>
         </div>
