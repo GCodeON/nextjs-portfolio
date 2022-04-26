@@ -244,7 +244,7 @@ export default class CircularText extends React.Component {
           </svg>
 
           <div className="content">
-            
+
             {this.props.children}
 
             <span 
@@ -252,8 +252,7 @@ export default class CircularText extends React.Component {
               style={{ whiteSpace: 'pre' }} 
               ref={(el) => { this.el = el; }}
             />
-
-            <p className='description'>Enjoy designing and building web applications. Scroll down to check out  my work.</p>
+]
           </div>
           
           <button className="enter" onClick={this.enter.bind(this)} onMouseEnter={this.hoverLeave.bind(this)} onMouseLeave={this.hoverEnter.bind(this)} >
@@ -275,7 +274,7 @@ export default class CircularText extends React.Component {
           }
           .typed {
             font-family             : vortice-concept, sans-serif;
-            font-size: 3em;
+            font-size: 2em;
           }
         `}</style>
       </div>

@@ -59,7 +59,8 @@ export default function Home({props}) {
         strings={[
           'Root Balanced',
           'Creative Conscious',
-          'Solar Plexus Empowered'
+          'Enjoy designing and <br>building web applications.',
+          'Scroll down to check out  my work.'
         ]}
       >
         <Hero></Hero>  
