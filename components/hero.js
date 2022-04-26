@@ -26,7 +26,7 @@ export default function Hero() {
       <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
     </Head>
     {/* <Nav></Nav> */}
-    <div className="overlay">
+
       <div className="hero">
           <div className="intro">
               <h2 className="title">
@@ -40,7 +40,6 @@ export default function Hero() {
               </h2>
               {/* <span className="subline">Software <br></br> Engineer</span> */}
             </div>
-      </div>
       {/* <div className="quote container">
         <p className="subline">Software Developer experienced building full stack web applications </p>
       </div> */}

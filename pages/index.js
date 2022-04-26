@@ -7,10 +7,12 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Layout from '../components/layout'
 import CircularText from '../components/CircularText'
 
+import Typed from 'typed.js';
+
 import Hero from '../components/hero'
 // import Work from '../components/work'
 // import Kinect from '../components/kinect'
-// import Planes from '../components/planes'
+import Planes from '../components/planes'
 
 import ThreeD from '../components/3D'
 
@@ -56,14 +58,18 @@ export default function Home({props}) {
       </nav> */}
       <ThreeD></ThreeD>
       <CircularText 
-        strings={[
-          'Root Balanced',
-          'Creative Conscious',
-          'Enjoy designing and <br>building web applications.',
-          'Scroll down to check out my work.'
-        ]}
+        strings={[]}
       >
-        <Hero></Hero>  
+        <div className='overlay'>
+
+        {/* <span 
+              className='typed'
+              style={{ whiteSpace: 'pre' }} 
+              ref={(el) => { this.el = el; }}
+            /> */}
+          <Hero></Hero>  
+          <Planes></Planes>
+        </div>
       </CircularText>
 
       <div className="links">

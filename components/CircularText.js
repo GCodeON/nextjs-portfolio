@@ -2,7 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 
 import { gsap } from 'gsap';
-import Typed from 'typed.js';
 
 import Hero from './hero'
 
@@ -252,14 +251,7 @@ export default class CircularText extends React.Component {
           </svg>
 
           <div className="content">
-
             {this.props.children}
-
-            <span 
-              className='typed'
-              style={{ whiteSpace: 'pre' }} 
-              ref={(el) => { this.el = el; }}
-            />
           </div>
           
           <button className="enter" onClick={this.enter.bind(this)} onMouseEnter={this.hoverLeave.bind(this)} onMouseLeave={this.hoverEnter.bind(this)} >
