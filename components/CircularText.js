@@ -27,19 +27,6 @@ export default class CircularText extends React.Component {
     this.enterText = document.querySelector('.enter__text')
     this.circleTextTotal = this.circleText.length
 
-          // If you want to pass more options as props, simply add
-      // your desired props to this destructuring assignment.
-      const { strings } = this.props;
-      // You can pass other options here, such as typing speed, back speed, etc.
-      const options = {
-        strings   : strings,
-        typeSpeed : 100,
-        backSpeed : 120,
-        loop: true
-      };
-      // this.el refers to the <span> in the render() method
-      this.typed = new Typed(this.el, options);
-
     this.setup(); 
 
     // this.nav    = document.querySelector('.nav'),
@@ -190,8 +177,29 @@ export default class CircularText extends React.Component {
       stagger  : {
           amount : 0.3
       }
-  }, 'start+=2')
+    }, 'start+=2')
+
+    // this.typeInit();
+
   }
+
+  typeInit() {
+
+      // If you want to pass more options as props, simply add
+      // your desired props to this destructuring assignment.
+      const { strings } = this.props;
+      // You can pass other options here, such as typing speed, back speed, etc.
+      const options = {
+        strings   : strings,
+        typeSpeed : 100,
+        backSpeed : 120,
+        loop: true
+      };
+      // this.el refers to the <span> in the render() method
+      this.typed = new Typed(this.el, options);
+  }
+
+
   
     
   render() {
@@ -252,7 +260,6 @@ export default class CircularText extends React.Component {
               style={{ whiteSpace: 'pre' }} 
               ref={(el) => { this.el = el; }}
             />
-]
           </div>
           
           <button className="enter" onClick={this.enter.bind(this)} onMouseEnter={this.hoverLeave.bind(this)} onMouseLeave={this.hoverEnter.bind(this)} >

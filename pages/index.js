@@ -60,7 +60,7 @@ export default function Home({props}) {
           'Root Balanced',
           'Creative Conscious',
           'Enjoy designing and <br>building web applications.',
-          'Scroll down to check out  my work.'
+          'Scroll down to check out my work.'
         ]}
       >
         <Hero></Hero>  
