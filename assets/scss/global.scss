@@ -50,8 +50,8 @@ body {
 .nav {
 	display         : flex;
 	flex-direction  : row;
-	// align-self      : end;
-	// align-items     : end;
+	// align-self      : flex-end;
+	// align-items     : flex-end;
 	justify-content : space-between;
 	padding         : 2rem 3rem;
 	z-index         : 100;
@@ -215,7 +215,7 @@ body {
 	transition: opacity 0.3s;		
 }
 
-.js body.render {
+.js body.rflex-ender {
 	opacity: 1;
 }
 
@@ -315,7 +315,7 @@ main {
 
 // .github {
 // 	display: block;
-// 	align-self: end;
+// 	align-self: flex-end;
 // 	grid-area: github;
 // 	justify-self: start;
 // 	margin: 0.5em;
@@ -324,7 +324,7 @@ main {
 .demos {
 	position: relative;
 	display: block;
-	align-self: end;
+	align-self: flex-end;
 	text-align: center;
 	grid-area: demos;
 	margin-bottom: 0.5em;
@@ -1009,7 +1009,7 @@ a.demo--current {
 	.demos {
 		display: flex;
 		padding-right: 80px;
-		justify-self: end;
+		justify-self: flex-end;
 	}
 	.demo {
 		display: block;

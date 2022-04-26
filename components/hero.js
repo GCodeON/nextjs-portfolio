@@ -21,7 +21,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <div>
+    <>
     <Head>
       <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
     </Head>
@@ -60,7 +60,7 @@ export default function Hero() {
       
 
       `}</style>
-  </div>
+  </>
   )
 
 }

@@ -32,7 +32,7 @@ export default class threeD extends React.Component {
 
   }
   
-  async componentDidMount() {
+  componentDidMount() {
     renderer =  new THREE.WebGLRenderer({
       canvas: document.querySelector('.bg')
     });
@@ -56,8 +56,14 @@ export default class threeD extends React.Component {
 
     window.addEventListener( 'resize', this.onWindowResize );
     animate();
+
+    document.querySelector('.content').onscroll = this.moveCamera();
   }
 
+  moveCamera() {
+    const t = document.body.getBoundingClientRect().top;
+    console.log('move camera on scroll', t);
+  }
 
   createRing() {
     geometry = new THREE.RingGeometry(2.5, 1, 16);

@@ -34,6 +34,7 @@ export default function Home({props}) {
         <div className='overlay'>
           <Hero></Hero>  
           <Planes></Planes>
+          {/* <Work></Work> */}
         </div>
       </CircularText>
 
