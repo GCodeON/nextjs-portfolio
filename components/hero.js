@@ -29,7 +29,6 @@ export default function Hero() {
     <div className="overlay">
       <div className="hero">
           <div className="intro">
-
               <h2 className="title">
                 {letters.map((letter, idx) => (
                   <span 
@@ -40,13 +39,22 @@ export default function Hero() {
                 ))}
               </h2>
               {/* <span className="subline">Software <br></br> Engineer</span> */}
-          </div>
+            </div>
       </div>
       {/* <div className="quote container">
         <p className="subline">Software Developer experienced building full stack web applications </p>
       </div> */}
 
     </div>
+
+    <style jsx>{`
+          .subline {
+            -webkit-text-stroke: 1px white;
+          }
+          .description {
+            color: white;
+          }
+    `}</style>
 
 
     <style jsx global>{`

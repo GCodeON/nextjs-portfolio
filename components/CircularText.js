@@ -1,8 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
+
 import { gsap } from 'gsap';
+import Typed from 'typed.js';
 
 import Hero from './hero'
+
 
 export default class CircularText extends React.Component {
   constructor(props) {
@@ -23,6 +26,19 @@ export default class CircularText extends React.Component {
     this.enterBackground = document.querySelector('.enter__bg')
     this.enterText = document.querySelector('.enter__text')
     this.circleTextTotal = this.circleText.length
+
+          // If you want to pass more options as props, simply add
+      // your desired props to this destructuring assignment.
+      const { strings } = this.props;
+      // You can pass other options here, such as typing speed, back speed, etc.
+      const options = {
+        strings   : strings,
+        typeSpeed : 100,
+        backSpeed : 120,
+        loop: true
+      };
+      // this.el refers to the <span> in the render() method
+      this.typed = new Typed(this.el, options);
 
     this.setup(); 
 
@@ -185,7 +201,6 @@ export default class CircularText extends React.Component {
       <div className="circular-text-component">
       <Head>
       </Head>
-        <div>
           <svg className="circles" width="100%" height="100%" viewBox="0 0 1400 1400">
             <def>
               <path id="circle-1" d="M250,700.5A450.5,450.5 0 1 11151,700.5A450.5,450.5 0 1 1250,700.5" />
@@ -230,14 +245,22 @@ export default class CircularText extends React.Component {
 
           <div className="content">
             
-            <Hero></Hero>  
+            {this.props.children}
+
+            <span 
+              className='typed'
+              style={{ whiteSpace: 'pre' }} 
+              ref={(el) => { this.el = el; }}
+            />
+
+            <p className='description'>Enjoy designing and building web applications. Scroll down to check out  my work.</p>
           </div>
           
           <button className="enter" onClick={this.enter.bind(this)} onMouseEnter={this.hoverLeave.bind(this)} onMouseLeave={this.hoverEnter.bind(this)} >
             <div className="enter__bg" ></div>
             <span className="enter__text">Enter</span>
           </button>
-        </div>
+
   
 
   
@@ -249,6 +272,10 @@ export default class CircularText extends React.Component {
           .circular-text-component {
             position : absolute;
             z-index  : 2;
+          }
+          .typed {
+            font-family             : vortice-concept, sans-serif;
+            font-size: 3em;
           }
         `}</style>
       </div>
