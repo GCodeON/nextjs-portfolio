@@ -11,7 +11,7 @@ import ThreeD from '../components/3D'
 import Hero from '../components/hero'
 import Planes from '../components/planes'
 import Work from '../components/work'
-// import Kinect from '../components/kinect'
+import Kinect from '../components/kinect'
 
 export default function Home({props}) {
 
@@ -32,8 +32,9 @@ export default function Home({props}) {
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
         <div className='overlay'>
-          <Hero></Hero>  
-          <Planes></Planes>
+          {/* <Hero></Hero>  
+          <Planes></Planes> */}
+          <Kinect></Kinect>
           {/* <Work></Work> */}
         </div>
       </CircularText>

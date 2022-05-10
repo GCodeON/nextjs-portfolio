@@ -7,6 +7,8 @@ let scene, camera, renderer;
 let geometry, mesh, material;
 let mouse, center;
 
+let objectA, objectB;
+
 export default class Kinect extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,10 @@ export default class Kinect extends React.Component {
   }
   componentDidMount() {
     this.video = document.getElementById( 'video' );
+    console.log('get video', this.video);
     this.init();
+
+    this.createRing()
 
     this.renderStart();
 
@@ -121,12 +126,11 @@ export default class Kinect extends React.Component {
 
     this.video.play();
 
-    renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer( {
+      canvas: document.querySelector('.video')
+    });
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
-
-
-    this.mount.appendChild(renderer.domElement);
 
     mouse = new THREE.Vector3( 0, 0, 1 );
 
@@ -152,24 +156,37 @@ export default class Kinect extends React.Component {
 
   }
 
-  // animate() {
+  animate() {
 
-  //   // this.frame = requestAnimationFrame();
+    // this.frame = requestAnimationFrame();
 
-  //   this.renderStart();
+    this.renderStart();
 
-  // }
+  }
 
   renderStart() {
+
+    console.log('video connect render', scene, camera);
 
     camera.position.x += ( mouse.x - camera.position.x ) * 0.05;
     camera.position.y += ( - mouse.y - camera.position.y ) * 0.05;
     camera.lookAt( center );
-
+    
 
     renderer.render( scene, camera );
 
   }
+  createRing() {
+    geometry = new THREE.RingGeometry(50.5, 1, 16);
+    material = new THREE.MeshBasicMaterial( {
+      color     : '0xFF6347',
+      wireframe : true
+    })
+
+    objectA = new THREE.Mesh(geometry, material);
+    scene.add(objectA);
+  }
+
 
   render() {
     return (
@@ -180,10 +197,10 @@ export default class Kinect extends React.Component {
       <div className="video-kinect" ref={(mount) => { this.mount = mount }}>
         
         <video id="video" loop muted crossOrigin="anonymous" playsInline >
-          <source src="/textures/kinect.webm"/>
+          {/* <source src="/textures/kinect.webm"/> */}
           <source src="/textures/kinect.mp4"/>
         </video>
- 
+        <canvas className="video"></canvas>
       </div>
 
 
