@@ -32,7 +32,7 @@ export default function Home({props}) {
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
         <div className='overlay'>
-           <Hero></Hero>  
+          <Hero></Hero>  
           <Planes></Planes>
           <Kinect></Kinect>
           {/* <Work></Work> */}

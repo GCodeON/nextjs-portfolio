@@ -1,7 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-
-
 export default class Planes extends React.Component {
   constructor(props) {
     super(props);
@@ -9,8 +7,6 @@ export default class Planes extends React.Component {
     this.smooth = null
   }
   
-
-
   async componentDidMount() {
 
   }
@@ -24,23 +20,28 @@ export default class Planes extends React.Component {
         <div className='planes'>
           <div className="content">
             <div className="item">
-
-              <span className="pretitle">Know</span>
-              <h2 className="title">About</h2>
+              <a href="" target="_blank" className='link'>
+                <span className="pretitle">Know</span>
+                <h2 className="title">About</h2>
+              </a>
             </div>
             <div className="item">
-              <span className="pretitle">Balance</span>
-              <h2 className="title">Work</h2>
+              <a href="" target="_blank" className='link'>
+                <span className="pretitle">Balance</span>
+                <h2 className="title">Work</h2>
+              </a>
             </div>
-
             <div className="item">
-              <span className="pretitle">Live Life</span>
-              <h2 className="title">Experience</h2>
+              <a href="" target="_blank" className='link'>
+                <span className="pretitle">Live Life</span>
+                <h2 className="title">Experience</h2>
+              </a>
             </div>
-
             <div className="item">
-              <span className="pretitle">Creative</span>
-              <h2 className="title">Contact</h2>
+              <a href="" target="_blank" className='link'>
+                <span className="pretitle">Creative</span>
+                <h2 className="title">Contact</h2>
+              </a>
             </div>
           </div>
         </div>
@@ -52,7 +53,6 @@ export default class Planes extends React.Component {
         right: 0;
       }
 
-                  
       `}</style>
 
     </div>
