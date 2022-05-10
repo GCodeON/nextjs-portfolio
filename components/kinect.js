@@ -7,14 +7,10 @@ let scene, camera, renderer;
 let geometry, mesh, material;
 let mouse, center;
 
-let objectA, objectB;
-
 function animate () {
   requestAnimationFrame( animate );
 
-  console.log('video connect render', scene, camera);
-
-  camera.position.x += ( mouse.x - camera.position.x ) * 0.05;
+  camera.position.x += ( mouse.x - camera.position.x ) * 0.15;
   camera.position.y += ( - mouse.y - camera.position.y ) * 0.05;
   camera.lookAt( center );
 
@@ -29,10 +25,8 @@ export default class Kinect extends React.Component {
   }
   componentDidMount() {
     this.video = document.getElementById( 'video' );
-    console.log('get video', this.video);
-    this.init();
 
-    // this.renderStart();
+    this.init();
 
     animate();
 
@@ -141,6 +135,7 @@ export default class Kinect extends React.Component {
     renderer = new THREE.WebGLRenderer( {
       canvas: document.querySelector('.video')
     });
+
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
 
@@ -165,39 +160,7 @@ export default class Kinect extends React.Component {
   onDocumentMouseMove( event ) {
     mouse.x = ( event.clientX - window.innerWidth / 2 ) * 8;
     mouse.y = ( event.clientY - window.innerHeight / 2 ) * 8;
-
   }
-
-  // animate() {
-
-  //   // this.frame = requestAnimationFrame();
-
-  //   this.renderStart();
-
-  // }
-
-  renderStart() {
-
-    console.log('video connect render', scene, camera);
-
-    camera.position.x += ( mouse.x - camera.position.x ) * 0.05;
-    camera.position.y += ( - mouse.y - camera.position.y ) * 0.05;
-    camera.lookAt( center );
-    
-
-    renderer.render( scene, camera );
-
-  }
-  // createRing() {
-  //   geometry = new THREE.RingGeometry(50.5, 1, 16);
-  //   material = new THREE.MeshBasicMaterial( {
-  //     color     : '0xFF6347',
-  //     wireframe : true
-  //   })
-
-  //   objectA = new THREE.Mesh(geometry, material);
-  //   scene.add(objectA);
-  // }
 
 
   render() {

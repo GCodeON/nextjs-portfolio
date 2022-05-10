@@ -32,8 +32,8 @@ export default function Home({props}) {
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
         <div className='overlay'>
-          {/* <Hero></Hero>  
-          <Planes></Planes> */}
+           <Hero></Hero>  
+          <Planes></Planes>
           <Kinect></Kinect>
           {/* <Work></Work> */}
         </div>

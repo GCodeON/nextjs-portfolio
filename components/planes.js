@@ -21,7 +21,7 @@ export default class Planes extends React.Component {
       <Head>
      
       </Head>
-        <div >
+        <div className='planes'>
           <div className="content">
             <div className="item">
 
@@ -46,6 +46,11 @@ export default class Planes extends React.Component {
         </div>
       <style jsx>{`
 
+      .planes {
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
 
                   
       `}</style>
