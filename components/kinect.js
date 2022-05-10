@@ -9,6 +9,18 @@ let mouse, center;
 
 let objectA, objectB;
 
+function animate () {
+  requestAnimationFrame( animate );
+
+  console.log('video connect render', scene, camera);
+
+  camera.position.x += ( mouse.x - camera.position.x ) * 0.05;
+  camera.position.y += ( - mouse.y - camera.position.y ) * 0.05;
+  camera.lookAt( center );
+
+  renderer.render( scene, camera );
+};
+
 export default class Kinect extends React.Component {
   constructor(props) {
     super(props);
@@ -20,9 +32,9 @@ export default class Kinect extends React.Component {
     console.log('get video', this.video);
     this.init();
 
-    this.createRing()
+    // this.renderStart();
 
-    this.renderStart();
+    animate();
 
   }
 
@@ -156,13 +168,13 @@ export default class Kinect extends React.Component {
 
   }
 
-  animate() {
+  // animate() {
 
-    // this.frame = requestAnimationFrame();
+  //   // this.frame = requestAnimationFrame();
 
-    this.renderStart();
+  //   this.renderStart();
 
-  }
+  // }
 
   renderStart() {
 
@@ -176,16 +188,16 @@ export default class Kinect extends React.Component {
     renderer.render( scene, camera );
 
   }
-  createRing() {
-    geometry = new THREE.RingGeometry(50.5, 1, 16);
-    material = new THREE.MeshBasicMaterial( {
-      color     : '0xFF6347',
-      wireframe : true
-    })
+  // createRing() {
+  //   geometry = new THREE.RingGeometry(50.5, 1, 16);
+  //   material = new THREE.MeshBasicMaterial( {
+  //     color     : '0xFF6347',
+  //     wireframe : true
+  //   })
 
-    objectA = new THREE.Mesh(geometry, material);
-    scene.add(objectA);
-  }
+  //   objectA = new THREE.Mesh(geometry, material);
+  //   scene.add(objectA);
+  // }
 
 
   render() {
