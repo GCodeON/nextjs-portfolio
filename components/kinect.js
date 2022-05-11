@@ -171,8 +171,7 @@ export default class Kinect extends React.Component {
       </Head>
       <div className="video-kinect" ref={(mount) => { this.mount = mount }}>
         
-        <video id="video" autoplay loop muted playsinline crossOrigin="anonymous" playsInline >
-          {/* <source src="/textures/kinect.webm"/> */}
+        <video id="video" autoPlay loop muted playsInline crossOrigin="anonymous">
           <source src="/textures/kinect.mp4"/>
         </video>
         <canvas className="video"></canvas>
@@ -184,6 +183,12 @@ export default class Kinect extends React.Component {
       #video {
         display: none;
       }
+
+      // canvas {
+      //   position : fixed;
+      //   top      : 0;
+      //   left     : 0;
+      // }
 
                   
       `}</style>
