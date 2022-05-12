@@ -4,6 +4,8 @@
     height          : 100vh;
     justify-content : center;
     align-items     : center;
+
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0)), to(#0a0a0a));
 	
 	.intro {
 		grid-area    : intro;
