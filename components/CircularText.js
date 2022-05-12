@@ -21,6 +21,7 @@ export default class CircularText extends React.Component {
   componentDidMount() {
     this.circleText      = document.querySelectorAll('text.circles__text')
     this.content         = document.querySelector('.content')
+    this.overlay         = document.querySelector('.overlay')
     this.enterCtrl       = document.querySelector('.enter')
     this.enterBackground = document.querySelector('.enter__bg')
     this.enterText = document.querySelector('.enter__text')
@@ -120,10 +121,11 @@ export default class CircularText extends React.Component {
       }, 'start+=2');
   }
   enter() {
-    gsap.set([this.content], {display: 'flex'});
     gsap.killTweensOf([this.circleText]);
+
+    gsap.set([this.content], {display: 'flex'});
     gsap.set(this.enterCtrl, {pointerEvents: 'none'});
-    // this.startTL.pause().kill();
+    this.startTL.pause().kill();
 
     gsap.set([this.content], {opacity: 1});
 
@@ -180,6 +182,8 @@ export default class CircularText extends React.Component {
 
     // this.typeInit();
 
+    gsap.set([this.overlay], {background: 'none'});
+
   }
   
     
@@ -233,7 +237,9 @@ export default class CircularText extends React.Component {
           </svg>
 
           <div className="content">
-            {this.props.children}
+            <div className='overlay'>
+              {this.props.children}
+            </div>
           </div>
           
           <button className="enter" onClick={this.enter.bind(this)} onMouseEnter={this.hoverLeave.bind(this)} onMouseLeave={this.hoverEnter.bind(this)} >

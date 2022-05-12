@@ -32,13 +32,12 @@ export default function Home({props}) {
       </nav> */}
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
-        <div className='overlay'>
+
           <Hero></Hero>  
           <Planes></Planes>
           <Kinect></Kinect>
           {/* <SimplePlane></SimplePlane> */}
           {/* <Work></Work> */}
-        </div>
       </CircularText>
 
       <div className="links">
