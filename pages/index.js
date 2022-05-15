@@ -10,9 +10,9 @@ import CircularText from '../components/CircularText'
 import ThreeD from '../components/3D'
 import Hero from '../components/hero'
 import Planes from '../components/planes'
-import Work from '../components/work'
+// import Work from '../components/work'
 import Kinect from '../components/kinect'
-import SimplePlane from '../components/SimplePlane'
+import Points from '../components/points'
 
 export default function Home({props}) {
 
@@ -36,6 +36,7 @@ export default function Home({props}) {
           <Hero></Hero>  
           <Planes></Planes>
           <Kinect></Kinect>
+          <Points></Points>
           {/* <SimplePlane></SimplePlane> */}
           {/* <Work></Work> */}
       </CircularText>
