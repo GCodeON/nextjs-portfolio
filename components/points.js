@@ -2,8 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 
 import * as THREE from 'three';
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
 import { PCDLoader } from '/node_modules/three/examples/jsm/loaders/PCDLoader.js';
+// import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
+
 
 let scene, camera, renderer;
 let geometry, mesh, material;
@@ -24,6 +25,8 @@ export default class Points extends React.Component {
     this.init();
 
     animate();
+
+    this.onWindowResize();
   }
 
 
