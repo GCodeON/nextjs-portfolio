@@ -8,10 +8,20 @@ import { PCDLoader } from '/node_modules/three/examples/jsm/loaders/PCDLoader.js
 
 let scene, camera, renderer;
 let geometry, mesh, material;
-let mouse, center;
+let mouse, center, model;
+
 
 function animate () {
   requestAnimationFrame( animate );
+
+  if(model) {
+    // model.rotation.y += 0.01;
+
+    // camera.position.x += ( mouse.x - camera.position.x ) * 0.15;
+    // camera.position.y += ( - mouse.y - camera.position.y ) * 0.05;
+    // camera.lookAt( center );
+  
+  }
   renderer.render( scene, camera );
 };
 
@@ -38,11 +48,14 @@ export default class Points extends React.Component {
 
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
+    
+    camera = new THREE.PerspectiveCamera( 30, window.innerWidth, window.innerHeight, 0.01, 40)
+    camera.position.set( 0, 0, 1);
 
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera( 30, window.innerWidth, window.innerHeight, 0.01, 40)
+    center = new THREE.Vector3();
+    center.z = - 1;
 
-    camera.position.set( 0, 0, 1);
     scene.add( camera );
 
     // const controls = new OrbitControls( camera, renderer.domElement );
@@ -50,21 +63,11 @@ export default class Points extends React.Component {
     // controls.minDistance = 0.5;
     // controls.maxDistance = 10;
 
-    const loader = new PCDLoader();
-    loader.load( '/models/Zaghetto.pcd', ( points ) => {
-
-      points.geometry.center();
-      points.geometry.rotateX( Math.PI );
-      scene.add( points );
-
-      animate();
-
-    });
-
-    console.log('points loaded');
-
+    this.loadModel();
+    mouse = new THREE.Vector3( 0, 0, 1 );
+    
     window.addEventListener( 'resize', this.onWindowResize );
-
+    document.addEventListener( 'mousemove', this.onDocumentMouseMove );
     window.addEventListener( 'keypress', this.keyboard );
 
 
@@ -85,13 +88,37 @@ export default class Points extends React.Component {
         break;
 
       case 'c':
-        points.material.color.setHex( Math.random() * 0xffffff );
+        let color =  Math.random() * 0xffffff;
+        points.material.color.setHex( color );
+        alert(`set hex ${ color }`);
         break;
 
     }
 
     animate();
 
+  }
+
+  loadModel() {
+    const loader = new PCDLoader();
+    loader.load( '/models/Zaghetto.pcd', ( points ) => {
+
+      model = points;
+      model.geometry.center();
+      model.geometry.rotateX( Math.PI );
+
+      const pink =  14177201.841730215;
+      const green = 4310673.115896333;
+      const greener =  7076721.028454992;
+      const white =  13885951.190900838;
+
+      model.material.color.setHex( green );
+  
+      scene.add( model );
+
+      animate();
+
+    });
   }
 
   onWindowResize() {
@@ -103,10 +130,10 @@ export default class Points extends React.Component {
 
   }
 
-  // onDocumentMouseMove( event ) {
-  //   mouse.x = ( event.clientX - window.innerWidth / 2 ) * 8;
-  //   mouse.y = ( event.clientY - window.innerHeight / 2 ) * 8;
-  // }
+  onDocumentMouseMove( event ) {
+    mouse.x = ( event.clientX - window.innerWidth / 2 ) * 8;
+    mouse.y = ( event.clientY - window.innerHeight / 2 ) * 8;
+  }
 
 
 

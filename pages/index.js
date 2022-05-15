@@ -32,11 +32,10 @@ export default function Home({props}) {
       </nav> */}
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
-
-          <Hero></Hero>  
+          <Hero></Hero>
+          <Points></Points>
           <Planes></Planes>
           <Kinect></Kinect>
-          <Points></Points>
           {/* <SimplePlane></SimplePlane> */}
           {/* <Work></Work> */}
       </CircularText>

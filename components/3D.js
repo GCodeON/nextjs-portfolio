@@ -46,7 +46,6 @@ export default class threeD extends React.Component {
     camera.position.setZ(15);
     renderer.render(scene, camera);
 
-    console.log("scene loaded", scene, camera, renderer);
     
 
     this.createRing()
@@ -92,7 +91,6 @@ export default class threeD extends React.Component {
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
-    console.log('onResize');
   }
 
   render() {
