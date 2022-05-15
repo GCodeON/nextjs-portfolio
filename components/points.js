@@ -10,16 +10,17 @@ let scene, camera, renderer;
 let geometry, mesh, material;
 let mouse, center, model;
 
+let pageX = 0.5;
+let pageY = 0.5;
+
 
 function animate () {
   requestAnimationFrame( animate );
 
   if(model) {
-    // model.rotation.y += 0.01;
-
-    // camera.position.x += ( mouse.x - camera.position.x ) * 0.15;
-    // camera.position.y += ( - mouse.y - camera.position.y ) * 0.05;
-    // camera.lookAt( center );
+    
+    model.rotation.x = (pageY - 0.5) * 0.2;
+    model.rotation.y = (pageX - 0.5) * 2;
   
   }
   renderer.render( scene, camera );
@@ -53,18 +54,9 @@ export default class Points extends React.Component {
     camera.position.set( 0, 0, 1);
 
     scene = new THREE.Scene();
-    center = new THREE.Vector3();
-    center.z = - 1;
-
     scene.add( camera );
 
-    // const controls = new OrbitControls( camera, renderer.domElement );
-    // controls.addEventListener( 'change', animate ); // use if there is no animation loop
-    // controls.minDistance = 0.5;
-    // controls.maxDistance = 10;
-
     this.loadModel();
-    mouse = new THREE.Vector3( 0, 0, 1 );
     
     window.addEventListener( 'resize', this.onWindowResize );
     document.addEventListener( 'mousemove', this.onDocumentMouseMove );
@@ -131,8 +123,8 @@ export default class Points extends React.Component {
   }
 
   onDocumentMouseMove( event ) {
-    mouse.x = ( event.clientX - window.innerWidth / 2 ) * 8;
-    mouse.y = ( event.clientY - window.innerHeight / 2 ) * 8;
+    pageX = event.pageX / window.innerWidth;
+    pageY = event.pageY / window.innerHeight;
   }
 
 
