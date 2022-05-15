@@ -62,6 +62,8 @@ export default class Points extends React.Component {
     document.addEventListener( 'mousemove', this.onDocumentMouseMove );
     window.addEventListener( 'keypress', this.keyboard );
 
+    document.addEventListener( 'scroll', this.onScroll );
+
 
   }
 
@@ -126,29 +128,43 @@ export default class Points extends React.Component {
     pageX = event.pageX / window.innerWidth;
     pageY = event.pageY / window.innerHeight;
   }
+  
+  onScroll() {
+    let elem = document.querySelector('.canvas');
+    let rect = elem.getBoundingClientRect();
+
+    const t = rect.top;
+
+    if(model) {
+      pageY = -t * 0.01;
+
+    }
+    // animate();
+
+    // camera.position.y = t * -0.0;
+  }
 
 
 
   render() {
     return (
-      <div className='component'>
-      <Head>
-       
-      </Head>
-      <div className="container" ref={(mount) => { this.mount = mount }}>
-        <canvas className="canvas"></canvas>
+      <div className='about-component'>
+        <Head>
+        
+        </Head>
+        <div className="container" ref={(mount) => { this.mount = mount }}>
+          <canvas className="canvas"></canvas>
+        </div>
+
+        <style jsx>{`
+
+          .canvas {
+            display: block;
+          }
+                    
+        `}</style>
+
       </div>
-
-
-      <style jsx>{`
-
-      .canvas {
-        display: block;
-      }
-                  
-      `}</style>
-
-    </div>
     )
   }
 }
