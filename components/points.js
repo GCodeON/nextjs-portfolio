@@ -150,6 +150,9 @@ export default class Points extends React.Component {
 
       <style jsx>{`
 
+      .canvas {
+        display: block;
+      }
                   
       `}</style>
 
