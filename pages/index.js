@@ -10,7 +10,7 @@ import CircularText from '../components/CircularText'
 import ThreeD from '../components/3D'
 import Hero from '../components/hero'
 import Planes from '../components/planes'
-// import Work from '../components/work'
+import Work from '../components/work'
 import Kinect from '../components/kinect'
 import Points from '../components/points'
 
@@ -34,10 +34,10 @@ export default function Home({props}) {
       <CircularText strings={[]}>
           <Hero></Hero>
           <Points></Points>
+          <Work></Work>
           <Planes></Planes>
           <Kinect></Kinect>
           {/* <SimplePlane></SimplePlane> */}
-          {/* <Work></Work> */}
       </CircularText>
 
       <div className="links">
