@@ -2,7 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 
 import * as THREE from 'three'
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 let scene, camera, renderer;
 let geometry, mesh, material;
@@ -11,18 +10,11 @@ let controls;
 
 let objectA, objectB;
 
-function animate () {
+function animate (callback) {
   requestAnimationFrame( animate );
-  // objectA.rotation.y += 0.03;
-  objectA.rotation.z += 0.02;
-  // objectA.rotation.x += 0.03;
-  // objectA.rotation.y += 0.01;
-
-  objectB.rotation.z += -0.01;
-  // objectB.rotation.x += 0.01;
-  objectB.rotation.y += 0.01;
-  
-  // controls.update();
+  if(callback) {
+    callback
+  }
   renderer.render( scene, camera );
 };
 
@@ -42,26 +34,25 @@ export default class threeD extends React.Component {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     
-
     camera.position.setZ(15);
     renderer.render(scene, camera);
 
-    
-
-    this.createRing()
-    this.createDodecahedron()
-
-    // controls = new OrbitControls(camera, renderer.domElement);
+    this.createRing();
+    this.createDodecahedron();
 
     window.addEventListener( 'resize', this.onWindowResize );
-    animate();
 
-    document.querySelector('.content').onscroll = this.moveCamera();
+    animate(()=> {
+      this.rotate();
+    });
   }
 
-  moveCamera() {
-    const t = document.body.getBoundingClientRect().top;
-    console.log('move camera on scroll', t);
+  onWindowResize() {
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
   createRing() {
@@ -85,12 +76,10 @@ export default class threeD extends React.Component {
     scene.add(objectB);
   }
 
-  onWindowResize() {
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize( window.innerWidth, window.innerHeight );
+  rotate() {
+    objectA.rotation.z += 0.02;
+    objectB.rotation.z += -0.01;
+    objectB.rotation.y += 0.01;
   }
 
   render() {
@@ -100,15 +89,6 @@ export default class threeD extends React.Component {
      
       </Head>
       <canvas className="bg"></canvas>
-        <div >
-          {/* <div className="content">
-            <div className="item">
-
-              <span className="pretitle">Test</span>
-              <h2 className="title">3D</h2>
-            </div>
-          </div> */}
-        </div>
       <style jsx>{`
 
         canvas {

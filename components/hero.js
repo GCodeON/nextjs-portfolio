@@ -1,4 +1,4 @@
-import { React, useEffect} from 'react'
+import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -9,28 +9,40 @@ import Nav from './nav'
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Hero() {
+export default class Hero extends React.Component  {
 
-  let text = 'Gerardo Soto';
-  let letters = text.split("");
+  constructor(props) {
+    super(props);
+    this.text    = 'Gerardo Soto',
+    this.letters = this.text.split(""),
+    this.hero    = null,
+    this.quote   = null
+  }
+  componentDidMount() {
 
-   useEffect(() => {
+    this.hero  = document.querySelector('.hero');
+    this.quote = document.querySelector('.quote');
 
-      console.log('gsap timeline');
-  
-  }, []);
+    this.init();
+
+  }
+
+
+  init() {
+    console.log('gsap timeline');
+  }
+
+render() { 
 
   return (
-    <>
+    <div className="hero-component">
     <Head>
       <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
     </Head>
-    {/* <Nav></Nav> */}
-
       <div className="hero">
           <div className="intro">
               <h2 className="title">
-                {letters.map((letter, idx) => (
+                { this.letters.map((letter, idx) => (
                   <span 
                     className={`letter-${ idx + 1}`}
                     key={`letter-'${ idx + 1 }`}>
@@ -40,29 +52,26 @@ export default function Hero() {
               </h2>
               {/* <span className="subline">Software <br></br> Engineer</span> */}
             </div>
-      {/* <div className="quote container">
-        <p className="subline">Software Developer experienced building full stack web applications </p>
-      </div> */}
+      <div className="quote container">
+        {/* <p className="subline">Software Developer experienced building full stack web applications </p> */}
+      </div>
 
     </div>
 
     <style jsx>{`
-          .subline {
-            -webkit-text-stroke: 1px white;
-          }
-          .description {
-            color: white;
-          }
+      .subline {
+        -webkit-text-stroke: 1px white;
+      }
+      .description {
+        color: white;
+      }
     `}</style>
-
 
     <style jsx global>{`
       
-
-      `}</style>
-  </>
-  )
-
+    `}</style>
+  </div>
+  )}
 }
 
 // export async function getStaticProps(context) {
