@@ -4,6 +4,11 @@ import Head from 'next/head'
 import * as THREE from 'three';
 import { PCDLoader } from '/node_modules/three/examples/jsm/loaders/PCDLoader.js';
 
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 let scene, camera, renderer;
 let geometry, mesh, material;
 let mouse, center, model;
@@ -30,6 +35,7 @@ export default class Points extends React.Component {
   }
   componentDidMount() {
     this.init();
+    // this.revealScroll();
 
     animate();
 
@@ -133,6 +139,29 @@ export default class Points extends React.Component {
       animate();
 
     });
+  }
+
+  revealScroll() {
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger    : this.hero,
+        pin        : false,
+        pinSpacing : false,
+        scrub      : true,
+        markers    : true
+      }
+    });
+  
+    tl.to(this.quote, {
+      autoAlpha: 1
+    }).to(
+      this.hero,
+      {
+        autoAlpha: 0
+      },
+      0.5
+    );
+    
   }
 
   render() {

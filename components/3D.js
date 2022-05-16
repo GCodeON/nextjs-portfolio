@@ -10,18 +10,21 @@ let controls;
 
 let objectA, objectB;
 
-function animate (callback) {
+function animate () {
   requestAnimationFrame( animate );
-  if(callback) {
-    callback
-  }
+  rotate();
   renderer.render( scene, camera );
 };
+
+function rotate() {
+  objectA.rotation.z += 0.02;
+  objectB.rotation.z += -0.01;
+  objectB.rotation.y += 0.01;
+}
 
 export default class threeD extends React.Component {
   constructor(props) {
     super(props);
-
   }
   
   componentDidMount() {
@@ -42,9 +45,7 @@ export default class threeD extends React.Component {
 
     window.addEventListener( 'resize', this.onWindowResize );
 
-    animate(()=> {
-      this.rotate();
-    });
+    animate();
   }
 
   onWindowResize() {
@@ -74,12 +75,6 @@ export default class threeD extends React.Component {
 
     objectB = new THREE.Mesh(geometry, material);
     scene.add(objectB);
-  }
-
-  rotate() {
-    objectA.rotation.z += 0.02;
-    objectB.rotation.z += -0.01;
-    objectB.rotation.y += 0.01;
   }
 
   render() {

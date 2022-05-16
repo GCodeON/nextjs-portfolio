@@ -2,13 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+// import { gsap } from "gsap/dist/gsap";
+// import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-import Nav from './nav'
-
-gsap.registerPlugin(ScrollTrigger);
-
+// gsap.registerPlugin(ScrollTrigger);
 export default class Hero extends React.Component  {
 
   constructor(props) {
@@ -29,7 +26,7 @@ export default class Hero extends React.Component  {
 
 
   init() {
-    console.log('gsap timeline');
+    // console.log('gsap timeline');
   }
 
 render() { 
