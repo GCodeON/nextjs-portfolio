@@ -3,8 +3,6 @@ import Head from 'next/head'
 
 import * as THREE from 'three';
 import { PCDLoader } from '/node_modules/three/examples/jsm/loaders/PCDLoader.js';
-// import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
-
 
 let scene, camera, renderer;
 let geometry, mesh, material;
@@ -29,8 +27,6 @@ function animate () {
 export default class Points extends React.Component {
   constructor(props) {
     super(props);
-
-    this.frame = null
   }
   componentDidMount() {
     this.init();
@@ -59,12 +55,36 @@ export default class Points extends React.Component {
     this.loadModel();
     
     window.addEventListener( 'resize', this.onWindowResize );
-    document.addEventListener( 'mousemove', this.onDocumentMouseMove );
     window.addEventListener( 'keypress', this.keyboard );
 
+    document.addEventListener( 'mousemove', this.onDocumentMouseMove );
     document.addEventListener( 'scroll', this.onScroll );
 
 
+  }
+
+  onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
+  }
+
+  onDocumentMouseMove( event ) {
+    pageX = event.pageX / window.innerWidth;
+    pageY = event.pageY / window.innerHeight;
+  }
+  
+  onScroll() {
+    let elem = document.querySelector('.canvas');
+    let rect = elem.getBoundingClientRect();
+
+    const t = rect.top;
+
+    if(model) {
+      pageY = -t * 0.01;
+
+    }
   }
 
   keyboard( ev ) {
@@ -114,37 +134,6 @@ export default class Points extends React.Component {
 
     });
   }
-
-  onWindowResize() {
- 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize( window.innerWidth, window.innerHeight );
-
-  }
-
-  onDocumentMouseMove( event ) {
-    pageX = event.pageX / window.innerWidth;
-    pageY = event.pageY / window.innerHeight;
-  }
-  
-  onScroll() {
-    let elem = document.querySelector('.canvas');
-    let rect = elem.getBoundingClientRect();
-
-    const t = rect.top;
-
-    if(model) {
-      pageY = -t * 0.01;
-
-    }
-    // animate();
-
-    // camera.position.y = t * -0.0;
-  }
-
-
 
   render() {
     return (
