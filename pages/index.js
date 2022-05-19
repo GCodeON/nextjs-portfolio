@@ -10,7 +10,7 @@ import CircularText from '../components/CircularText'
 import ThreeD from '../components/3D'
 import Hero from '../components/hero'
 import Planes from '../components/planes'
-import Work from '../components/work'
+import Carousel3D from '../components/Carousel3D'
 import Kinect from '../components/kinect'
 import Points from '../components/points'
 
@@ -23,6 +23,9 @@ export default function Home({props}) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://use.typekit.net/kxo3pgz.css"></link>
         <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script src="~assets/carousel3d/helvetiker_regular.typeface.js"></script>
+          <script src="~assets/carousel3d/Carousel.js"></script>
+          <script src="~assets/carousel3d/CarouselApplication.js"></script>
       </Head>
       {/* <nav className="nav">
           <a className="item current" href="#about">About</a>
@@ -32,12 +35,11 @@ export default function Home({props}) {
       </nav> */}
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
-          <Hero></Hero>
-          <Points></Points>
-          <Work></Work>
-          <Planes></Planes>
-          <Kinect></Kinect>
-          {/* <SimplePlane></SimplePlane> */}
+          <Hero/>
+          <Points/>
+          <Planes/>
+          <Kinect/>
+          <Carousel3D/>
       </CircularText>
 
       <div className="links">
