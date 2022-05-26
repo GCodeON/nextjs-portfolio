@@ -16,6 +16,17 @@ import Points from '../components/points'
 
 export default function Home({props}) {
 
+  let carousel = [
+    {
+      image: '/tools/node.svg',
+    },
+    {
+      image: '/tools/Threejs-logo.svg',
+    }
+  ]
+
+
+
   return (
     <Layout>
       <Head>
@@ -23,9 +34,6 @@ export default function Home({props}) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://use.typekit.net/kxo3pgz.css"></link>
         <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-        <script src="~assets/carousel3d/helvetiker_regular.typeface.js"></script>
-          <script src="~assets/carousel3d/Carousel.js"></script>
-          <script src="~assets/carousel3d/CarouselApplication.js"></script>
       </Head>
       {/* <nav className="nav">
           <a className="item current" href="#about">About</a>
@@ -39,15 +47,21 @@ export default function Home({props}) {
           <Points/>
           <Planes/>
           <Kinect/>
-          <Carousel3D/>
+          <Carousel3D 
+            list   = {carousel}
+            width  = {3}
+            height = {3}
+            radius = {3}
+          />
+
       </CircularText>
 
       <div className="links">
         <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank">
-          <FaLinkedin className="linkedin icon"></FaLinkedin>
+          <FaLinkedin className="linkedin icon"/>
         </a>
         <a href="https://github.com/GCodeON" target="_blank">
-          <FaGithub className="github icon"></FaGithub>
+          <FaGithub className="github icon"/>
         </a>
 
 
@@ -64,6 +78,13 @@ export default function Home({props}) {
             display         : inline-flex;
             justify-content : center;
             z-index         : 2;
+          }
+
+          .container {
+            position : relative;
+            margin   : 0 auto;
+            padding  : 0;
+            cursor   : pointer
           }
       `}</style>
 
