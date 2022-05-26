@@ -8,7 +8,7 @@ import * as THREE from 'three'
 import image from 'next/image';
 
 let container,
-camera, scene, renderer,
+camera, scene, renderer, center,
 updatecamera = false,
 carouselupdate = true,
 carousel = null,
@@ -78,10 +78,6 @@ export default class Carousel3D extends React.Component {
   }
 
   componentDidMount() {
-
-    carousel = new THREE.Object3D();
-    console.log('new carousel 3D', carousel);
-
     this.init();
   }
 
@@ -89,11 +85,14 @@ export default class Carousel3D extends React.Component {
     this.w = window.innerWidth
     this.h = window.innerHeight;
 
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera( 70, this.w / this.h, 1, 1000 );
+    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera.position.set( 0, 0, 500 );
 
-    camera.position.z = 500;
-    scene.add (camera);
+    scene = new THREE.Scene();
+    // center = new THREE.Vector3();
+    // center.z = - 1000;
+
+    scene.add( camera );
 
     // projector = new THREE.Projector();
     renderer = new THREE.WebGLRenderer( {
@@ -105,14 +104,17 @@ export default class Carousel3D extends React.Component {
 
     this.buildCarousel();
 
-    scene.add(carousel);
+    console.log('build carousel');
+    if(carousel) {
 
-    animate();
+      scene.add(carousel);
+      console.log('added carousel');
+      animate();
+    }
 
   }
 
   buildCarousel() {
-    console.log('buildCarousel', this.props.list);
 
     let size, 
         height, 
@@ -136,127 +138,57 @@ export default class Carousel3D extends React.Component {
         anglePer = this.anglePer;
         
       
-
-    this.carouselBuild =  this.imagesList.map((item, i) => {
+    carousel = new THREE.Object3D();
+    this.imagesList.map((item, i) => {
 
       aa = i * anglePer;
 
-      // image plane
+      let loader = new THREE.TextureLoader();
 
-      let image = new Image(50, 50);
+      // load a resource
+      loader.load(
+        // resource URL
+        item.image,
 
-      image.src = item.image;
+        // onLoad callback
+         (texture ) => {
+        
+          texture.needsUpdate = true;
+    
+          let materialOptions =  { 
+            map: texture,
+            side: THREE.DoubleSide
+          }
+    
+          material = new THREE.MeshBasicMaterial(materialOptions);
+          geometry = new THREE.PlaneGeometry(w, h, 3, 3);
+    
+          plane = new THREE.Mesh(geometry, material);
+          plane.rotation.y = -aa - Math.PI / 2;
+    
+          plane.doubleSided = true;
+          plane.carouselAngle = aa;
+          plane.scale.x = -1;
+    
+          // console.log('add image plane', texture, material, plane);
 
-      image.onload = (img) => {
-        console.log('get image', img);
+          carousel.add(plane);
+        },
 
-        texture = new THREE.Texture(img.path[0].currentSrc);
-        texture.needsUpdate = true;
+        // onProgress callback currently not supported
+        undefined,
 
-        let materialOptions =  { 
-          map: texture,
-          side: THREE.DoubleSide
+        // onError callback
+        function ( err ) {
+          console.error( 'An error happened.' );
         }
-
-        material = new THREE.MeshBasicMaterial(materialOptions);
-        geometry = new THREE.PlaneGeometry(w, h, 3, 3);
-
-        plane = new THREE.Mesh(geometry, material);
-        plane.rotation.y = -aa - Math.PI / 2;
-
-        plane.doubleSided = true;
-        plane.carouselAngle = aa;
-        plane.scale.x = -1;
-
-        console.log('add image plane', plane);
-        carousel.add(plane);
-      
-      };
-
-
-      
-
-      // reflection
-
-      // canvas = document.createElement( 'canvas' );
-      // this.cntx = canvas.getContext( '2d' );
-      // console.log('define', this.cntx);
-      // canvas.width = w;
-      // canvas.height = reflectH;
-
-
-      // this.cntx.save();
-      // this.cntx.globalAlpha = this.reflectionOpacity;
-      // this.cntx.translate(0, h-1);
-      // this.cntx.scale(1, -1);			
-      // this.cntx.drawImage(image, 0, 0, w, h /*,0,0,scope.w, scope.reflectionHeightPer*scope.h*/);				
-      // this.cntx.restore();
-      // this.cntx.globalCompositeOperation = "destination-out";
-
-            
-      //   gradient = this.cntx.createLinearGradient(0, 0, 0, reflectH);
-      //   //gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-      //   gradient.addColorStop(1, "rgba(255, 255, 255, 1.0)");
-      //   //gradient.addColorStop(0, "rgba(255, 255, 255, " + (scope.reflectionOpacity) + ")");
-      //   gradient.addColorStop(0, "rgba(255, 255, 255, 0.0)");
-      //   this.cntx.fillStyle = gradient;
-      //   this.cntx.fillRect(0, 0, w, 2*reflectH);		
-
-      // console.log('test callback', this.cntx);
-
-      // texture2                      = new THREE.Texture( canvas );
-      // texture2.needsUpdate          = true;
-      // material                      = new THREE.MeshBasicMaterial( { map: texture2, side: THREE.DoubleSide, transparent: true } );
-      // reflectionplane               = new THREE.Mesh( new THREE.PlaneGeometry( w,  reflectH, 3, 3 ), material );
-      // reflectionplane.rotation.y    = -aa-Math.PI/2;
-  
-      // reflectionplane.doubleSided   = true;
-      // reflectionplane.carouselAngle = aa;
-      // reflectionplane.scale.x       = -1;
-      // // reflectionplane.position.y    = textcontainer.position.y-10-3*size;
-
-      // carousel.add(plane);
-      // carousel.add(reflectionplane);
-
-
-
-
-
-
-
-      // const loader = new THREE.ImageLoader();
-      // console.log('loader', loader);
-      // loader.load(
-      //   // resource URL
-      //   item.image,
-      
-      //   // onLoad callback
-      //    ( image ) => {
-      //     // // use the image, e.g. draw part of it on a canvas
-      //     // const canvas = document.createElement( 'canvas' );
-      //     // const context = canvas.getContext( '2d' );
-      //     // context.drawImage( image, 100, 100 );
-
-
-         
-      //   },
-      
-      //   // onProgress callback currently not supported
-      //   undefined,
-      
-      //   // onError callback
-      //   function () {
-      //     console.error( 'An error happened.' );
-      //   }
-      // );
-
-      
-	
-
+      );
     })
+
+
     // reflectionplane.position.set( new THREE.Vector3( r*Math.cos(aa), 0, r*Math.sin(aa) ));
     // plane.position.set( new THREE.Vector3( r * Math.cos(aa), 0, r * Math.sin(aa) ));
-    console.log('carousel', carousel);
+    
   };
 
 

@@ -21,7 +21,7 @@ export default function Home({props}) {
       image: '/tools/node.svg',
     },
     {
-      image: '/tools/Threejs-logo.svg',
+      image: '/tools/Threejs.svg',
     }
   ]
 
