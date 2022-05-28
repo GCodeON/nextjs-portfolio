@@ -18,10 +18,20 @@ export default function Home({props}) {
 
   let carousel = [
     {
-      image: '/tools/node.svg',
+      image   : '/tools/node.svg',
+      caption : 'NODE JS'
     },
     {
-      image: '/tools/Threejs.svg',
+      image   : '/tools/Threejs.svg',
+      caption : 'THREE JS'
+    },
+    {
+      image   : '/tools/react.png',
+      caption : 'REACT JS'
+    },
+    {
+      image   : '/tools/nextjs.png',
+      caption : 'NEXT JS'
     }
   ]
 
@@ -49,8 +59,8 @@ export default function Home({props}) {
           <Kinect/>
           <Carousel3D 
             list   = {carousel}
-            width  = {3}
-            height = {3}
+            width  = {5}
+            height = {5}
             radius = {3}
           />
 

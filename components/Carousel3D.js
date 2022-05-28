@@ -1,11 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
+import image from 'next/image';
 
 import TWEEN from '@tweenjs/tween.js'
 
-
 import * as THREE from 'three'
-import image from 'next/image';
+import OrbitControls from 'threejs-orbit-controls';
 
 let container,
 camera, scene, renderer, center,
@@ -38,21 +38,19 @@ mouseYOnMouseDown = 0,
 reflectionplane   = null;
 
 
-function animate() 
-{
-    requestAnimationFrame( animate );
-    // render();
-    // if (carouselupdate && carousel) {
-    //   carousel.rotation.y += ( targetRotationY - carousel.rotation.y ) * 0.05;
-    // }
-    // if (updatecamera && Math.abs(mouse.y-prevmouse.y)>Math.abs(mouse.x-prevmouse.x)) {
-    //   camera.position.z +=  (mouse.y-prevmouse.y)*20;
-    //   renderer.render( scene, camera );
-    //   updatecamera=false;
-    //   //carouselupdate=true;
-    //   // TWEEN.update();
-    // }
-    renderer.render( scene, camera );
+function animate() {
+  requestAnimationFrame( animate );
+  renderer.render( scene, camera );
+  // if (carouselupdate && carousel) {
+  //   carousel.rotation.y += ( targetRotationY - carousel.rotation.y ) * 0.05;
+  // }
+  // if (updatecamera && Math.abs(mouse.y-prevmouse.y)>Math.abs(mouse.x-prevmouse.x)) {
+  //   camera.position.z +=  (mouse.y-prevmouse.y)*20;
+  //   renderer.render( scene, camera );
+  //   updatecamera=false;
+  //   //carouselupdate=true;
+  //   // TWEEN.update();
+  // }
 }
 
 export default class Carousel3D extends React.Component {
@@ -74,12 +72,14 @@ export default class Carousel3D extends React.Component {
     this.l                   = this.images.length;
     this.howMany             = 0;
     this.carouselLength      = this.images ? this.images.length : 0;
-    this.anglePer            = null;
+    this.anglePer            =  2*Math.PI/this.l 
 
     this.cntx = null;
   }
 
   componentDidMount() {
+
+    console.log('angleper', this.anglePer);
     this.init();
   }
 
@@ -97,16 +97,17 @@ export default class Carousel3D extends React.Component {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 
-    camera.position.setZ(15);
+    camera.position.setZ(10);
     renderer.render(scene, camera);
 
 
     // center = new THREE.Vector3();
     // center.z = - 1000;
-    this.createRing();
+    // this.createRing();
     this.buildCarousel();
 
     window.addEventListener( 'resize', this.onWindowResize );
+    this.addControls();
 
     scene.add(carousel);
     console.log('added carousel', scene, camera, carousel);
@@ -114,16 +115,6 @@ export default class Carousel3D extends React.Component {
     renderer.render(scene, camera);
 
     animate();
-
-    // if(carousel) {
-    //   scene.add(carousel);
-    //   console.log('added carousel');
-    //   renderer.render(scene, camera);
-
-    //   animate();
-    // }
-    
-
   }
 
   onWindowResize() {
@@ -134,8 +125,14 @@ export default class Carousel3D extends React.Component {
     renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
-  buildCarousel() {
+  addControls() {
+    const controls = new OrbitControls( camera, renderer.domElement );
+    controls.addEventListener( 'change', animate ); // use if there is no animation loop
+    controls.minDistance = 0.5;
+    controls.maxDistance = 10;
+  }
 
+  buildCarousel() {
     let size, 
         height, 
         aa,
@@ -154,115 +151,39 @@ export default class Carousel3D extends React.Component {
     let w        = this.width,
         h        = this.height,
         reflectH = this.reflectionHeightPer*h,
-        r        = this.radius,
-        anglePer = this.anglePer;
+        r        = this.radius
         
       
     carousel = new THREE.Object3D();
+
     this.imagesList.map((item, i) => {
-
-
-
-  const boxWidth = 2;
-  const boxHeight = 2;
-  const boxDepth = 1;
-  let geometry = null;
-
-  const cubes = [];  // just an array we can use to rotate the cubes
-  const loader = new THREE.TextureLoader();
-  loader.load(item.image, (texture, i) => {
-    geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
-
-    const material = new THREE.MeshBasicMaterial({
-      map: texture,
-      side: THREE.DoubleSide
-    });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-    // cubes.push(cube);  // add to our list of cubes to rotate
-      aa = i * anglePer;
-      geometry = new THREE.PlaneGeometry(w, h, 3, 3);
-
-      plane = new THREE.Mesh(geometry, material);
-      plane.rotation.y = -aa - Math.PI / 2;
-
-      plane.doubleSided = true;
-      plane.carouselAngle = aa;
-      plane.scale.x = -1;
-
-      carousel.add(plane);
-  });
-
-
-      // aa = i * anglePer;
-
-      // const loader = new THREE.TextureLoader();
-
-      // const material = new THREE.MeshBasicMaterial({
-      //   map  : loader.load(item.image),
-      //   side : THREE.DoubleSide
-      // });
-
-      // geometry = new THREE.PlaneGeometry(w, h, 3, 3);
-
-      // plane = new THREE.Mesh(geometry, material);
-      // plane.rotation.y = -aa - Math.PI / 2;
-
-      // plane.doubleSided = true;
-      // plane.carouselAngle = aa;
-      // plane.scale.x = -1;
-
-      // // console.log('add image plane', texture, material, plane);
-
-      // carousel.add(plane);
-
-      // let loader = new THREE.TextureLoader();
-
-      // // load a resource
-      // loader.load(
-      //   // resource URL
-      //   item.image,
-
-      //   // onLoad callback
-      //    (texture ) => {
-        
-      //     texture.needsUpdate = true;
     
-      //     let materialOptions =  { 
-      //       map: texture,
-      //       side: THREE.DoubleSide
-      //     }
-    
-      //     material = new THREE.MeshBasicMaterial(materialOptions);
-      //     geometry = new THREE.PlaneGeometry(w, h, 3, 3);
-    
-      //     plane = new THREE.Mesh(geometry, material);
-      //     plane.rotation.y = -aa - Math.PI / 2;
-    
-      //     plane.doubleSided = true;
-      //     plane.carouselAngle = aa;
-      //     plane.scale.x = -1;
-    
-      //     // console.log('add image plane', texture, material, plane);
+      let geometry = null;
 
-      //     carousel.add(plane);
-      //   },
+      const loader = new THREE.TextureLoader();
+      loader.load(item.image, (texture) => {
 
-      //   // onProgress callback currently not supported
-      //   undefined,
+        aa = i * this.anglePer;
 
-      //   // onError callback
-      //   function ( err ) {
-      //     console.error( 'An error happened.' );
-      //   }
-      // );
+        const material = new THREE.MeshBasicMaterial({
+          map: texture,
+          side: THREE.DoubleSide
+        });
+        geometry = new THREE.PlaneGeometry(w, h, 3, 3);
+
+        plane = new THREE.Mesh(geometry, material);
+
+        // plane.rotation.y    = -aa - Math.PI / 2;
+        console.log('angle, aa', this.anglePer, aa)
+        plane.position.set( new THREE.Vector3( r * Math.cos(aa), 0, r * Math.sin(aa) ));
+
+        plane.doubleSided   = true;
+        plane.carouselAngle = aa; //plane.rotation.y;
+        plane.scale.x       = -1;
+
+        carousel.add(plane);
+      });
     })
-
-    
-
-
-    // reflectionplane.position.set( new THREE.Vector3( r*Math.cos(aa), 0, r*Math.sin(aa) ));
-    // plane.position.set( new THREE.Vector3( r * Math.cos(aa), 0, r * Math.sin(aa) ));
     
   };
 
@@ -278,10 +199,6 @@ export default class Carousel3D extends React.Component {
     objectA = new THREE.Mesh(geometry, material);
     scene.add(objectA);
   }
-
-
- 
-
 
   render() {
     return (

@@ -27,6 +27,7 @@
     "sass": "^1.32.13",
     "three": "^0.130.1",
     "three-orbit-controls": "^82.1.0",
+    "threejs-orbit-controls": "^1.0.3",
     "tiny-emitter": "^2.1.0",
     "typed.js": "^2.0.12"
   },
