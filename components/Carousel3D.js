@@ -62,7 +62,7 @@ export default class Carousel3D extends React.Component {
     this.container = null;
     
 
-    this.radius              = null;
+    this.radius              = this.props.radius;
     this.width               = this.props.width;
     this.height              = this.props.height;
     this.reflectionOpacity   = 0.2;
@@ -78,8 +78,6 @@ export default class Carousel3D extends React.Component {
   }
 
   componentDidMount() {
-
-    console.log('angleper', this.anglePer);
     this.init();
   }
 
@@ -97,13 +95,9 @@ export default class Carousel3D extends React.Component {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 
-    camera.position.setZ(10);
+    camera.position.setZ(500);
     renderer.render(scene, camera);
 
-
-    // center = new THREE.Vector3();
-    // center.z = - 1000;
-    // this.createRing();
     this.buildCarousel();
 
     window.addEventListener( 'resize', this.onWindowResize );
@@ -146,58 +140,55 @@ export default class Carousel3D extends React.Component {
         gradient, 
         texture2, 
         material, 
-        geometry;
-
-    let w        = this.width,
-        h        = this.height,
-        reflectH = this.reflectionHeightPer*h,
-        r        = this.radius
+        geometry,
+        reflectH = this.reflectionHeightPer * this.h
         
       
     carousel = new THREE.Object3D();
 
     this.imagesList.map((item, i) => {
-    
-      let geometry = null;
-
+  
       const loader = new THREE.TextureLoader();
       loader.load(item.image, (texture) => {
-
-        aa = i * this.anglePer;
-
-        const material = new THREE.MeshBasicMaterial({
-          map: texture,
-          side: THREE.DoubleSide
-        });
-        geometry = new THREE.PlaneGeometry(w, h, 3, 3);
-
-        plane = new THREE.Mesh(geometry, material);
-
-        // plane.rotation.y    = -aa - Math.PI / 2;
-        console.log('angle, aa', this.anglePer, aa)
-        plane.position.set( new THREE.Vector3( r * Math.cos(aa), 0, r * Math.sin(aa) ));
-
-        plane.doubleSided   = true;
-        plane.carouselAngle = aa; //plane.rotation.y;
-        plane.scale.x       = -1;
-
-        carousel.add(plane);
+        this.createPlane(texture, i);
       });
     })
     
   };
 
-  createRing() {
-    let geometry, material;
+  createPlane(texture, index) {
+    let material = new THREE.MeshBasicMaterial({
+      map: texture,
+      side: THREE.DoubleSide
+    });
 
-    geometry = new THREE.RingGeometry(2.5, 1, 16);
-    material = new THREE.MeshBasicMaterial( {
-      color     : '0xFF6347',
-      wireframe : true
-    })
+    let geometry = new THREE.PlaneGeometry(this.w, this.h, 3, 3);
 
-    objectA = new THREE.Mesh(geometry, material);
-    scene.add(objectA);
+    let plane = new THREE.Mesh(geometry, material);
+
+    let aa = index * this.anglePer;
+    plane.rotation.y = -aa-Math.PI/2;
+    plane.position.set( new THREE.Vector3( this.radius * Math.cos(aa), 0, this.radius * Math.sin(aa) ));
+    console.log('rotation and position', -aa, plane.rotation, plane.position )
+    plane.doubleSided   = true;
+    plane.carouselAngle = aa; //plane.rotation.y;
+    plane.scale.x       = -1;
+
+    console.log('texture caption', this.imagesList[index].caption);
+    if (texture.caption) {
+        // position text caption, relative to image plane
+        textcontainer.position.x=plane.position.x;
+        textcontainer.position.y=plane.position.y-size-0.5*h-5;
+        textcontainer.position.z=plane.position.z;
+        textcontainer.rotation.y=plane.rotation.y;
+        text.scale.x=plane.scale.x;
+        text.position.x=w*0.5;
+    }
+
+    carousel.add(plane);
+
+
+
   }
 
   render() {
