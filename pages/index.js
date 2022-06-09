@@ -59,9 +59,9 @@ export default function Home({props}) {
           <Kinect/>
           <Carousel3D 
             list   = {carousel}
-            width  = {5}
-            height = {5}
-            radius = {3}
+            width  = {150}
+            height = {100}
+            radius = {200}
           />
 
       </CircularText>

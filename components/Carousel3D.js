@@ -99,9 +99,9 @@ export default class Carousel3D extends React.Component {
     renderer.render(scene, camera);
 
     this.buildCarousel();
+    this.addControls();
 
     window.addEventListener( 'resize', this.onWindowResize );
-    this.addControls();
 
     scene.add(carousel);
     console.log('added carousel', scene, camera, carousel);
@@ -127,28 +127,13 @@ export default class Carousel3D extends React.Component {
   }
 
   buildCarousel() {
-    let size, 
-        height, 
-        aa,
-        text3d, 
-        textMaterial, 
-        text, 
-        textcontainer,
-        texture, 
-        plane, 
-        canvas, 
-        gradient, 
-        texture2, 
-        material, 
-        geometry,
-        reflectH = this.reflectionHeightPer * this.h
-        
-      
+
     carousel = new THREE.Object3D();
 
     this.imagesList.map((item, i) => {
   
       const loader = new THREE.TextureLoader();
+
       loader.load(item.image, (texture) => {
         this.createPlane(texture, i);
       });
@@ -157,9 +142,17 @@ export default class Carousel3D extends React.Component {
   };
 
   createPlane(texture, index) {
+
+    let size, height, 
+      text3d, textMaterial, text,textcontainer, 
+      canvas, gradient, texture2, 
+      reflectH = this.reflectionHeightPer * this.h;
+
+    texture.needUpdate = true;
+
     let material = new THREE.MeshBasicMaterial({
-      map: texture,
-      side: THREE.DoubleSide
+      map  : texture,
+      side : THREE.DoubleSide
     });
 
     let geometry = new THREE.PlaneGeometry(this.w, this.h, 3, 3);
@@ -167,6 +160,7 @@ export default class Carousel3D extends React.Component {
     let plane = new THREE.Mesh(geometry, material);
 
     let aa = index * this.anglePer;
+    
     plane.rotation.y = -aa-Math.PI/2;
     plane.position.set( new THREE.Vector3( this.radius * Math.cos(aa), 0, this.radius * Math.sin(aa) ));
     console.log('rotation and position', -aa, plane.rotation, plane.position )
@@ -174,16 +168,44 @@ export default class Carousel3D extends React.Component {
     plane.carouselAngle = aa; //plane.rotation.y;
     plane.scale.x       = -1;
 
-    console.log('texture caption', this.imagesList[index].caption);
-    if (texture.caption) {
-        // position text caption, relative to image plane
-        textcontainer.position.x=plane.position.x;
-        textcontainer.position.y=plane.position.y-size-0.5*h-5;
-        textcontainer.position.z=plane.position.z;
-        textcontainer.rotation.y=plane.rotation.y;
-        text.scale.x=plane.scale.x;
-        text.position.x=w*0.5;
-    }
+    // const loader = new THREE.FontLoader();
+
+    // loader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
+    //   console.log('get font');
+
+    //   if (this.imagesList[index].caption) {
+
+    //     let caption = this.imagesList[index].caption;
+  
+    //       size             = (0.4) * ( this.w / caption.length);
+    //       height           = 2;
+    //       text3d           = new THREE.TextGeometry(caption, {
+    //         size          : size,
+    //         height        : height,
+    //         curveSegments : 2,
+    //         font          : font
+    //       });
+    //       textMaterial     = new THREE.MeshBasicMaterial( { 
+    //         color: 0xffffff, 
+    //         overdraw: true 
+    //       } );
+
+    //       text             = new THREE.Mesh( text3d, textMaterial );
+    //       text.doubleSided = false;
+          
+    //       textcontainer    = new THREE.Object3D();
+    //       textcontainer.add(text);
+  
+    //       console.log('text textcontainer', text, textcontainer);
+    //       // textcontainer.position.x = plane.position.x;
+    //       // textcontainer.position.y = plane.position.y - size - 0.5 * h - 5;
+    //       // textcontainer.position.z = plane.position.z;
+    //       // textcontainer.rotation.y = plane.rotation.y;
+    //       // text.scale.x=plane.scale.x;
+    //       // text.position.x=w*0.5;
+    //   }
+    // });
+
 
     carousel.add(plane);
 
