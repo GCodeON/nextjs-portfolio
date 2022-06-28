@@ -170,8 +170,16 @@ export default class Points extends React.Component {
         <Head>
         
         </Head>
-        <div className="container" ref={(mount) => { this.mount = mount }}>
+        <div className="about container" ref={(mount) => { this.mount = mount }}>
           <canvas className="canvas"></canvas>
+          <div className="overlay container top right">
+            <h2 className="title">About</h2>
+            <p clasNames="typewiter">Hey! my name is <br/>Gerardo Soto <br/>and I am a full stack developer experienced building cloud hosted web applications.</p>
+
+          </div>
+          <div className="overlay bottom">
+            <h2 className="title">Projects</h2>
+          </div>
         </div>
 
         <style jsx>{`
@@ -179,6 +187,31 @@ export default class Points extends React.Component {
           .canvas {
             display: block;
           }
+          .about {
+            position: relative;
+          }
+          .overlay {
+            position: absolute;
+            background: none;
+            width: 50%;
+            margin: 0;
+            max-width: 350px;
+            color: white;
+          }
+          .overlay.bottom {
+            bottom: -20$;
+            left: 20%;
+          }
+          .overlay.top {
+            top 10%;
+          }
+          .overlay.right {
+            right: 15%;
+          }
+          .title {
+            background: transparent:
+          }
+
                     
         `}</style>
 
