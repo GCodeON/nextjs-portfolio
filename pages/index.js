@@ -57,12 +57,12 @@ export default function Home({props}) {
           <Points/>
           <Planes/>
           <Kinect/>
-          <Carousel3D 
+          {/* <Carousel3D 
             list   = {carousel}
             width  = {150}
             height = {100}
             radius = {200}
-          />
+          /> */}
 
       </CircularText>
 
