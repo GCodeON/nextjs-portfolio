@@ -96,7 +96,11 @@ export default class Carousel3D extends React.Component {
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 
     camera.position.setZ(500);
-    renderer.render(scene, camera);
+
+     scene.add( camera );
+            // projector = new THREE.Projector();
+    //         renderer = new THREE.CanvasRenderer();
+    // renderer.render(scene, camera);
 
     this.buildCarousel();
     this.addControls();
