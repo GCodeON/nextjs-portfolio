@@ -29,7 +29,7 @@ function animate () {
   renderer.render( scene, camera );
 };
 
-export default class Points extends React.Component {
+export default class About extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -173,46 +173,16 @@ export default class Points extends React.Component {
         <div className="about container" ref={(mount) => { this.mount = mount }}>
           <canvas className="canvas"></canvas>
           <div className="overlay container top right">
-            <h2 className="title">About</h2>
-            <p clasNames="typewiter">Hey! my name is <br/>Gerardo Soto <br/>and I am a full stack developer experienced building cloud hosted web applications.</p>
-
-          </div>
-          <div className="overlay bottom">
-            <h2 className="title">Projects</h2>
+            <h1 className="title">About</h1>
+            <p className="typewiter">Full stack developer experienced building cloud hosted software applications.</p>
           </div>
         </div>
 
         <style jsx>{`
-
           .canvas {
             display: block;
           }
-          .about {
-            position: relative;
-          }
-          .overlay {
-            position: absolute;
-            background: none;
-            width: 50%;
-            margin: 0;
-            max-width: 350px;
-            color: white;
-          }
-          .overlay.bottom {
-            bottom: -20$;
-            left: 20%;
-          }
-          .overlay.top {
-            top 10%;
-          }
-          .overlay.right {
-            right: 15%;
-          }
-          .title {
-            background: transparent:
-          }
-
-                    
+            
         `}</style>
 
       </div>

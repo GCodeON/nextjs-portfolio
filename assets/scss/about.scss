@@ -1,0 +1,35 @@
+
+
+.about {
+	position         : relative;
+	background-color : black;
+	padding          : 1em 0 3em;
+	.overlay {
+		color   : white;
+		width   : 100%;
+		margin  : 0 auto;
+		padding : 0 1em;
+		@include breakpoint(medium) {
+			max-width  : 425px;
+		}
+		@include breakpoint(large) {
+			position   : absolute;
+			background : none;
+			width      : 50%;
+			margin     : 0;
+			padding    : 0;
+		}
+	}
+	.overlay.bottom {
+		left   : 20%;
+	}
+	.overlay.top {
+		top: 15%;
+	}
+	.overlay.right {
+		right : 10%;
+	}
+	.title {
+		background : transparent;
+	}	
+}

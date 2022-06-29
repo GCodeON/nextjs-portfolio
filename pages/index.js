@@ -12,7 +12,8 @@ import Hero from '../components/hero'
 import Planes from '../components/planes'
 import Carousel3D from '../components/Carousel3D'
 import Kinect from '../components/kinect'
-import Points from '../components/points'
+
+import About from '../components/about'
 
 export default function Home({props}) {
 
@@ -54,7 +55,8 @@ export default function Home({props}) {
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
           <Hero/>
-          <Points/>
+          <About/>
+
           <Planes/>
           <Kinect/>
           {/* <Carousel3D 
