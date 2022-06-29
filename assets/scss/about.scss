@@ -21,13 +21,16 @@
 		}
 	}
 	.overlay.bottom {
-		left   : 20%;
+		bottom   : -2%;
 	}
 	.overlay.top {
 		top: 15%;
 	}
 	.overlay.right {
 		right : 10%;
+	}
+	.overlay.left {
+		left : 5%;
 	}
 	.title {
 		background : transparent;

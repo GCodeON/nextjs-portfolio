@@ -172,7 +172,19 @@ export default class About extends React.Component {
         </Head>
         <div className="about container" ref={(mount) => { this.mount = mount }}>
           <canvas className="canvas"></canvas>
+          <div className="overlay container top left">
+            <h1 className="title">About</h1>
+            <p className="typewiter">Full stack developer experienced building cloud hosted software applications.</p>
+          </div>
           <div className="overlay container top right">
+            <h1 className="title">About</h1>
+            {/* <p className="typewiter">Full stack developer experienced building cloud hosted software applications.</p> */}
+          </div>
+          <div className="overlay container bottom left">
+            <h1 className="title">About</h1>
+            {/* <p className="typewiter">Full stack developer experienced building cloud hosted software applications.</p> */}
+          </div>
+          <div className="overlay container bottom right">
             <h1 className="title">About</h1>
             <p className="typewiter">Full stack developer experienced building cloud hosted software applications.</p>
           </div>
