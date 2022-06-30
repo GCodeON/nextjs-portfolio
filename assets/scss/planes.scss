@@ -103,6 +103,7 @@
 	
 	.content {
 		display: grid;
+		background: black;
 		// --column-gap: 2rem;
 		// --row-gap: 10vh;
 		// --mwidth: 400px;
@@ -121,6 +122,10 @@
 		// 	// grid-template-columns : 1fr 1fr;
 		// 	max-width             : 725px;
 		// }
+
+		@include breakpoint(medium) {
+			background: none;
+		}
 	}
 	
 	.item {

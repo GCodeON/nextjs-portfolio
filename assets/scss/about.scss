@@ -1,15 +1,17 @@
 
 
 .about {
-	position         : relative;
-	background-color : black;
-	padding          : 1em 0 3em;
+	position   : relative;
+	background : black;
+	padding    : 1em 0 3em;
 
-	position   : absolute;
-	background : none;
-	width      : 50%;
-	margin     : 0;
-	padding    : 0;
+	@include breakpoint(large) {
+		position   : absolute;
+		background : none;
+		width      : 50%;
+		margin     : 0;
+		padding    : 0;
+	}
 	.overlay {
 		color   : white;
 		width   : 100%;
@@ -17,13 +19,13 @@
 		padding : 0 1em;
 		@include breakpoint(medium) {
 			max-width  : 425px;
+			position   : absolute;
+			background : none;
+			width      : 50%;
+			margin     : 0;
+			padding    : 0;
 		}
 		@include breakpoint(large) {
-			// position   : absolute;
-			// background : none;
-			// width      : 50%;
-			// margin     : 0;
-			// padding    : 0;
 			max-width  : 475px;
 		}
 	}
