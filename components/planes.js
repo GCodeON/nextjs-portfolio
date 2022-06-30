@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -9,17 +10,19 @@ export default class Planes extends React.Component {
   }
   
   componentDidMount() {
-    if(AOS) {
-      AOS.init({
-        delay  : 200,
-        mirror : true
-      });
-    }
+    AOS.init({
+      delay  : 200,
+      mirror : true
+    });
   }
 
   render() {
     return (
     <div className="planes-component">
+      <Head>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      </Head>
         <div className='planes'>
           <div className="content">
             <div className="item" data-aos="zoom-out-left">
