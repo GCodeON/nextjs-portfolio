@@ -191,10 +191,10 @@
 		transition              : 1s all;
 
 		&:hover {
-			-webkit-text-fill-color : var(--color-secondary);
-			text-fill-color         : var(--color-secondary);
-			background              : rgba(0,0,0,0.75);
-
+			// -webkit-text-fill-color : var(--color-secondary);
+			// text-fill-color         : var(--color-secondary);
+			background              : var(--color-secondary);
+			transition: 0.5s all;
 			// -webkit-text-stroke     : 1px var(--color-primary);
 			// text-stroke             : 1px var(--color-primary);
 		}
