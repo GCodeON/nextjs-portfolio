@@ -33,7 +33,7 @@ export default class Planes extends React.Component {
             </div>
             <div className="item">
               <a href="" target="_blank" className='link'>
-                <span className="pretitle">Live Life</span>
+                <span className="pretitle">Live</span>
                 {/* <h2 className="title">Experience</h2> */}
               </a>
             </div>
