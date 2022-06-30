@@ -14,28 +14,9 @@ import Carousel3D from '../components/Carousel3D'
 import Kinect from '../components/kinect'
 
 import About from '../components/about'
+import Slider from '../components/slider'
 
 export default function Home({props}) {
-
-  let carousel = [
-    {
-      image   : '/tools/node.svg',
-      caption : 'NODE JS'
-    },
-    {
-      image   : '/tools/Threejs.svg',
-      caption : 'THREE JS'
-    },
-    {
-      image   : '/tools/react.png',
-      caption : 'REACT JS'
-    },
-    {
-      image   : '/tools/nextjs.png',
-      caption : 'NEXT JS'
-    }
-  ]
-
 
 
   return (
@@ -58,6 +39,24 @@ export default function Home({props}) {
           <About/>
 
           <Planes/>
+          <Slider slides={[
+          {
+            image   : '/images/rescue.png',
+            link    : 'https://rescueagency.com/'
+          },
+          {
+            image   : '/images/up2sd.png',
+            link    : 'https://up2sd.org/'
+          },
+          {
+            image   : '/images/sta.png',
+            link    : 'https://sharetheairva.com/'
+          },
+          {
+            image   : '/images/yahlok.png',
+            link    : 'https://yahlok.org/'
+          },
+          ]}/>
           <Kinect/>
           {/* <Carousel3D 
             list   = {carousel}
