@@ -28,7 +28,6 @@ export default class Slider extends React.Component {
           centeredSlides={true}
           spaceBetween={20}
           slidesPerView={2}
-          activeSlideKey={2}
           coverflowEffect={{
             rotate       : 60,
             stretch      : 0,
@@ -42,7 +41,7 @@ export default class Slider extends React.Component {
 
         { this.props.slides.map((slide, idx) => (
 
-          <SwiperSlide>
+          <SwiperSlide key={idx}>
             <a className="slide link" href={slide.link} target="_blank">
               <img src={slide.image} />
               {/* <p className="subtitle">

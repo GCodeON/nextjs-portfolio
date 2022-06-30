@@ -124,6 +124,7 @@ export default class CircularText extends React.Component {
     gsap.killTweensOf([this.circleText]);
 
     gsap.set([this.content], {display: 'flex'});
+    gsap.set([this.content], {background: 'transparent'});
     gsap.set(this.enterCtrl, {pointerEvents: 'none'});
     this.startTL.pause().kill();
 
