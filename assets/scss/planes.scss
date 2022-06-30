@@ -186,8 +186,8 @@
 		padding                 : 10px 15px;
 		-webkit-text-stroke     : 2px var(--color-primary);
 		text-stroke             : 2px var(--color-primary);
-		-webkit-text-fill-color : transparent;
-		text-fill-color         : transparent;
+		-webkit-text-fill-color : rgba(0,0,0,0.25);
+		text-fill-color         : rgba(0,0,0,0.25);
 	}
 	
 	
