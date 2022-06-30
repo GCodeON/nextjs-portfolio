@@ -188,6 +188,16 @@
 		text-stroke             : 2px var(--color-primary);
 		-webkit-text-fill-color : rgba(0,0,0,0.25);
 		text-fill-color         : rgba(0,0,0,0.25);
+		transition              : 1s all;
+
+		&:hover {
+			-webkit-text-fill-color : var(--color-secondary);
+			text-fill-color         : var(--color-secondary);
+			background              : rgba(0,0,0,0.75);
+
+			// -webkit-text-stroke     : 1px var(--color-primary);
+			// text-stroke             : 1px var(--color-primary);
+		}
 	}
 	
 	
