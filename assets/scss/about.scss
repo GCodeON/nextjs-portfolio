@@ -4,6 +4,12 @@
 	position         : relative;
 	background-color : black;
 	padding          : 1em 0 3em;
+
+	position   : absolute;
+	background : none;
+	width      : 50%;
+	margin     : 0;
+	padding    : 0;
 	.overlay {
 		color   : white;
 		width   : 100%;
@@ -13,18 +19,19 @@
 			max-width  : 425px;
 		}
 		@include breakpoint(large) {
-			position   : absolute;
-			background : none;
-			width      : 50%;
-			margin     : 0;
-			padding    : 0;
+			// position   : absolute;
+			// background : none;
+			// width      : 50%;
+			// margin     : 0;
+			// padding    : 0;
+			max-width  : 475px;
 		}
 	}
 	.overlay.bottom {
-		bottom   : -2%;
+		bottom   : -5%;
 	}
 	.overlay.top {
-		top: 15%;
+		top: 5%;
 	}
 	.overlay.right {
 		right : 10%;
@@ -33,6 +40,14 @@
 		left : 5%;
 	}
 	.title {
-		background : transparent;
+		background      : transparent;
+		display         : flex;
+		// align-items     : flex-start;
+		justify-content : flex-start;
+		// width       : 100%;
+		// margin      : 0 auto;
 	}	
+	// .container {
+	// 	max-width: 75rem;
+	// }
 }

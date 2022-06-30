@@ -179,7 +179,16 @@
 
 	}
 	
-	
+	.pretitle {
+		font-size               : 3em;
+		color                   : color;
+		outline                 : 1.5px solid var(--color-secondary);
+		padding                 : 10px 15px;
+		-webkit-text-stroke     : 2px var(--color-primary);
+		text-stroke             : 2px var(--color-primary);
+		-webkit-text-fill-color : transparent;
+		text-fill-color         : transparent;
+	}
 	
 	
 	/* Canvas */

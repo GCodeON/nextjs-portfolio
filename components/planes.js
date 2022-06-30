@@ -22,25 +22,25 @@ export default class Planes extends React.Component {
             <div className="item">
               <a href="" target="_blank" className='link'>
                 <span className="pretitle">Know</span>
-                <h2 className="title">About</h2>
+                {/* <h2 className="title">About</h2> */}
               </a>
             </div>
             <div className="item">
               <a href="" target="_blank" className='link'>
                 <span className="pretitle">Balance</span>
-                <h2 className="title">Work</h2>
+                {/* <h2 className="title">Work</h2> */}
               </a>
             </div>
             <div className="item">
               <a href="" target="_blank" className='link'>
                 <span className="pretitle">Live Life</span>
-                <h2 className="title">Experience</h2>
+                {/* <h2 className="title">Experience</h2> */}
               </a>
             </div>
             <div className="item">
               <a href="" target="_blank" className='link'>
                 <span className="pretitle">Creative</span>
-                <h2 className="title">Contact</h2>
+                {/* <h2 className="title">Contact</h2> */}
               </a>
             </div>
           </div>
@@ -51,6 +51,7 @@ export default class Planes extends React.Component {
         position: absolute;
         left: 0;
         right: 0;
+        background: rgba(0,0,0, 0.3);
       }
 
       `}</style>
