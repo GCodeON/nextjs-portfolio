@@ -205,6 +205,23 @@
 			// -webkit-text-stroke     : 1px var(--color-primary);
 			// text-stroke             : 1px var(--color-primary);
 		}
+
+
+
+	}
+
+	.item {
+		&:nth-of-type(odd){
+
+			.pretitle { 
+				border-radius: 25px 0 25px 0;
+			}
+		}
+		&:nth-of-type(even){
+			.pretitle { 
+				border-radius: 0 25px 0 25px;
+			}
+		}
 	}
 	
 	
