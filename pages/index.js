@@ -41,16 +41,20 @@ export default function Home({props}) {
           <Planes/>
           <Slider slides={[
           {
-            image   : '/images/rescue.png',
-            link    : 'https://rescueagency.com/'
-          },
-          {
             image   : '/images/up2sd.png',
             link    : 'https://up2sd.org/'
           },
           {
+            image   : '/images/hustle&strive.png',
+            link    : 'https://hustlestrive.com/'
+          },
+          {
             image   : '/images/sta.png',
             link    : 'https://sharetheairva.com/'
+          },
+          {
+            image   : '/images/rescue.png',
+            link    : 'https://rescueagency.com/'
           },
           {
             image   : '/images/yahlok.png',
