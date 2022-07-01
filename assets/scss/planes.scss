@@ -126,6 +126,10 @@
 		@include breakpoint(medium) {
 			background: none;
 		}
+
+		@include breakpoint(large) {
+			display: flex;
+		}
 	}
 	
 	.item {
