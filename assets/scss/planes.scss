@@ -211,13 +211,13 @@
 	}
 
 	.item {
-		&:nth-of-type(odd){
+		&:nth-of-type(even){
 
 			.pretitle { 
 				border-radius: 25px 0 25px 0;
 			}
 		}
-		&:nth-of-type(even){
+		&:nth-of-type(odd){
 			.pretitle { 
 				border-radius: 0 25px 0 25px;
 			}
