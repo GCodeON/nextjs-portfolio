@@ -41,6 +41,10 @@ export default function Home({props}) {
           <Planes/>
           <Slider slides={[
           {
+            image   : '/images/rescue.png',
+            link    : 'https://rescueagency.com/'
+          },
+          {
             image   : '/images/up2sd.png',
             link    : 'https://up2sd.org/'
           },
@@ -53,12 +57,16 @@ export default function Home({props}) {
             link    : 'https://sharetheairva.com/'
           },
           {
-            image   : '/images/rescue.png',
-            link    : 'https://rescueagency.com/'
+            image   : '/images/aocs.png',
+            link    : 'https://agentsofchangesummit.org/'
           },
           {
             image   : '/images/yahlok.png',
             link    : 'https://yahlok.org/'
+          },
+          {
+            image   : '/images/methfree.png',
+            link    : 'https://methfreelacounty.org/'
           },
           ]}/>
           <Kinect/>
