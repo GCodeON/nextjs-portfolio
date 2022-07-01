@@ -25,12 +25,14 @@ export default class Slider extends React.Component {
     return (
       <div className="slider-component">
         <Swiper
-          effect={"coverflow"}
-          grabCursor={true}
-          centeredSlides={true}
-          spaceBetween={10}
-          slidesPerView={2}
-          initialSlide={2}
+          className      = "slider"
+          effect         = {"coverflow"}
+          centeredSlides = {true}
+          grabCursor     = {true}
+          pagination     = {false}
+          spaceBetween   = {10}
+          slidesPerView  = {2}
+          initialSlide   = {2}
           coverflowEffect={{
             rotate       : 25,
             stretch      : 0,
@@ -38,20 +40,25 @@ export default class Slider extends React.Component {
             modifier     : 1,
             slideShadows : true
           }}
-          pagination={false}
-          className="slider"
           breakpoints={{
-            // when window width is >= 640px
             320: {
               width         : 320,
               slidesPerView : 1,
               spaceBetween  : 10
             },
-            // when window width is >= 768px
             1024: {
-              width         : 1024,
-              slidesPerView : 1,
-              spaceBetween  : 50
+              width          : 1024,
+              slidesPerView  : 2,
+              spaceBetween   : 50,
+              initialSlide   : 1,
+              centeredSlides : false
+            },
+            1220: {
+              width          : 1220,
+              slidesPerView  : 3,
+              spaceBetween   : 50,
+              initialSlide   : 0,
+              centeredSlides : false
             },
           }}
         >
