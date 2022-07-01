@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { EffectCoverflow, Pagination } from 'swiper/core';
+SwiperCore.use([EffectCoverflow,Pagination]);
+
 // Import Swiper React styles
 import 'swiper/swiper.min.css'
 import "swiper/components/effect-coverflow/effect-coverflow.min.css";
 import "swiper/components/pagination/pagination.min.css";
 
-SwiperCore.use([EffectCoverflow,Pagination]);
 
 export default class Slider extends React.Component {
 
@@ -26,10 +28,11 @@ export default class Slider extends React.Component {
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          spaceBetween={20}
+          spaceBetween={10}
           slidesPerView={2}
+          initialSlide={2}
           coverflowEffect={{
-            rotate       : 60,
+            rotate       : 25,
             stretch      : 0,
             depth        : 100,
             modifier     : 1,
@@ -37,6 +40,20 @@ export default class Slider extends React.Component {
           }}
           pagination={false}
           className="slider"
+          breakpoints={{
+            // when window width is >= 640px
+            320: {
+              width         : 320,
+              slidesPerView : 1,
+              spaceBetween  : 10
+            },
+            // when window width is >= 768px
+            1024: {
+              width         : 1024,
+              slidesPerView : 1,
+              spaceBetween  : 50
+            },
+          }}
         >
 
         { this.props.slides.map((slide, idx) => (
