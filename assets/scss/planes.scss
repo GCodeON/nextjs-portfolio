@@ -185,15 +185,17 @@
 	}
 	
 	.pretitle {
-		font-size               : 3em;
+		// font-size               : 3em;
 		color                   : color;
 		outline                 : 1.5px solid var(--color-secondary);
 		padding                 : 10px 15px;
-		-webkit-text-stroke     : 2px var(--color-primary);
-		text-stroke             : 2px var(--color-primary);
+		-webkit-text-stroke     : 1.5px var(--color-primary);
+		text-stroke             : 1.5px var(--color-primary);
 		-webkit-text-fill-color : rgba(0,0,0,0.25);
 		text-fill-color         : rgba(0,0,0,0.25);
 		transition              : 1s all;
+
+		font-size: xx-large;
 
 		&:hover {
 			// -webkit-text-fill-color : var(--color-secondary);
