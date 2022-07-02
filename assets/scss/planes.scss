@@ -218,12 +218,14 @@
 		&:nth-of-type(even){
 
 			.pretitle { 
+				-webkit-border-radius: 25px 0 25px 0;
 				border-radius: 25px 0 25px 0;
 			}
 		}
 		&:nth-of-type(odd){
 			.pretitle { 
-				border-radius: 0 25px 0 25px;
+				border-radius         : 0 25px 0 25px;
+				-webkit-border-radius : 0 25px 0 25px;
 			}
 		}
 	}

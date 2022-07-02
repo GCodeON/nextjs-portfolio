@@ -171,6 +171,7 @@ export default class About extends React.Component {
         
         </Head>
         <div className="about container" ref={(mount) => { this.mount = mount }}>
+          
           <canvas className="canvas"></canvas>
         </div>
 
