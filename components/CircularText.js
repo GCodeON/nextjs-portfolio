@@ -188,7 +188,6 @@ export default class CircularText extends React.Component {
     let video = document.getElementById( 'video' );
     if(video) {
       video.play();
-      console.log('video on enter', video);
     }    
 
 

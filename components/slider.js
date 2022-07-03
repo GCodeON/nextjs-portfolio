@@ -81,25 +81,25 @@ export default class Slider extends React.Component {
         <style jsx global>{`
 
         .slider-component {
-          background: black;
-          padding: 100px 0;
+          background : black;
+          padding    : 100px 0;
         }
         .swiper {
-          width: 100%;
-          padding-top: 50px;
-          padding-bottom: 50px;
+          width          : 100%;
+          padding-top    : 50px;
+          padding-bottom : 50px;
         }
 
         .swiper-slide {
-          background-position: center;
-          background-size: cover;
-          max-width: 768px !important;
-          max-height: 768px !important;
+          background-position : center;
+          background-size     : cover;
+          max-width           : 768px !important;
+          max-height          : 768px !important;
         }
 
         .swiper-slide img {
-          display: block;
-          width: 100%;
+          display : block;
+          width   : 100%;
         }
         `}</style>
 

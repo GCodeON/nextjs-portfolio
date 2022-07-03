@@ -141,28 +141,28 @@ export default class About extends React.Component {
     });
   }
 
-  revealScroll() {
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger    : this.hero,
-        pin        : false,
-        pinSpacing : false,
-        scrub      : true,
-        markers    : true
-      }
-    });
+  // revealScroll() {
+  //   let tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger    : this.hero,
+  //       pin        : false,
+  //       pinSpacing : false,
+  //       scrub      : true,
+  //       markers    : true
+  //     }
+  //   });
   
-    tl.to(this.quote, {
-      autoAlpha: 1
-    }).to(
-      this.hero,
-      {
-        autoAlpha: 0
-      },
-      0.5
-    );
+  //   tl.to(this.quote, {
+  //     autoAlpha: 1
+  //   }).to(
+  //     this.hero,
+  //     {
+  //       autoAlpha: 0
+  //     },
+  //     0.5
+  //   );
     
-  }
+  // }
 
   render() {
     return (
