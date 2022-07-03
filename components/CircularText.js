@@ -185,6 +185,13 @@ export default class CircularText extends React.Component {
 
     gsap.set([this.overlay], {background: 'none'});
 
+    let video = document.getElementById( 'video' );
+    if(video) {
+      video.play();
+      console.log('video on enter', video);
+    }    
+
+
   }
   
     
