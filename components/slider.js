@@ -1,17 +1,15 @@
 import React, { useRef, useState } from "react";
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { EffectCoverflow, Pagination } from 'swiper/core';
+
 // Import Swiper React styles
 import 'swiper/swiper.min.css'
 import "swiper/components/effect-coverflow/effect-coverflow.min.css";
 import "swiper/components/pagination/pagination.min.css";
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { EffectCoverflow, Pagination } from 'swiper/core';
 SwiperCore.use([EffectCoverflow,Pagination]);
-
-
-
 export default class Slider extends React.Component {
 
   super(props) {
