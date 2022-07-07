@@ -32,6 +32,8 @@ export default class Slider extends React.Component {
           spaceBetween   = {10}
           slidesPerView  = {2}
           initialSlide   = {2}
+          observer={true}
+          observeParents={true}
           coverflowEffect={{
             rotate       : 25,
             stretch      : 0,
