@@ -37,8 +37,11 @@
 	}
 
 	.tool {
-		max-width  : 100px;
+		max-width  : 55px;
 		max-height : 50px;
 		padding    : 7px;
+		@include breakpoint(large) {
+			max-width  : 100px;
+		}
 	}
 }

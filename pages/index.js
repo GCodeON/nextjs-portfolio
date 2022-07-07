@@ -78,6 +78,9 @@ export default function Home({props}) {
         },
         {
           image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/aws.png',
         }
       ]
     },
