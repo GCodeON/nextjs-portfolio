@@ -117,6 +117,9 @@ export default function Home({props}) {
         },
         {
           image   : '/tools/aws.png',
+        },
+        {
+          image   : '/tools/contentful.webp',
         }
       ]
     },
@@ -146,19 +149,13 @@ export default function Home({props}) {
       link    : 'https://methfreelacounty.org/',
       tools: [
         {
-          image   : '/tools/php.svg',
-        },
-        {
-          image   : '/tools/laravel.png',
-        },
-        {
-          image   : '/tools/vue.png',
+          image   : '/tools/html5.png',
         },
         {
           image   : '/tools/js.png',
         },
         {
-          image   : '/tools/mysql.png',
+          image   : '/tools/css3.png',
         }
       ]
     },
