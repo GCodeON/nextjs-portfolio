@@ -20,6 +20,11 @@ export default function Home({props}) {
 
   const slider = [
     {
+      image   : '',
+      link    : '',
+      tools: []
+    },
+    {
       image   : '/images/rescue.png',
       link    : 'https://rescueagency.com/',
       tools: [
@@ -156,6 +161,11 @@ export default function Home({props}) {
           image   : '/tools/mysql.png',
         }
       ]
+    },
+    {
+      image   : '',
+      link    : '',
+      tools: []
     },
   ]
 
