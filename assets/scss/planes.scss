@@ -129,6 +129,7 @@
 
 		@include breakpoint(large) {
 			display: flex;
+			margin: -125px 0;
 		}
 	}
 	
