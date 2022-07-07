@@ -1,0 +1,44 @@
+.slider-component {
+	.swiper {
+		width          : 100%;
+		padding-top    : 50px;
+		padding-bottom : 50px;
+	}
+
+	.swiper-slide {
+		background-position : center;
+		background-size     : cover;
+		max-width           : 768px !important;
+		max-height          : 768px !important;
+	}
+
+	.swiper-slide img {
+		display : block;
+		width   : 100%;
+	}
+
+
+	.swiper-slide-active .tools {
+		display : inline-flex;
+	}
+	@include breakpoint(large) {
+		.swiper-slide-active .tools {
+			display : none;
+		}
+		.swiper-slide-next .tools {
+			display : inline-flex;
+		}
+	}
+
+	.tools {
+		flex-direction : horizontal;
+		padding        : 2em 0;
+		display        : none;
+	}
+
+	.tool {
+		max-width  : 100px;
+		max-height : 50px;
+		padding    : 7px;
+	}
+}

@@ -73,6 +73,11 @@ export default class Slider extends React.Component {
                 {slide.link}
               </p> */}
             </a>
+            <div className="tools">
+              {slide.tools.map((tool, i) => (
+                <img className="tool image" src={tool.image} />
+              ))}
+            </div>
           </SwiperSlide>
         ))}
 
@@ -84,23 +89,7 @@ export default class Slider extends React.Component {
           background : black;
           padding    : 100px 0;
         }
-        .swiper {
-          width          : 100%;
-          padding-top    : 50px;
-          padding-bottom : 50px;
-        }
 
-        .swiper-slide {
-          background-position : center;
-          background-size     : cover;
-          max-width           : 768px !important;
-          max-height          : 768px !important;
-        }
-
-        .swiper-slide img {
-          display : block;
-          width   : 100%;
-        }
         `}</style>
 
       </div>

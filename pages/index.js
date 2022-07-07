@@ -18,6 +18,146 @@ import Slider from '../components/slider'
 
 export default function Home({props}) {
 
+  const slider = [
+    {
+      image   : '/images/rescue.png',
+      link    : 'https://rescueagency.com/',
+      tools: [
+        {
+          image   : '/tools/php.svg',
+        },
+        {
+          image   : '/tools/laravel.png',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/mysql.png',
+        }
+      ]
+    },
+    {
+      image   : '/images/up2sd.png',
+      link    : 'https://up2sd.org/',
+      tools: [
+        {
+          image   : '/tools/nuxtjs.svg',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/nodejs.svg',
+        },
+        {
+          image   : '/tools/strapi.svg',
+        }
+      ]
+    },
+    {
+      image   : '/images/hustle&strive.png',
+      link    : 'https://hustlestrive.com/',
+      tools: [
+        {
+          image   : '/tools/nextjs-white.svg',
+        },
+        {
+          image   : '/tools/react.png',
+        },
+        {
+          image   : '/tools/js.png',
+        }
+      ]
+    },
+    {
+      image   : '/images/sta.png',
+      link    : 'https://sharetheairva.com/',
+      tools: [
+        {
+          image   : '/tools/php.svg',
+        },
+        {
+          image   : '/tools/laravel.png',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/mysql.png',
+        }
+      ]
+    },
+    {
+      image   : '/images/aocs.png',
+      link    : 'https://agentsofchangesummit.org/',
+      tools: [
+        {
+          image   : '/tools/nuxtjs.svg',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/aws.png',
+        }
+      ]
+    },
+    {
+      image   : '/images/yahlok.png',
+      link    : 'https://yahlok.org/',
+      tools: [
+        {
+          image   : '/tools/php.svg',
+        },
+        {
+          image   : '/tools/wordpress.png',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/mysql.png',
+        }
+      ]
+    },
+    {
+      image   : '/images/methfree.png',
+      link    : 'https://methfreelacounty.org/',
+      tools: [
+        {
+          image   : '/tools/php.svg',
+        },
+        {
+          image   : '/tools/laravel.png',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/mysql.png',
+        }
+      ]
+    },
+  ]
 
   return (
     <Layout>
@@ -39,36 +179,8 @@ export default function Home({props}) {
           <About/>
 
           <Planes/>
-          <Slider slides={[
-          {
-            image   : '/images/rescue.png',
-            link    : 'https://rescueagency.com/'
-          },
-          {
-            image   : '/images/up2sd.png',
-            link    : 'https://up2sd.org/'
-          },
-          {
-            image   : '/images/hustle&strive.png',
-            link    : 'https://hustlestrive.com/'
-          },
-          {
-            image   : '/images/sta.png',
-            link    : 'https://sharetheairva.com/'
-          },
-          {
-            image   : '/images/aocs.png',
-            link    : 'https://agentsofchangesummit.org/'
-          },
-          {
-            image   : '/images/yahlok.png',
-            link    : 'https://yahlok.org/'
-          },
-          {
-            image   : '/images/methfree.png',
-            link    : 'https://methfreelacounty.org/'
-          },
-          ]}/>
+          <Slider slides={slider}/>
+
           <Kinect/>
           {/* <Carousel3D 
             list   = {carousel}
