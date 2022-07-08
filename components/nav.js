@@ -5,7 +5,7 @@ export default function Nav() {
     const nav = [
         {
             name: 'Home',
-            link: '/home',
+            link: '/',
             icon: ''
         },
         {

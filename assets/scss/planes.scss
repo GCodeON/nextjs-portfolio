@@ -128,9 +128,9 @@
 		}
 
 		@include breakpoint(large) {
-			display: flex;
-			margin: -50px 0 -150px;
-			flex-direction: row;
+			display        : flex;
+			margin         : -50px 0 -175px;
+			flex-direction : row;
 		}
 	}
 	
@@ -201,7 +201,7 @@
 		text-fill-color         : rgba(0,0,0,0.25);
 		transition              : 1s all;
 
-		font-size: xx-large;
+		font-size: x-large;
 
 		&:hover {
 			// -webkit-text-fill-color : var(--color-secondary);

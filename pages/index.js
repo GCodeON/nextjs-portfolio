@@ -186,10 +186,14 @@ export default function Home({props}) {
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
           <Hero/>
-          <About/>
-
+          <section id="about">
+            <About/>
+          </section>
           <Planes/>
-          <Slider slides={slider}/>
+          <section id="work">
+            <Slider slides={slider}/>
+          </section>
+ 
 
           <Kinect/>
           {/* <Carousel3D 
