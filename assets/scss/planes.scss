@@ -129,14 +129,15 @@
 
 		@include breakpoint(large) {
 			display: flex;
-			margin: -125px 0;
+			margin: -50px 0 -150px;
+			flex-direction: row;
 		}
 	}
 	
 	.item {
 		margin: 0;
 		padding: 2rem;
-		align-self: end;
+		align-self: flex-start;
 		// display: grid;
 		// grid-template-areas:
 		// 	"... ... ..."
