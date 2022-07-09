@@ -5,13 +5,13 @@
 	background : black;
 	padding    : 1em 0 3em;
 
-	@include breakpoint(large) {
-		position   : absolute;
-		background : none;
-		width      : 50%;
-		margin     : 0;
-		padding    : 0;
-	}
+	// @include breakpoint(large) {
+	// 	position   : absolute;
+	// 	background : none;
+	// 	width      : 100%;
+	// 	margin     : 0;
+	// 	padding    : 0;
+	// }
 	.overlay {
 		color   : white;
 		width   : 100%;
@@ -41,14 +41,14 @@
 	.overlay.left {
 		left : 5%;
 	}
-	.title {
-		background      : transparent;
-		display         : flex;
-		// align-items     : flex-start;
-		justify-content : flex-start;
-		// width       : 100%;
-		// margin      : 0 auto;
-	}	
+	// .title {
+	// 	background      : transparent;
+	// 	display         : flex;
+	// 	// align-items     : flex-start;
+	// 	justify-content : flex-start;
+	// 	// width       : 100%;
+	// 	// margin      : 0 auto;
+	// }	
 	// .container {
 	// 	max-width: 75rem;
 	// }

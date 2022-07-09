@@ -171,11 +171,15 @@ export default class About extends React.Component {
         
         </Head>
         <div className="about container" ref={(mount) => { this.mount = mount }}>
-          
+          <h2 className="title">About</h2>
           <canvas className="canvas"></canvas>
+          <p>Full stack developer experienced building cloud hosted software. </p>
         </div>
 
         <style jsx>{`
+          .container {
+            background: black;
+          }
           .canvas {
             display: block;
           }

@@ -177,24 +177,18 @@ export default function Home({props}) {
         <link rel="stylesheet" href="https://use.typekit.net/kxo3pgz.css"></link>
         <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
       </Head>
-      {/* <nav className="nav">
-          <a className="item current" href="#about">About</a>
-          <a className="item"  href="#work">Work</a>
-          <a className="item" href="#experience">Experience</a>
-          <a className="item" href="#contact">Contact</a>
-      </nav> */}
+
       <ThreeD></ThreeD>
       <CircularText strings={[]}>
           <Hero/>
           <section id="about">
             <About/>
           </section>
-          <Planes/>
+          {/* <Planes/> */}
           <section id="work">
             <Slider slides={slider}/>
           </section>
  
-
           <Kinect/>
           {/* <Carousel3D 
             list   = {carousel}
@@ -212,12 +206,8 @@ export default function Home({props}) {
         <a href="https://github.com/GCodeON" target="_blank">
           <FaGithub className="github icon"/>
         </a>
-
-
       </div>
 
-
-      
       <style jsx>{`
           .links {
             position        : absolute;
