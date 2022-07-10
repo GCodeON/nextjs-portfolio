@@ -43,8 +43,7 @@ export default class About extends React.Component {
 
     AOS.init({
       delay  : 300,
-      mirror : false,
-      once   : false,
+      mirror : true
       // duration: 1000
     });
     this.init();
