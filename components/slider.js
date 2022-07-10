@@ -21,7 +21,7 @@ export default class Slider extends React.Component {
   
   componentDidMount() {
     AOS.init({
-      delay  : 300,
+      delay  : 100,
       mirror : true,
       // duration: 1000
     });
