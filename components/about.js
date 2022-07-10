@@ -7,6 +7,11 @@ import { PCDLoader } from '/node_modules/three/examples/jsm/loaders/PCDLoader.js
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 let scene, camera, renderer;
@@ -36,6 +41,11 @@ export default class About extends React.Component {
     this.description = this.props.description;
   }
   componentDidMount() {
+
+    AOS.init({
+      delay  : 200,
+      mirror : true
+    });
     this.init();
     // this.revealScroll();
 
@@ -172,15 +182,25 @@ export default class About extends React.Component {
         <Head>
         
         </Head>
-        <div className="about container" ref={(mount) => { this.mount = mount }}>
-          <canvas className="canvas"></canvas>
+        <div 
+          className="about container" 
+          ref={(mount) => { this.mount = mount }}>
+          <canvas className="canvas"/>
           <div className="media left">
-            <h2 className="title">
+            <h2 
+              className="title"  
+              data-aos="flip-up"
+              >
               {this.title}
             </h2>
           </div>
           <div className="media right">
-            <p className="description pretitle" dangerouslySetInnerHTML={{__html: this.description}}></p>
+            <p 
+              className="description pretitle" 
+              dangerouslySetInnerHTML={{__html: this.description}}
+              data-aos="zoom-in"
+              >
+            </p>
           </div>
         </div>
 
