@@ -20,7 +20,7 @@ export default class Timeline extends React.Component {
 
   render() {
     return (
-      <div className="timeline-component">
+      <div className="timeline-component container">
         <h2 className="title">Experience</h2>
         <div className="timeline">
           {this.props.exp.map((position, i) => (

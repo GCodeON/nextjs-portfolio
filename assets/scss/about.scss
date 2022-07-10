@@ -45,24 +45,33 @@
 
 		}
 
+		.transparent {
+			@include breakpoint(medium) {
+				-webkit-text-stroke     : 0.9px white;
+				text-stroke             : 0.9px var(white);
+				-webkit-text-fill-color : transparent;
+				text-fill-color         : transparent;
+				color                   : transparent;
+			}
+		}
+
 		.description {
 			font-size   : 1.2em !important;
 			max-width   : 425px !important;
 			line-height : 35px;
 
-			font-family             : vortice-concept, sans-serif;
-			font-weight             : 400;
-			margin                  : 0 auto;
-			-webkit-text-stroke     : 0.9px white;
-			text-stroke             : 0.9px var(white);
-			-webkit-text-fill-color : transparent;
-			text-fill-color         : transparent;
-			color                   : transparent;
+			font-family : vortice-concept, sans-serif;
+			font-weight : 400;
+			margin      : 0 auto;
+			color       : white;
+
 			pointer-events          : none;
 			padding                 : 0.5em 0;
 
+			@extend .transparent;
 
 			@include breakpoint(medium) {
+
 				font-size   : 1.3em !important;
 				max-width   : 425px !important;
 				line-height : 50px;
