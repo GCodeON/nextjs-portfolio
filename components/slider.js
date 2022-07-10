@@ -90,7 +90,7 @@ export default class Slider extends React.Component {
             </a>
             <div className="tools">
               {slide.tools.map((tool, i) => (
-                <img className="tool image" src={tool.image} />
+                <img className="tool image" src={tool.image} key={i} />
               ))}
             </div>
           </SwiperSlide>

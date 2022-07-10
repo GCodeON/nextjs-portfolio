@@ -184,7 +184,7 @@ export default function Home({props}) {
           <section id="about">
             <About 
             title={'About'}
-            description={"Full stack developer <br>highly experienced designing, building, and scaling <br>cloud hosted <br>software applications"}
+            description={"Full stack developer <br>highly experienced<br> designing, building, <br>and scaling <br>cloud hosted <br>software applications"}
             />
           </section>
           {/* <Planes/> */}
