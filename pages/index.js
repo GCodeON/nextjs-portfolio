@@ -5,17 +5,15 @@ import Image from 'next/image'
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 import Layout from '../components/layout'
-
-import CircularText from '../components/CircularText'
+import Loader from '../components/loader'
 import ThreeD from '../components/3D'
-import Hero from '../components/hero'
-import Planes from '../components/planes'
-import Carousel3D from '../components/Carousel3D'
-import Kinect from '../components/kinect'
 
+import Hero from '../components/hero'
 import About from '../components/about'
 import Slider from '../components/slider'
 import Timeline from '../components/timeline'
+import Contact from '../components/contact'
+import Kinect from '../components/kinect'
 
 export default function Home({props}) {
 
@@ -204,7 +202,7 @@ export default function Home({props}) {
       </Head>
 
       <ThreeD></ThreeD>
-      <CircularText strings={[]}>
+      <Loader strings={[]}>
           <Hero/>
           <section id="about">
             <About 
@@ -212,23 +210,17 @@ export default function Home({props}) {
             description={"Full stack developer <br>highly experienced<br> designing, building, <br>and scaling <br>cloud hosted <br>software applications"}
             />
           </section>
-          {/* <Planes/> */}
           <section id="projects">
             <Slider slides={slider}/>
           </section>
-
           <section id="experience">
             <Timeline exp={timeline} />
           </section>
-          <Kinect/>
-          {/* <Carousel3D 
-            list   = {carousel}
-            width  = {150}
-            height = {100}
-            radius = {200}
-          /> */}
-
-      </CircularText>
+          <section id="contact">
+            <Contact />
+            <Kinect/> 
+          </section>
+      </Loader>
 
       <div className="links">
         <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank">

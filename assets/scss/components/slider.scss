@@ -1,13 +1,17 @@
 #projects {
+	max-height: 400px;
+
+	@include breakpoint(medium) {
+		max-height: 550px;
+	}
+	@include breakpoint(large) {
 		max-height: 400px;
+	}
 
-		@include breakpoint(medium) {
-			max-height: 550px;
-		}
-		@include breakpoint(large) {
-			max-height: 400px;
-		}
-
+	// hr {
+	// 	border: 1px solid var(--color-secondary) !important;
+	// 	padding: 1em auto;
+	// }
 }
 .slider-component {
 	padding    : 0;

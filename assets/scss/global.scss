@@ -1,15 +1,14 @@
 @import "mixins";
 @import "settings";
-
 @import "fonts";
 
-@import "CircleText";
-@import "planes";
-@import "slider";
-@import "timeline";
-
-@import "hero";
-@import "about";
+@import "./components/intro";
+@import "./components/nav";
+@import "./components/hero";
+@import "./components/about";
+@import "./components/slider";
+@import "./components/timeline";
+@import "./components/contact";
 
 
 *,

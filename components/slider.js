@@ -94,6 +94,7 @@ export default class Slider extends React.Component {
               target="_blank">
               <img src={slide.image} />
             </a>
+            {/* <hr className="seperator"/> */}
             <div className="tools">
               {slide.tools.map((tool, i) => (
                 <img 
