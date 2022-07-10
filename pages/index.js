@@ -188,7 +188,7 @@ export default function Home({props}) {
             />
           </section>
           {/* <Planes/> */}
-          <section id="work">
+          <section id="projects">
             <Slider slides={slider}/>
           </section>
  
