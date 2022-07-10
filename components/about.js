@@ -43,8 +43,10 @@ export default class About extends React.Component {
   componentDidMount() {
 
     AOS.init({
-      delay  : 200,
-      mirror : true
+      delay  : 300,
+      mirror : false,
+      once   : false,
+      // duration: 1000
     });
     this.init();
     // this.revealScroll();
@@ -189,7 +191,7 @@ export default class About extends React.Component {
           <div className="media left">
             <h2 
               className="title"  
-              data-aos="flip-up"
+              data-aos="zoom-in-up"
               >
               {this.title}
             </h2>
@@ -198,7 +200,8 @@ export default class About extends React.Component {
             <p 
               className="description pretitle" 
               dangerouslySetInnerHTML={{__html: this.description}}
-              data-aos="zoom-in"
+              data-aos="fade-in"
+              data-aos-delay="1000"
               >
             </p>
           </div>

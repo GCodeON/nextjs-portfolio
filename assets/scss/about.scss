@@ -52,12 +52,13 @@
 		}
 
 		.description {
-			font-size   : 1.1rem !important;
+			font-size   : 0.9rem !important;
 			color       : white !important;
 			max-width   : 400px !important;
 			line-height : 35px;
 
 			@include breakpoint(medium) {
+				font-size   : 1.1rem !important;
 				line-height : 50px;
 				max-width   : 350px !important;
 			}
