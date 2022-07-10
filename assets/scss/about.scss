@@ -6,8 +6,9 @@
 	// padding    : 1em 0 3em;
 
 	.media {
-		transform: translateY(-100px);
+		transform: translateY(-75px);
 		@include breakpoint(medium) {
+	
 			transform  : none;
 			padding    : 0;
 			position   : absolute;
