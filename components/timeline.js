@@ -24,14 +24,17 @@ export default class Timeline extends React.Component {
         <h2 className="title">Experience</h2>
         <div className="timeline">
           {this.props.exp.map((position, i) => (
-            <a href={position.link} target="_blank" key={i} data-aos={`zoom-out-${position.class}`}>
-              <div className={`position ${position.class}`}>
+            <a 
+              href={position.link} 
+              target="_blank" key={i}>
+              <div 
+                className={`position ${position.class}`} 
+                data-aos={`zoom-in-${position.class}`}>
                 <div className="copy-content" >
                   <h2 className="pretitle">
                     {position.company}
                   </h2>
                   <p className="pos" dangerouslySetInnerHTML={{__html: position.title}}></p>
-                  
                   <p className="date">
                     {position.dates}
                   </p>

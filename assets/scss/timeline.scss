@@ -29,7 +29,7 @@
 
 		&:hover {
 			.pos {
-				color: #2baabf!important;
+				color: var(--color-secondary) !important;
 			}
 		}
 
@@ -43,7 +43,7 @@
 		}
 		.date, .pos {
 			font-family : vortice-concept, sans-serif;
-			// color: white !important;
+			color: white !important;
 		}
 		.pos {
 			font-size: 1em;
@@ -56,7 +56,7 @@
 		.date {
 			font-size: 12px;
 			// color: #2baabf!important;
-			color: white !important;
+			// color: white !important;
 		}
 	  }
 	  
