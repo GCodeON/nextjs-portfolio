@@ -30,7 +30,7 @@ export default class Slider extends React.Component {
   render() {
     return (
       <div className="slider-component">
-        <h2 className="title" data-aos="zoom-in-down">Work</h2>
+        <h2 className="title">Work</h2>
         <Swiper
           className      = "slider"
           effect         = {"coverflow"}
