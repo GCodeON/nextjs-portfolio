@@ -193,8 +193,8 @@ export default class CircularText extends React.Component {
     if(window.location.hash) {
       console.log('has id hash:', window.location.hash);
       setTimeout(() => {
-        document.getElementById(window.location.hash.replace("#", "")).scrollIntoView({ behavior: 'smooth' })
-      }, 3000);
+        document.getElementById(window.location.hash.replace("#", "")).scrollIntoView({ behavior: 'smooth', block: 'end' })
+      }, 2700);
     }
 
 
