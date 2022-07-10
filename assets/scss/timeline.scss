@@ -49,8 +49,12 @@
 			// color: white !important;
 		}
 		.pos {
-			font-size: 1.3em;
+			font-size: 1em;
 			padding: 5px 0;
+
+			@include breakpoint(medium) {
+				font-size: 1.3em;
+			}
 		}
 		.date {
 			font-size: 8px;
