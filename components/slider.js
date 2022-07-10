@@ -88,12 +88,18 @@ export default class Slider extends React.Component {
         { this.props.slides.map((slide, idx) => (
 
           <SwiperSlide key={idx}>
-            <a className="slide link" href={slide.link} target="_blank">
+            <a 
+              className="slide link" 
+              href={slide.link} 
+              target="_blank">
               <img src={slide.image} />
             </a>
             <div className="tools">
               {slide.tools.map((tool, i) => (
-                <img className="tool image" src={tool.image} key={i} />
+                <img 
+                  className="tool image" 
+                  src={tool.image} 
+                  key={i} />
               ))}
             </div>
           </SwiperSlide>
