@@ -18,6 +18,8 @@
 		bottom           : 0;
 		left             : 50%;
 		margin-left      : -3px;
+		border-top       : none;
+		border-bottom    : none;
 	  }
 	  
 	  /* Container around content */
@@ -155,7 +157,7 @@
 	  
 		/* Make sure all circles are at the same spot */
 		.left::after, .right::after {
-		left: 15px;
+		left: 19px;
 		}
 		
 		/* Make all right containers behave like the left ones */

@@ -73,7 +73,7 @@ export default class Slider extends React.Component {
               width          : 1220,
               slidesPerView  : 3,
               spaceBetween   : 50,
-              initialSlide   : 2,
+              initialSlide   : 1,
               centeredSlides : false
             },
             1660: {
