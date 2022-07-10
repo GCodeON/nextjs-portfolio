@@ -28,8 +28,7 @@ export default class Timeline extends React.Component {
               href={position.link} 
               target="_blank" key={i}>
               <div 
-                className={`position ${position.class}`} 
-                data-aos={`zoom-in-${position.class}`}>
+                className={`position ${position.class}`} >
                 <div className="copy-content" >
                   <h2 className="pretitle">
                     {position.company}

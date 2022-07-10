@@ -32,9 +32,9 @@
 				background-color : white;
 				border           : 1px solid white;
 			}
-			.pos {
-				color: var(--color-secondary) !important;
-			}
+			// .pos {
+			// 	color: var(--color-secondary) !important;
+			// }
 		}
 
 		@include breakpoint(medium) {
