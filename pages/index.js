@@ -173,7 +173,7 @@ export default function Home({props}) {
   const timeline = [
     {
       dates   : '2017-Present',
-      company : 'Rescue',
+      company : 'Rescue Agency',
       title   : 'Full Stack<br>Web Developer',
       class   : 'left',
       link    : 'https://rescueagency.com/'
