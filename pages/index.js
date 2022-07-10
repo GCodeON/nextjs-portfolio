@@ -256,10 +256,6 @@ export default function Home({props}) {
             padding  : 0;
             cursor   : pointer
           }
-
-          #projects {
-            max-height: 400px;
-          }
       `}</style>
 
       <style jsx global>{`

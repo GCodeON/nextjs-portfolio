@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
 
 
 export default class Timeline extends React.Component {
@@ -11,10 +11,10 @@ export default class Timeline extends React.Component {
   }
 
   componentDidMount() {
-    AOS.init({
-      delay  : 100,
-      mirror : true
-    });
+    // AOS.init({
+    //   delay  : 100,
+    //   mirror : true
+    // });
 
   }
 

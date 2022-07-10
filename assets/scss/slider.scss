@@ -1,11 +1,13 @@
-#work {
-	background : black;
-	// padding: 4em 0 0;
+#projects {
+		max-height: 400px;
 
-	@include breakpoint(medium) {
-		padding: 2em 0 0;
-	} 
-	// background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7)));
+		@include breakpoint(medium) {
+			max-height: 550px;
+		}
+		@include breakpoint(large) {
+			max-height: 400px;
+		}
+
 }
 .slider-component {
 	padding    : 0;
