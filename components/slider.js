@@ -9,6 +9,9 @@ import 'swiper/swiper.min.css'
 import "swiper/components/effect-coverflow/effect-coverflow.min.css";
 import "swiper/components/pagination/pagination.min.css";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 SwiperCore.use([EffectCoverflow,Pagination]);
 export default class Slider extends React.Component {
 
@@ -23,7 +26,7 @@ export default class Slider extends React.Component {
   render() {
     return (
       <div className="slider-component">
-        <h2 className="title">Work</h2>
+        <h2 className="title" data-aos="zoom-in-down">Work</h2>
         <Swiper
           className      = "slider"
           effect         = {"coverflow"}

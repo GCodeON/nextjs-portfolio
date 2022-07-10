@@ -7,7 +7,6 @@ import { PCDLoader } from '/node_modules/three/examples/jsm/loaders/PCDLoader.js
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -208,12 +207,7 @@ export default class About extends React.Component {
         </div>
 
         <style jsx>{`
-          .container {
-            background: black;
-          }
-          .canvas {
-            display: block;
-          }
+ 
             
         `}</style>
 
