@@ -170,7 +170,6 @@ export default function Home({props}) {
     },
   ]
 
-
   const timeline = [
     {
       dates   : '2017-Present',
@@ -256,6 +255,10 @@ export default function Home({props}) {
             margin   : 0 auto;
             padding  : 0;
             cursor   : pointer
+          }
+
+          #projects {
+            max-height: 375px;
           }
       `}</style>
 

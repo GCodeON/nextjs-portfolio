@@ -30,6 +30,13 @@
 		position         : relative;
 		background-color : inherit;
 
+
+		&:hover {
+			.pos {
+				color: #2baabf!important;
+			}
+		}
+
 		@include breakpoint(medium) {
 			max-width        : 50%;
 		}
@@ -37,8 +44,17 @@
 		.pretitle {
 			color: var(--color-primary)
 		}
-		.date {
+		.date, .pos {
 			font-family : vortice-concept, sans-serif;
+			// color: white !important;
+		}
+		.pos {
+			font-size: 1.3em;
+			padding: 5px 0;
+		}
+		.date {
+			font-size: 8px;
+			// color: #2baabf!important;
 			color: white !important;
 		}
 	  }
