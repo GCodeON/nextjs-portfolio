@@ -258,7 +258,7 @@ export default function Home({props}) {
           }
 
           #projects {
-            max-height: 375px;
+            max-height: 400px;
           }
       `}</style>
 
