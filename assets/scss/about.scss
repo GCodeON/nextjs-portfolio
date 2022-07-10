@@ -56,7 +56,7 @@
 		}
 
 		.description {
-			font-size   : 1.2em !important;
+			font-size   : 1em !important;
 			max-width   : 425px !important;
 			line-height : 35px;
 
@@ -66,12 +66,12 @@
 			color       : white;
 
 			pointer-events          : none;
-			padding                 : 0.5em 0;
+			padding                 : 0.5em;
 
 			@extend .transparent;
 
 			@include breakpoint(medium) {
-
+				padding: 0.5em 0;
 				font-size   : 1.3em !important;
 				max-width   : 425px !important;
 				line-height : 50px;
