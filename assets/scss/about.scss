@@ -23,8 +23,8 @@
 				top: 0%;
 			}
 			&.right {
-				top   : 30%;
-				right: 22%;
+				top   : 10%;
+				right: 2%;
 				p {
 					text-align: right;
 				}
@@ -34,12 +34,12 @@
 		@include breakpoint(large) {
 		
 			&.left {
-				left : 16%;
-				top: 0%;
+				left : 12%;
+				top: 5%;
 			}
 			&.right {
-				right : 12%;
-				top   : 25%;
+				right : 11%;
+				top   : 20%;
 			}
 
 		}
@@ -52,14 +52,14 @@
 		}
 
 		.description {
-			font-size : 1.1rem !important;
-			color     : white !important;
-			max-width : 400px !important;
-			line-height: 35px;
+			font-size   : 1.1rem !important;
+			color       : white !important;
+			max-width   : 400px !important;
+			line-height : 35px;
 
-			@include breakpoint(large) {
-				line-height: 40px;
-				max-width : 350px !important;
+			@include breakpoint(medium) {
+				line-height : 50px;
+				max-width   : 350px !important;
 			}
 			// @include breakpoint(medium) {
 			// 	text-align : right !important;
