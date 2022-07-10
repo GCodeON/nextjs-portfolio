@@ -91,9 +91,6 @@ export default class Slider extends React.Component {
           <SwiperSlide key={idx}>
             <a className="slide link" href={slide.link} target="_blank">
               <img src={slide.image} />
-              {/* <p className="subtitle">
-                {slide.link}
-              </p> */}
             </a>
             <div className="tools">
               {slide.tools.map((tool, i) => (

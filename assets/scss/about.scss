@@ -1,12 +1,10 @@
-
-
 .about {
 	position   : relative;
 	background : black;
-	// padding    : 1em 0 3em;
 
 	.media {
-		transform: translateY(-75px);
+		transform : translateY(-75px);
+		
 		@include breakpoint(medium) {
 	
 			transform  : none;
@@ -23,13 +21,13 @@
 		
 			&.left {
 				left : 15%;
-				top: 0%;
+				top  : 0%;
 			}
 			&.right {
 				top   : 10%;
-				right: 2%;
+				right : 2%;
 				p {
-					text-align: right;
+					text-align : right;
 				}
 			}
 
@@ -38,84 +36,41 @@
 		
 			&.left {
 				left : 12%;
-				top: 5%;
+				top  : 5%;
 			}
 			&.right {
-				right : 11%;
+				right : 9%;
 				top   : 20%;
 			}
 
 		}
 
-
-		.title {
-			// @include breakpoint(medium) {
-			// 	text-align: right;
-			// }
-		}
-
 		.description {
-			font-size   : 0.9rem !important;
-			color       : white !important;
-			max-width   : 400px !important;
+			font-size   : 1.2em !important;
+			max-width   : 425px !important;
 			line-height : 35px;
 
+			font-family             : vortice-concept, sans-serif;
+			font-weight             : 400;
+			margin                  : 0 auto;
+			-webkit-text-stroke     : 0.9px white;
+			text-stroke             : 0.9px var(white);
+			-webkit-text-fill-color : transparent;
+			text-fill-color         : transparent;
+			color                   : transparent;
+			pointer-events          : none;
+			padding                 : 0.5em 0;
+
+
 			@include breakpoint(medium) {
-				font-size   : 1.1rem !important;
+				font-size   : 1.3em !important;
+				max-width   : 425px !important;
 				line-height : 50px;
-				max-width   : 350px !important;
+
+				-webkit-text-stroke : 1px white;
+				text-stroke         : 1px white;
 			}
-			// @include breakpoint(medium) {
-			// 	text-align : right !important;
-			// }
 	
 		}
 	}
-	// @include breakpoint(large) {
-	// 	position   : absolute;
-	// 	background : none;
-	// 	width      : 100%;
-	// 	margin     : 0;
-	// 	padding    : 0;
-	// }
-	// .overlay {
-	// 	color   : white;
-	// 	width   : 100%;
-	// 	margin  : 0 auto;
-	// 	padding : 0 1em;
-	// 	@include breakpoint(medium) {
-	// 		max-width  : 425px;
-	// 		position   : absolute;
-	// 		background : none;
-	// 		width      : 50%;
-	// 		margin     : 0;
-	// 		padding    : 0;
-	// 	}
-	// 	@include breakpoint(large) {
-	// 		max-width  : 475px;
-	// 	}
-	// }
-	// .overlay.bottom {
-	// 	bottom   : -5%;
-	// }
-	// .overlay.top {
-	// 	top: 5%;
-	// }
-	// .overlay.right {
-	// 	right : 10%;
-	// }
-	// .overlay.left {
-	// 	left : 5%;
-	// }
-	// .title {
-	// 	background      : transparent;
-	// 	display         : flex;
-	// 	// align-items     : flex-start;
-	// 	justify-content : flex-start;
-	// 	// width       : 100%;
-	// 	// margin      : 0 auto;
-	// }	
-	// .container {
-	// 	max-width: 75rem;
-	// }
 }

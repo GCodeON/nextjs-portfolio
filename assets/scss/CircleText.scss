@@ -1,7 +1,7 @@
 .circular-text-component {
 	--color-text           : #a5a5a5;
 	--color-bg             : #000000;
-	--color-link           : #ea34a6;
+	--color-link           : var(--color-secondary);
 	--color-link-hover     : #fff;
 	--color-font-circle    : #7b7772;
 	--color-button         : #ea34a6;

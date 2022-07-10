@@ -173,22 +173,25 @@ export default function Home({props}) {
 
   const timeline = [
     {
-      dates : '2017-present',
-      title : 'Rescue',
-      class : 'left',
-      link  : 'https://rescueagency.com/'
+      dates   : '2017-Present',
+      company : 'Rescue',
+      title   : 'Full Stack<br>Web Developer',
+      class   : 'left',
+      link    : 'https://rescueagency.com/'
     },
     {
-      dates : '2017-2019',
-      title : 'SoftStack Factory',
-      class : 'right',
-      link  : 'https://www.softstackfactory.com/'
+      dates   : '2017-2019',
+      company : 'SoftStack Factory',
+      title   : 'Instructor',
+      class   : 'right',
+      link    : 'https://www.softstackfactory.com/'
     },
     {
-      dates : '2017-2018',
-      title : 'Learning Equality',
-      class : 'left',
-      link  : 'https://learningequality.org/'
+      dates   : '2017-2018',
+      company : 'Learning Equality',
+      title   : 'Intern',
+      class   : 'left',
+      link    : 'https://learningequality.org/'
     }
   ]
 

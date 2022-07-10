@@ -7,16 +7,13 @@ import 'aos/dist/aos.css';
 export default class Timeline extends React.Component {
 
   super(props) {
-    // this.timeline = props.timeline ? props.timeline : []
+
   }
 
-  
-  
   componentDidMount() {
     AOS.init({
       delay  : 100,
-      mirror : true,
-      // duration: 1000
+      mirror : true
     });
 
   }
@@ -25,26 +22,27 @@ export default class Timeline extends React.Component {
     return (
       <div className="timeline-component">
         <h2 className="title">Experience</h2>
-
-        <div class="timeline">
-
+        <div className="timeline">
           {this.props.exp.map((position, i) => (
-          <div className={`position ${position.class}`} key={i}>
-            <div className="copy-content" >
-              <h2 className="pretitle">{position.title}</h2>
-              <p className="date">{position.dates}</p>
+            <a href={position.link} target="_blank" key={i}>
+              <div className={`position ${position.class}`}>
+                <div className="copy-content" >
+                  <h2 className="pretitle">
+                    {position.company}
+                  </h2>
+                  <p className="date" dangerouslySetInnerHTML={{__html: position.title}}></p>
+                  <p className="date">
+                    {position.dates}
+                  </p>
+                </div>
             </div>
-          </div>
+            </a>
           ))}
-        
-         
         </div>
 
         <style jsx global>{`
 
-        
         `}</style>
-
       </div>
     )
   }
