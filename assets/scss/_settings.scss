@@ -19,8 +19,9 @@ $red             : #C10F00;
 */
 
 $breakpoints: (
-  'small'   : ( min-width:  767px ),
-  'medium'  : ( min-width:  992px ),
+  'small'   : ( min-width:  375px ),
+  'medium'   : ( min-width:  767px ),
+  'tablet'  : ( min-width:  992px ),
   'large'   : ( min-width: 1024px ),
   'xlarge'  : ( min-width: 1200px ),
   'xxlarge' : ( min-width: 1440px )

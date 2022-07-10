@@ -3,8 +3,70 @@
 .about {
 	position   : relative;
 	background : black;
-	padding    : 1em 0 3em;
+	// padding    : 1em 0 3em;
 
+	.media {
+		@include breakpoint(medium) {
+			padding: 0;
+			position   : absolute;
+			top        : 15%;
+			background : none;
+			display    : inline-block;
+			text-align : center;
+
+		}
+
+		@include breakpoint(medium) {
+		
+			&.left {
+				left : 15%;
+				top: 0%;
+			}
+			&.right {
+				top   : 30%;
+				right: 22%;
+				p {
+					text-align: right;
+				}
+			}
+
+		}
+		@include breakpoint(large) {
+		
+			&.left {
+				left : 16%;
+				top: 0%;
+			}
+			&.right {
+				right : 12%;
+				top   : 25%;
+			}
+
+		}
+
+
+		.title {
+			// @include breakpoint(medium) {
+			// 	text-align: right;
+			// }
+		}
+
+		.description {
+			font-size : 1.1rem !important;
+			color     : white !important;
+			max-width : 400px !important;
+			line-height: 35px;
+
+			@include breakpoint(large) {
+				line-height: 40px;
+				max-width : 350px !important;
+			}
+			// @include breakpoint(medium) {
+			// 	text-align : right !important;
+			// }
+	
+		}
+	}
 	// @include breakpoint(large) {
 	// 	position   : absolute;
 	// 	background : none;
@@ -12,35 +74,35 @@
 	// 	margin     : 0;
 	// 	padding    : 0;
 	// }
-	.overlay {
-		color   : white;
-		width   : 100%;
-		margin  : 0 auto;
-		padding : 0 1em;
-		@include breakpoint(medium) {
-			max-width  : 425px;
-			position   : absolute;
-			background : none;
-			width      : 50%;
-			margin     : 0;
-			padding    : 0;
-		}
-		@include breakpoint(large) {
-			max-width  : 475px;
-		}
-	}
-	.overlay.bottom {
-		bottom   : -5%;
-	}
-	.overlay.top {
-		top: 5%;
-	}
-	.overlay.right {
-		right : 10%;
-	}
-	.overlay.left {
-		left : 5%;
-	}
+	// .overlay {
+	// 	color   : white;
+	// 	width   : 100%;
+	// 	margin  : 0 auto;
+	// 	padding : 0 1em;
+	// 	@include breakpoint(medium) {
+	// 		max-width  : 425px;
+	// 		position   : absolute;
+	// 		background : none;
+	// 		width      : 50%;
+	// 		margin     : 0;
+	// 		padding    : 0;
+	// 	}
+	// 	@include breakpoint(large) {
+	// 		max-width  : 475px;
+	// 	}
+	// }
+	// .overlay.bottom {
+	// 	bottom   : -5%;
+	// }
+	// .overlay.top {
+	// 	top: 5%;
+	// }
+	// .overlay.right {
+	// 	right : 10%;
+	// }
+	// .overlay.left {
+	// 	left : 5%;
+	// }
 	// .title {
 	// 	background      : transparent;
 	// 	display         : flex;

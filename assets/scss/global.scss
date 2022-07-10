@@ -1,6 +1,8 @@
 @import "mixins";
 @import "settings";
 
+@import "fonts";
+
 @import "CircleText";
 @import "planes";
 @import "slider";
@@ -17,6 +19,11 @@
 
 :root {
 	font-size: 16px;
+}
+
+section {
+	background-color: black;
+	// padding: 0 0 4em;
 }
 
 body {
@@ -138,34 +145,6 @@ body {
 }
   
 
-.pretitle {
-	font-family    : vortice-concept, sans-serif;
-	font-weight    : 400;
-	color          : var(--color-secondary);
-	font-size      : 1rem;
-	margin         : 0 0 0.75rem;
-	grid-area      : pretitle;
-	// display        : flex;
-	// pointer-events : none;
-}
-
-.title {
-	font-family             : vortice-concept, sans-serif;
-	font-weight             : 400;
-	margin                  : 0;
-	-webkit-text-stroke     : 1px var(--color-primary);
-	text-stroke             : 1px var(--color-primary);
-	-webkit-text-fill-color : transparent;
-	text-fill-color         : transparent;
-	color                   : transparent;
-	font-size               : 2.5rem;
-	grid-area               : title;
-	pointer-events : none;
-	margin         : 0.5em auto;
-	@include breakpoint(large) {
-		font-size : 60px;
-	}
-}
 
 
 *,

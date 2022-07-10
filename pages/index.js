@@ -182,7 +182,10 @@ export default function Home({props}) {
       <CircularText strings={[]}>
           <Hero/>
           <section id="about">
-            <About/>
+            <About 
+            title={'About'}
+            description={"Full stack developer <br>highly experienced designing, building, and scaling <br>cloud hosted <br>software applications"}
+            />
           </section>
           {/* <Planes/> */}
           <section id="work">

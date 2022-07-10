@@ -32,6 +32,8 @@ function animate () {
 export default class About extends React.Component {
   constructor(props) {
     super(props);
+    this.title       = this.props.title;
+    this.description = this.props.description;
   }
   componentDidMount() {
     this.init();
@@ -171,9 +173,15 @@ export default class About extends React.Component {
         
         </Head>
         <div className="about container" ref={(mount) => { this.mount = mount }}>
-          <h2 className="title">About</h2>
           <canvas className="canvas"></canvas>
-          <p>Full stack developer experienced building cloud hosted software. </p>
+          <div className="media left">
+            <h2 className="title">
+              {this.title}
+            </h2>
+          </div>
+          <div className="media right">
+            <p className="description pretitle" dangerouslySetInnerHTML={{__html: this.description}}></p>
+          </div>
         </div>
 
         <style jsx>{`

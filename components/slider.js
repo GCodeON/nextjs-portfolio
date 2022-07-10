@@ -100,10 +100,6 @@ export default class Slider extends React.Component {
 
         <style jsx global>{`
 
-        .slider-component {
-          background : black;
-          padding    : 100px 0;
-        }
 
         `}</style>
 
