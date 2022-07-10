@@ -18,10 +18,10 @@
 	-webkit-text-fill-color : transparent;
 	text-fill-color         : transparent;
 	color                   : transparent;
-	font-size               : 2.5rem;
+	font-size               : x-large;
 	grid-area               : title;
-	pointer-events : none;
-	padding         : 0.5em 0;
+	pointer-events          : none;
+	padding                 : 0.5em 0;
 	@include breakpoint(large) {
 		font-size : 60px;
 	}

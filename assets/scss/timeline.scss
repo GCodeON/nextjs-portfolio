@@ -6,10 +6,6 @@
 		margin    : 0 auto;
 	}
 
-
-	.date {
-		font-size: 1em !important;
-	}
 	  
 	  /* The actual timeline (the vertical ruler) */
 	  .timeline::after {
@@ -42,7 +38,8 @@
 		}
 
 		.pretitle {
-			color: var(--color-primary)
+			color: var(--color-primary);
+			margin: 0 ;
 		}
 		.date, .pos {
 			font-family : vortice-concept, sans-serif;
@@ -57,7 +54,7 @@
 			}
 		}
 		.date {
-			font-size: 8px;
+			font-size: 12px;
 			// color: #2baabf!important;
 			color: white !important;
 		}
