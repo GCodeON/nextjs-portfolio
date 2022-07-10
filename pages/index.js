@@ -15,6 +15,7 @@ import Kinect from '../components/kinect'
 
 import About from '../components/about'
 import Slider from '../components/slider'
+import Timeline from '../components/timeline'
 
 export default function Home({props}) {
 
@@ -191,7 +192,10 @@ export default function Home({props}) {
           <section id="projects">
             <Slider slides={slider}/>
           </section>
- 
+
+          <section id="experience">
+            <Timeline />
+          </section>
           <Kinect/>
           {/* <Carousel3D 
             list   = {carousel}
