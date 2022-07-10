@@ -170,6 +170,28 @@ export default function Home({props}) {
     },
   ]
 
+
+  const timeline = [
+    {
+      dates : '2017-present',
+      title : 'Rescue',
+      class : 'left',
+      link  : 'https://rescueagency.com/'
+    },
+    {
+      dates : '2017-2019',
+      title : 'SoftStack Factory',
+      class : 'right',
+      link  : 'https://www.softstackfactory.com/'
+    },
+    {
+      dates : '2017-2018',
+      title : 'Learning Equality',
+      class : 'left',
+      link  : 'https://learningequality.org/'
+    }
+  ]
+
   return (
     <Layout>
       <Head>
@@ -194,7 +216,7 @@ export default function Home({props}) {
           </section>
 
           <section id="experience">
-            <Timeline />
+            <Timeline exp={timeline} />
           </section>
           <Kinect/>
           {/* <Carousel3D 
