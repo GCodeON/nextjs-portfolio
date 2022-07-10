@@ -20,12 +20,8 @@ export default class Timeline extends React.Component {
         <div className="fields">
           <input placeholder="example@email.com"></input>
           <textarea placeholder="hire me!" rows="6"></textarea>
-
-          {/* <a href="/mailto">
-
-          </a> */}
           <div className="primary button">
-          CONTACT
+            contact
           </div>
         </div>
         
