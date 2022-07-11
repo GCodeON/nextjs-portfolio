@@ -10,7 +10,7 @@ export default class Contact extends React.Component {
     }
     this.handleEmail   = this.handleEmail.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
-    this.onContact       = this.onContact.bind(this);
+    this.onContact     = this.onContact.bind(this);
   }
 
   componentDidMount() {
@@ -25,10 +25,9 @@ export default class Contact extends React.Component {
     this.setState({message: event.target.value})
   }
 
-  onContact() {
-    if(this.state.email) {
-      console.log('send email', this.state.email, this.state.message);
-      window.open(`mailto:${this.state.email}`, '_blank')
+  onContact(e) {
+    if(this.state.message) {
+      window.open(`mailto:gcodeondev@gmail.com?subject=${this.state.email}&body=${this.state.message}`, '_blank')
     }
   }
   render() {
@@ -37,29 +36,21 @@ export default class Contact extends React.Component {
         <h2 className="title">Contact</h2>
 
         <div className="fields">
-          <input 
-            className="email" 
-            placeholder="example@email.com"
-            value={this.state.email} 
-            onChange={this.handleEmail}
-          >
-          </input>
-          <textarea 
-            placeholder="Reasons why you'd like to hire me!" 
-            rows="6"
-            value={this.state.message} 
-            onChange={this.handleMessage}
-          >
-            </textarea>
-
-            {/* <a href={`mailto:${this.state.email}`} target="_blank"> */}
-              <div 
-                className="primary button"
-                onClick={this.onContact}
-                >
-                send
-              </div>
-            {/* </a> */}
+          <form onSubmit={this.onContact}>
+            <input 
+              className   = "email"
+              placeholder = "type subject here"
+              value       = {this.state.email}
+              onChange    = {this.handleEmail}
+            />
+            <textarea 
+              placeholder = "Reasons why you'd like to hire me!"
+              rows        = "6"
+              value       = {this.state.message}
+              onChange    = {this.handleMessage}
+            />
+            <input className="button" type="submit" value="Send"/>
+          </form>
         </div>
         
         <style jsx global>{`

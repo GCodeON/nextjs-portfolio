@@ -73,7 +73,7 @@ export default class About extends React.Component {
     this.loadModel();
     
     window.addEventListener( 'resize', this.onWindowResize );
-    window.addEventListener( 'keypress', this.keyboard );
+    // window.addEventListener( 'keypress', this.keyboard );
 
     document.addEventListener( 'mousemove', this.onDocumentMouseMove );
     document.addEventListener( 'scroll', this.onScroll );
