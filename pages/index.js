@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 
 import Layout from '../components/layout'
 import Loader from '../components/loader'
@@ -210,9 +211,11 @@ export default function Home({props}) {
             description={"Full stack developer <br>highly experienced<br> designing, building, <br>and scaling <br>cloud hosted <br>software applications"}
             />
           </section>
+
           <section id="projects">
-            <Slider slides={slider}/>
+              <Slider slides={slider}/>
           </section>
+        
           <section id="experience">
             <Timeline exp={timeline} />
           </section>

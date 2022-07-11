@@ -7,6 +7,8 @@ import 'swiper/swiper.min.css'
 import "swiper/components/effect-coverflow/effect-coverflow.min.css";
 import "swiper/components/pagination/pagination.min.css";
 
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+
 SwiperCore.use([EffectCoverflow,Pagination]);
 export default class Slider extends React.Component {
 
@@ -21,7 +23,11 @@ export default class Slider extends React.Component {
   render() {
     return (
       <div className="slider-component">
-        <h2 className="title">Projects</h2>
+        <ParallaxProvider>
+          <Parallax speed={10}>
+            <h2 className="title">Projects</h2>
+          </Parallax>
+        </ParallaxProvider> 
         <Swiper
           className      = "slider"
           effect         = {"coverflow"}
@@ -95,17 +101,15 @@ export default class Slider extends React.Component {
                   src={tool.image} 
                   key={i} />
               ))}
-            </div>
-          </SwiperSlide>
-        ))}
+        </div>
+      </SwiperSlide>
+    ))}
 
         </Swiper>
 
         <style jsx global>{`
 
-
         `}</style>
-
       </div>
     )
   }
