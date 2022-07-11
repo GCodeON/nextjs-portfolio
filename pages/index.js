@@ -190,6 +190,13 @@ export default function Home({props}) {
       title   : 'Intern',
       class   : 'left',
       link    : 'https://learningequality.org/'
+    },
+    {
+      dates   : '2013-2015',
+      company : "Porter's Pub",
+      title   : 'Graphic Designer',
+      class   : 'right',
+      link    : ''
     }
   ]
 
