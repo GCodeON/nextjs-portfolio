@@ -2,13 +2,13 @@
 	position: relative;
 }
 .contact-component {
-	position  : absolute;
-	top       : 15%;
-	left      : 20%;
-	width : 300px;
+	position : absolute;
+	top      : 15%;
+	left     : 20%;
+	width    : 300px;
 	@include breakpoint(large) {
-		top       : 20%;
-		left      : 30%;
+		top   : 20%;
+		left  : 30%;
 		width : 500px;
 	}
 	.fields {
@@ -34,11 +34,19 @@
 	
 
 		.button {
-			font-family: vortice-concept, sans-serif;
-			font-size: small;
+			font-family : vortice-concept, sans-serif;
+			font-size   : small;
 			&:hover {
-				cursor: pointer;
+				cursor : pointer;
 			}
+		}
+	}
+	.links {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		.icon {
+			fill: white;
 		}
 	}
 }

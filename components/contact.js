@@ -1,4 +1,5 @@
 import React from "react";
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 export default class Contact extends React.Component {
   constructor(props) {
     super(props)
@@ -32,7 +33,6 @@ export default class Contact extends React.Component {
     return (
       <div className="contact-component container">
         <h2 className="title">Contact</h2>
-
         <div className="fields">
           <form onSubmit={this.onContact}>
             <input 
@@ -49,6 +49,15 @@ export default class Contact extends React.Component {
             />
             <input className="button" type="submit" value="Send"/>
           </form>
+        </div>
+
+        <div className="links">
+          <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank">
+            <FaLinkedin className="linkedin icon"/>
+          </a>
+          <a href="https://github.com/GCodeON" target="_blank">
+            <FaGithub className="github icon"/>
+          </a>
         </div>
         
         <style jsx global>{`
