@@ -1,16 +1,11 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { EffectCoverflow, Pagination } from 'swiper/core';
 
-// Import Swiper React styles
 import 'swiper/swiper.min.css'
 import "swiper/components/effect-coverflow/effect-coverflow.min.css";
 import "swiper/components/pagination/pagination.min.css";
-
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
 
 SwiperCore.use([EffectCoverflow,Pagination]);
 export default class Slider extends React.Component {
@@ -20,10 +15,7 @@ export default class Slider extends React.Component {
   }
   
   componentDidMount() {
-    // AOS.init({
-    //   delay  : 100,
-    //   mirror : true,
-    // });
+
   }
 
   render() {
