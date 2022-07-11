@@ -46,12 +46,15 @@
 		}
 
 		.transparent {
-			@include breakpoint(medium) {
-				-webkit-text-stroke     : 0.9px white;
-				text-stroke             : 0.9px var(white);
-				-webkit-text-fill-color : transparent;
-				text-fill-color         : transparent;
-				color                   : transparent;
+
+			&:hover {
+				@include breakpoint(medium) {
+					-webkit-text-stroke     : 0.9px white;
+					text-stroke             : 0.9px var(white);
+					-webkit-text-fill-color : transparent;
+					text-fill-color         : transparent;
+					color                   : transparent;
+				}
 			}
 		}
 
@@ -68,7 +71,7 @@
 			pointer-events          : none;
 			padding                 : 0.5em;
 
-			@extend .transparent;
+			// @extend .transparent;
 
 			@include breakpoint(medium) {
 				padding: 0.5em 0;
@@ -76,8 +79,8 @@
 				max-width   : 425px !important;
 				line-height : 50px;
 
-				-webkit-text-stroke : 1px white;
-				text-stroke         : 1px white;
+				// -webkit-text-stroke : 1px white;
+				// text-stroke         : 1px white;
 			}
 	
 		}
