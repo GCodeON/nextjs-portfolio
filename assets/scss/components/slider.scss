@@ -22,14 +22,15 @@
 
 	@include breakpoint(large) {
 		padding    : 2em 0 0;
-		transform: translateY(-25px);
+		transform: translateY(-100px);
+		// transform: translateY(-25px);
 
-		.title {
-			font-size : 80px !important;
-			position  : absolute;
-			top       : -145px;
-			left      : 25%;
-		}
+		// .title {
+		// 	font-size : 80px !important;
+		// 	position  : absolute;
+		// 	top       : -145px;
+		// 	left      : 25%;
+		// }
 	}
 
 	.swiper {

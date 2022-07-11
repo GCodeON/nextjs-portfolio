@@ -23,11 +23,11 @@ export default class Slider extends React.Component {
   render() {
     return (
       <div className="slider-component">
-        <ParallaxProvider>
-          <Parallax speed={10}>
+        {/* <ParallaxProvider>
+          <Parallax speed={10}> */}
             <h2 className="title">Projects</h2>
-          </Parallax>
-        </ParallaxProvider> 
+          {/* </Parallax>
+        </ParallaxProvider>  */}
         <Swiper
           className      = "slider"
           effect         = {"coverflow"}
