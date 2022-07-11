@@ -196,7 +196,7 @@ export default function Home({props}) {
       company : "Porter's Pub",
       title   : 'Graphic Designer',
       class   : 'right',
-      link    : ''
+      link    : 'https://www.porterspublodica.com/'
     }
   ]
 
