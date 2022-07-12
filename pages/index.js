@@ -178,7 +178,7 @@ export default function Home({props}) {
       link    : 'https://rescueagency.com/'
     },
     {
-      dates   : '2017-2019',
+      dates   : '2018-2019',
       company : 'SoftStack Factory',
       title   : 'Programming <br>Instructor',
       class   : 'right',
