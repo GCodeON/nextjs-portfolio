@@ -180,14 +180,14 @@ export default function Home({props}) {
     {
       dates   : '2017-2019',
       company : 'SoftStack Factory',
-      title   : 'Instructor',
+      title   : 'Programming <br>Instructor',
       class   : 'right',
       link    : 'https://www.softstackfactory.com/'
     },
     {
       dates   : '2017-2018',
       company : 'Learning Equality',
-      title   : 'Intern',
+      title   : 'Software Intern',
       class   : 'left',
       link    : 'https://learningequality.org/'
     },
