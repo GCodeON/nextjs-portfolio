@@ -1,5 +1,6 @@
 import React from "react";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
 export default class Contact extends React.Component {
   constructor(props) {
     super(props)
