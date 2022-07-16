@@ -171,9 +171,10 @@ export default function Home({props}) {
 
   const timeline = [
     {
-      dates   : '2017-Present',
+      dates   : '2018-Present',
       company : 'Rescue Agency',
       title   : 'Full Stack<br>Web Developer',
+      type    : 'Full-time',
       class   : 'left',
       link    : 'https://rescueagency.com/'
     },
@@ -181,6 +182,7 @@ export default function Home({props}) {
       dates   : '2018-2019',
       company : 'SoftStack Factory',
       title   : 'Programming <br>Instructor',
+      type    : 'Part-time',
       class   : 'right',
       link    : 'https://www.softstackfactory.com/'
     },
@@ -188,14 +190,24 @@ export default function Home({props}) {
       dates   : '2017-2018',
       company : 'Learning Equality',
       title   : 'Software Intern',
+      type    : "Internship",
       class   : 'left',
       link    : 'https://learningequality.org/'
+    },
+    {
+      dates   : '2017-2018',
+      company : 'Rescue Agency',
+      title   : 'Web Intern',
+      type    : "Internship",
+      class   : 'right',
+      link    : 'https://rescueagency.com/'
     },
     {
       dates   : '2013-2015',
       company : "Porter's Pub",
       title   : 'Graphic Designer',
-      class   : 'right',
+      type    : 'Part-time',
+      class   : 'left',
       link    : 'https://www.porterspublodica.com/'
     }
   ]

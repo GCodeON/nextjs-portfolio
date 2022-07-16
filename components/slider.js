@@ -20,6 +20,8 @@ export default class Slider extends React.Component {
 
   }
 
+
+
   render() {
     return (
       <div className="slider-component">
@@ -28,18 +30,24 @@ export default class Slider extends React.Component {
             <h2 className="title">Projects</h2>
           {/* </Parallax>
         </ParallaxProvider>  */}
+        <div class="prev"></div>
         <Swiper
           className      = "slider"
+          autoHeight= {true}
           effect         = {"coverflow"}
           centeredSlides = {true}
           grabCursor     = {true}
-          pagination     = {false}
+          pagination     = {true}
           spaceBetween   = {10}
           slidesPerView  = {2}
           initialSlide   = {2}
           observer       = {true}
           observeParents = {true}
           autoplay       = {true}
+          navigation     = {true}
+          nextEl         = {".next"}
+          prevEl         = {".prev"}
+          scrollbar      = {{ draggable: true }}
           coverflowEffect={{
             rotate       : 25,
             stretch      : 0,
@@ -64,7 +72,7 @@ export default class Slider extends React.Component {
               width          : 1024,
               slidesPerView  : 2.7,
               spaceBetween   : 50,
-              initialSlide   : 0,
+              initialSlide   : 1,
               centeredSlides : false
             },
             1220: {
@@ -78,7 +86,7 @@ export default class Slider extends React.Component {
               width          : 1660,
               slidesPerView  : 2,
               spaceBetween   : 50,
-              initialSlide   : 0,
+              initialSlide   : 1,
               centeredSlides : false
             },
           }}
@@ -106,6 +114,7 @@ export default class Slider extends React.Component {
     ))}
 
         </Swiper>
+        <div class="next"></div>
 
         <style jsx global>{`
 

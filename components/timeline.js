@@ -34,6 +34,9 @@ export default class Timeline extends React.Component {
                     {position.company}
                   </h2>
                   <p className="pos" dangerouslySetInnerHTML={{__html: position.title}}></p>
+                  <p className="type">
+                    {position.type}
+                  </p>
                   <p className="date">
                     {position.dates}
                   </p>
