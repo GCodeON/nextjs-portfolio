@@ -35,8 +35,12 @@
 		@include breakpoint(large) {
 		
 			&.left {
-				left : 12%;
+				left : 5%;
 				top  : 5%;
+
+				.description, .pretitle {
+					text-align: left;
+				}
 			}
 			&.right {
 				right : 9%;
@@ -83,6 +87,16 @@
 				// text-stroke         : 1px white;
 			}
 	
+		}
+	}
+
+	.skills {
+		display               : grid;
+		grid-template-columns : repeat(5, 55px);
+		gap                   : 10px;
+		align-items           : center;
+		.skill {
+			width: 100%;
 		}
 	}
 }

@@ -18,6 +18,63 @@ import Kinect from '../components/kinect'
 
 export default function Home({props}) {
 
+  const tools = [
+    {
+      image   : '/tools/vue.png',
+    },
+    {
+      image   : '/tools/nuxtjs.svg',
+    },
+    {
+      image   : '/tools/react.png',
+    },
+    {
+      image   : '/tools/nextjs-white.svg',
+    },
+    {
+      image   : '/tools/nodejs.svg',
+    },
+    {
+      image   : '/tools/mysql.png',
+    },
+    {
+      image   : '/tools/mongodb.png',
+    },
+    {
+      image   : '/tools/html5.png',
+    },
+    {
+      image   : '/tools/js.png',
+    },
+    {
+      image   : '/tools/css3.png',
+    },
+    {
+      image   : '/tools/wordpress.png',
+    },
+    {
+      image   : '/tools/laravel.png',
+    },
+    {
+      image   : '/tools/php.svg',
+    },
+    {
+      image   : '/tools/drupal.png',
+    },
+    {
+      image   : '/tools/strapi.svg',
+    },
+    {
+      image   : '/tools/contentful.webp',
+    },
+    {
+      image   : '/tools/aws.png',
+    },
+    {
+      image   : '/tools/Threejs.svg',
+    }
+  ]
+
   const slider = [
     {
       image   : '',
@@ -226,13 +283,15 @@ export default function Home({props}) {
           <Hero/>
           <section id="about">
             <About 
+            skills={tools}
             title={'About'}
             description={"Full stack developer <br>highly experienced<br> designing, building, <br>and scaling <br>cloud hosted <br>software applications"}
+       
             />
           </section>
 
           <section id="projects">
-              <Slider slides={slider}/>
+            <Slider slides={slider}/>
           </section>
         
           <section id="experience">

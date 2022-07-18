@@ -37,6 +37,7 @@ export default class About extends React.Component {
   constructor(props) {
     super(props);
     this.title       = this.props.title;
+    this.skills      = this.props.skills;
     this.description = this.props.description;
   }
   componentDidMount() {
@@ -193,8 +194,6 @@ export default class About extends React.Component {
               >
               {this.title}
             </h2>
-          </div>
-          <div className="media right">
             <p 
               className="description pretitle" 
               dangerouslySetInnerHTML={{__html: this.description}}
@@ -202,6 +201,20 @@ export default class About extends React.Component {
               data-aos-delay="500"
               >
             </p>
+          </div>
+          <div className="media right">
+            {/* <h2 
+              className="title"  
+              data-aos="zoom-out-left"
+              >
+              TOOLS
+            </h2> */}
+            <div className='skills'>
+              { this.skills ? this.skills.map((skill,index) => (
+                  <img src={skill.image}  className="skill" data-aos="fade-out" data-aos-delay={`${index * 100}`} key={index}/>
+                )) : <p></p>
+              }
+            </div>
           </div>
         </div>
 
