@@ -291,7 +291,7 @@ export default function Home({props}) {
             <About 
             skills={tools}
             title={'About'}
-            description={"Full stack developer <br>highly experienced<br> designing, building, <br>and scaling <br>cloud hosted <br>software applications"}
+            description={"Full stack developer <br>highly experienced<br> designing, building, <br>and scaling <br>cloud hosted <br>software"}
        
             />
           </section>

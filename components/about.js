@@ -190,15 +190,15 @@ export default class About extends React.Component {
           <div className="media left">
             <h2 
               className="title"  
-              data-aos="zoom-out-right"
+              // data-aos="zoom-out-right"
               >
               {this.title}
             </h2>
             <p 
               className="description pretitle" 
               dangerouslySetInnerHTML={{__html: this.description}}
-              data-aos="fade-out"
-              data-aos-delay="500"
+              // data-aos="fade-out"
+              // data-aos-delay="500"
               >
             </p>
           </div>
