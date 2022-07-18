@@ -35,19 +35,19 @@ export default function Home({props}) {
       image   : '/tools/nodejs.svg',
     },
     {
+      image   : '/tools/Threejs.svg',
+    },
+    {
+      image   : '/tools/python.png',
+    },
+    {
+      image   : '/tools/sass.png',
+    },
+    {
       image   : '/tools/mysql.png',
     },
     {
       image   : '/tools/mongodb.png',
-    },
-    {
-      image   : '/tools/html5.png',
-    },
-    {
-      image   : '/tools/js.png',
-    },
-    {
-      image   : '/tools/css3.png',
     },
     {
       image   : '/tools/wordpress.png',
@@ -71,7 +71,13 @@ export default function Home({props}) {
       image   : '/tools/aws.png',
     },
     {
-      image   : '/tools/Threejs.svg',
+      image   : '/tools/html5.png',
+    },
+    {
+      image   : '/tools/js.png',
+    },
+    {
+      image   : '/tools/css3.png',
     }
   ]
 

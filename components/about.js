@@ -211,7 +211,7 @@ export default class About extends React.Component {
             </h2> */}
             <div className='skills'>
               { this.skills ? this.skills.map((skill,index) => (
-                  <img src={skill.image}  className="skill" data-aos="fade-out" data-aos-delay={`${index * 100}`} key={index}/>
+                  <img src={skill.image}  className="skill" data-aos="zoom-out" data-aos-delay={`${index * 100}`} key={index}/>
                 )) : <p></p>
               }
             </div>

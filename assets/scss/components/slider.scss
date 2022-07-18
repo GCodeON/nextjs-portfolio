@@ -81,4 +81,15 @@
 			max-width  : 100px;
 		}
 	}
+
+
+	.swiper-pagination-bullet {
+		background-color : rgb(117, 117, 117);
+		opacity          : 1;
+
+		&.swiper-pagination-bullet-active {
+			background-color : var(--color-primary);
+		}
+	
+	}
 }

@@ -35,7 +35,7 @@
 		@include breakpoint(large) {
 		
 			&.left {
-				left : 5%;
+				left : 4%;
 				top  : 5%;
 
 				.description, .pretitle {
@@ -95,8 +95,15 @@
 		grid-template-columns : repeat(5, 55px);
 		gap                   : 10px;
 		align-items           : center;
+		justify-content       : center ;
+		margin                : 2em 0;
 		.skill {
-			width: 100%;
+			width  : 100%;
+			cursor : pointer;
+			&:hover {
+				transform: scale(1.2);
+				transition: 0.1s all;
+			}
 		}
 	}
 }

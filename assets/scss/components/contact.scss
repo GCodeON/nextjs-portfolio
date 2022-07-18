@@ -1,14 +1,15 @@
 #contact {
-	position: relative;
+	position        : relative;
+	text-align      : center;
+	margin          : 0 auto;
+	display         : flex;
+	justify-content : center;
+	align-items     : center;
 }
 .contact-component {
 	position : absolute;
-	top      : 15%;
-	left     : 17%;
 	width    : 300px;
 	@include breakpoint(large) {
-		top   : 20%;
-		left  : 30%;
 		width : 500px;
 	}
 	.fields {
