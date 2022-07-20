@@ -1,5 +1,7 @@
 
+import {React, useEffect } from 'react';
 import Typed from 'typed.js';
+
 
 export default function Typewriter(props) {
 

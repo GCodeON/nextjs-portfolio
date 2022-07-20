@@ -18,6 +18,11 @@ import Kinect from '../components/kinect'
 
 export default function Home({props}) {
 
+  const about = [
+    "Building full stack applications using:<br> NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS, Laravel",
+    "Designing, Architecting<br>and scaling <br>cloud hosted <br>software",
+    "Transforming static<br> design comps <br>into pixel perfect <br>interactive applications"
+  ]
   const tools = [
     {
       image   : '/tools/vue.png',
@@ -291,7 +296,7 @@ export default function Home({props}) {
             <About 
             skills={tools}
             title={'About'}
-            description={"Full stack developer <br>highly experienced<br> designing, building, <br>and scaling <br>cloud hosted <br>software"}
+            description={about}
        
             />
           </section>

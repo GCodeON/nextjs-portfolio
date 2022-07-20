@@ -1,6 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
 
+import Typed from 'react-typed';
+
 import * as THREE from 'three';
 import { PCDLoader } from '/node_modules/three/examples/jsm/loaders/PCDLoader.js';
 
@@ -194,24 +196,33 @@ export default class About extends React.Component {
               >
               {this.title}
             </h2>
-            <p 
-              className="description pretitle" 
-              dangerouslySetInnerHTML={{__html: this.description}}
-              // data-aos="fade-out"
-              // data-aos-delay="500"
-              >
-            </p>
+                  <p className="description pretitle">
+                  Full stack developer highly experienced:
+                  </p> 
+                  <Typed
+                    strings={this.description}
+                    typeSpeed={25}
+                    backSpeed={200}
+                    fadeOut={true}
+                    fadeOutDelay={500}
+                    loop 
+                  >
+                    <p 
+                    className="description pretitle" 
+                    dangerouslySetInnerHTML={{__html: this.description}}
+                    >
+                    </p> 
+                  </Typed>
           </div>
           <div className="media right">
-            {/* <h2 
-              className="title"  
-              data-aos="zoom-out-left"
-              >
-              TOOLS
-            </h2> */}
             <div className='skills'>
               { this.skills ? this.skills.map((skill,index) => (
-                  <img src={skill.image}  className="skill" data-aos="zoom-out" data-aos-delay={`${index * 100}`} key={index}/>
+                  <img 
+                    src={skill.image}  
+                    className="skill" 
+                    data-aos="zoom-out" 
+                    data-aos-delay={`${index * 100}`} 
+                    key={index}/>
                 )) : <p></p>
               }
             </div>
