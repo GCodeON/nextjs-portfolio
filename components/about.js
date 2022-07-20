@@ -197,7 +197,7 @@ export default class About extends React.Component {
               {this.title}
             </h2>
                   <p className="description pretitle">
-                  Full stack developer highly experienced:
+                  Full stack developer<br/>highly experienced:
                   </p> 
                   <Typed
                     strings={this.description}

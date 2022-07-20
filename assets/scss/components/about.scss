@@ -4,6 +4,7 @@
 
 	.media {
 		transform : translateY(-75px);
+		min-height: 350px;
 		
 		@include breakpoint(large) {
 	
