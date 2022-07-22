@@ -7,14 +7,14 @@ import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 
 import Layout from '../components/layout'
 import Loader from '../components/loader'
-import ThreeD from '../components/3D'
+import ThreeD from '../components/threejs/3D'
 
 import Hero from '../components/hero'
 import About from '../components/about'
 import Slider from '../components/slider'
 import Timeline from '../components/timeline'
 import Contact from '../components/contact'
-import Kinect from '../components/kinect'
+import Kinect from '../components/threejs/kinect'
 
 export default function Home({props}) {
 
