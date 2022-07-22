@@ -205,7 +205,7 @@ export default class About extends React.Component {
                     backSpeed={200}
                     fadeOut={true}
                     fadeOutDelay={500}
-                    loopCount={2}
+                    loopCount={3}
                     loop 
                   >
                     <p 
