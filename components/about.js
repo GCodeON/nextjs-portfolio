@@ -201,11 +201,11 @@ export default class About extends React.Component {
                   </p> 
                   <Typed
                     strings={this.description}
-                    typeSpeed={25}
+                    typeSpeed={60}
                     backSpeed={200}
                     fadeOut={true}
                     fadeOutDelay={500}
-                    loopCount={3}
+                    loopCount={2}
                     loop 
                   >
                     <p 
