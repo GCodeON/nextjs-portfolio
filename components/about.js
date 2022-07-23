@@ -197,15 +197,15 @@ export default class About extends React.Component {
               {this.title}
             </h2>
                   <p className="description pretitle">
-                  Full stack developer<br/>highly experienced:
+                  Full stack developer<br/>highly experienced
                   </p> 
                   <Typed
-                    strings={this.description}
-                    typeSpeed={60}
-                    backSpeed={200}
-                    fadeOut={true}
-                    fadeOutDelay={500}
-                    loopCount={2}
+                    strings      = {this.description}
+                    typeSpeed    = {60}
+                    backSpeed    = {200}
+                    fadeOut      = {true}
+                    fadeOutDelay = {500}
+                    loopCount    = {2}
                     loop 
                   >
                     <p 
