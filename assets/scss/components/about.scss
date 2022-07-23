@@ -5,8 +5,8 @@
 	.media {
 		transform  : translateY(-75px);
 		min-height : 200px;
-		@include breakpoint(medium) {
-			min-height : 350px;
+		&.left {
+			min-height : 290px;
 		}
 		
 		@include breakpoint(large) {
