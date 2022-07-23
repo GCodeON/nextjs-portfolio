@@ -45,7 +45,7 @@ export default class About extends React.Component {
   componentDidMount() {
 
     AOS.init({
-      delay  : 300,
+      delay  : 100,
       mirror : true
       // duration: 1000
     });
@@ -222,7 +222,8 @@ export default class About extends React.Component {
                     src={skill.image}  
                     className="skill" 
                     data-aos="zoom-out" 
-                    data-aos-delay={`${index * 100}`} 
+                    data-aos-offset="-100"
+                    data-aos-delay={`${index * 50}`} 
                     key={index}/>
                 )) : <p></p>
               }

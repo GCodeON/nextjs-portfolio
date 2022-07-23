@@ -3,8 +3,11 @@
 	background : black;
 
 	.media {
-		transform : translateY(-75px);
-		min-height: 350px;
+		transform  : translateY(-75px);
+		min-height : 200px;
+		@include breakpoint(medium) {
+			min-height : 350px;
+		}
 		
 		@include breakpoint(large) {
 	

@@ -19,9 +19,9 @@ import Kinect from '../components/threejs/kinect'
 export default function Home({props}) {
 
   const about = [
-    "Designing,<br> Architecting<br>and scaling <br>cloud hosted <br>software",
     "Transforming static<br> design comps <br>into pixel perfect <br>interactive <br>applications",
-    "Building full stack applications using:<br> NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS,<br> Laravel",
+    "Using NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS,<br> Laravel",
+    "Designing, Building,<br> and scaling <br>cloud hosted <br>software"
   ]
   const tools = [
     {
