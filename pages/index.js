@@ -241,7 +241,7 @@ export default function Home({props}) {
     {
       dates   : '2022-Present',
       company : 'Cortica',
-      title   : 'Full Stack<br>Developer',
+      title   : 'Full Stack<br>Software Engineer',
       type    : 'Full-time',
       class   : 'left',
       link    : 'https://www.corticacare.com/'
