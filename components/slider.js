@@ -27,12 +27,7 @@ export default class Slider extends React.Component {
   render() {
     return (
       <div className="slider-component">
-        {/* <ParallaxProvider>
-          <Parallax speed={10}> */}
-            <h2 className="title">Projects</h2>
-          {/* </Parallax>
-        </ParallaxProvider>  */}
-        <div class="prev"></div>
+        <h2 className="title">Projects</h2>
         <Swiper
           className       = "slider"
           autoHeight      = {true}
@@ -113,7 +108,6 @@ export default class Slider extends React.Component {
     ))}
 
         </Swiper>
-        <div class="next"></div>
 
         <style jsx global>{`
 

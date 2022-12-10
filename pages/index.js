@@ -19,9 +19,9 @@ import Kinect from '../components/threejs/kinect'
 export default function Home({props}) {
 
   const about = [
-    "Designing,<br> Architecting<br>and scaling <br>cloud hosted <br>software",
     "Transforming static<br> design comps <br>into pixel perfect <br>interactive <br>applications",
-    "Building full stack applications using:<br> NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS,<br> Laravel",
+    "Using NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS,<br> Laravel",
+    "Designing, Building,<br> and scaling <br>cloud hosted <br>software"
   ]
   const tools = [
     {
@@ -245,11 +245,19 @@ export default function Home({props}) {
 
   const timeline = [
     {
-      dates   : '2018-Present',
-      company : 'Rescue Agency',
-      title   : 'Full Stack<br>Web Developer',
+      dates   : '2022-Present',
+      company : 'Cortica',
+      title   : 'Full Stack<br>Software Engineer',
       type    : 'Full-time',
       class   : 'left',
+      link    : 'https://www.corticacare.com/'
+    },
+    {
+      dates   : '2018-2022',
+      company : 'Rescue Agency',
+      title   : 'Web Developer',
+      type    : 'Full-time',
+      class   : 'right',
       link    : 'https://rescueagency.com/'
     },
     {
@@ -257,7 +265,7 @@ export default function Home({props}) {
       company : 'SoftStack Factory',
       title   : 'Programming <br>Instructor',
       type    : 'Part-time',
-      class   : 'right',
+      class   : 'left',
       link    : 'https://www.softstackfactory.com/'
     },
     {
@@ -265,7 +273,7 @@ export default function Home({props}) {
       company : 'Learning Equality',
       title   : 'Software Intern',
       type    : "Internship",
-      class   : 'left',
+      class   : 'right',
       link    : 'https://learningequality.org/'
     },
     {
@@ -273,7 +281,7 @@ export default function Home({props}) {
       company : 'Rescue Agency',
       title   : 'Web Intern',
       type    : "Internship",
-      class   : 'right',
+      class   : 'left',
       link    : 'https://rescueagency.com/'
     },
     {
@@ -281,7 +289,7 @@ export default function Home({props}) {
       company : "Porter's Pub",
       title   : 'Graphic Designer',
       type    : 'Part-time',
-      class   : 'left',
+      class   : 'right',
       link    : 'https://www.porterspublodica.com/'
     }
   ]

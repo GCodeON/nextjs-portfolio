@@ -45,7 +45,7 @@ export default class About extends React.Component {
   componentDidMount() {
 
     AOS.init({
-      delay  : 300,
+      delay  : 100,
       mirror : true
       // duration: 1000
     });
@@ -197,7 +197,7 @@ export default class About extends React.Component {
               {this.title}
             </h2>
                   <p className="description pretitle">
-                  Full stack developer<br/>highly experienced:
+                  Full stack developer<br/>highly experienced
                   </p> 
                   <Typed
                     strings      = {this.description}
@@ -219,11 +219,12 @@ export default class About extends React.Component {
             <div className='skills'>
               { this.skills ? this.skills.map((skill,index) => (
                   <img 
-                    src            = {skill.image}
-                    className      = "skill"
-                    data-aos       = "zoom-out"
-                    data-aos-delay = {`${index * 100}`}
-                    key            = {index}/>
+                    src={skill.image}  
+                    className="skill" 
+                    data-aos="zoom-out" 
+                    data-aos-offset="-100"
+                    data-aos-delay={`${index * 50}`} 
+                    key={index}/>
                 )) : <p></p>
               }
             </div>
