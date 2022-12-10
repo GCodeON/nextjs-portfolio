@@ -200,12 +200,12 @@ export default class About extends React.Component {
                   Full stack developer<br/>highly experienced:
                   </p> 
                   <Typed
-                    strings={this.description}
-                    typeSpeed={60}
-                    backSpeed={200}
-                    fadeOut={true}
-                    fadeOutDelay={500}
-                    loopCount={2}
+                    strings      = {this.description}
+                    typeSpeed    = {60}
+                    backSpeed    = {200}
+                    fadeOut      = {true}
+                    fadeOutDelay = {500}
+                    loopCount    = {2}
                     loop 
                   >
                     <p 
@@ -219,11 +219,11 @@ export default class About extends React.Component {
             <div className='skills'>
               { this.skills ? this.skills.map((skill,index) => (
                   <img 
-                    src={skill.image}  
-                    className="skill" 
-                    data-aos="zoom-out" 
-                    data-aos-delay={`${index * 100}`} 
-                    key={index}/>
+                    src            = {skill.image}
+                    className      = "skill"
+                    data-aos       = "zoom-out"
+                    data-aos-delay = {`${index * 100}`}
+                    key            = {index}/>
                 )) : <p></p>
               }
             </div>

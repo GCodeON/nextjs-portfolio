@@ -40,6 +40,12 @@ export default function Home({props}) {
       image   : '/tools/nodejs.svg',
     },
     {
+      image   : '/tools/typescript.svg',
+    },
+    {
+      image   : '/tools/gql.svg',
+    },
+    {
       image   : '/tools/Threejs.svg',
     },
     {
@@ -70,12 +76,6 @@ export default function Home({props}) {
       image   : '/tools/strapi.svg',
     },
     {
-      image   : '/tools/contentful.webp',
-    },
-    {
-      image   : '/tools/aws.png',
-    },
-    {
       image   : '/tools/html5.png',
     },
     {
@@ -83,6 +83,12 @@ export default function Home({props}) {
     },
     {
       image   : '/tools/css3.png',
+    },
+    {
+      image   : '/tools/contentful.webp',
+    },
+    {
+      image   : '/tools/aws.png',
     }
   ]
 
