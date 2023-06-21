@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 
 import Layout from '../components/layout'
@@ -334,6 +334,9 @@ export default function Home({props}) {
         </a>
         <a href="https://github.com/GCodeON" target="_blank">
           <FaGithub className="github icon"/>
+        </a>
+        <a href="https://instagram.com/GCodeON" target="_blank">
+          <FaInstagram className="insta icon"/>
         </a>
       </div>
 
