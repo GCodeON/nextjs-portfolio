@@ -245,11 +245,19 @@ export default function Home({props}) {
 
   const timeline = [
     {
-      dates   : '2022-Present',
+      dates   : '2023-Present',
+      company : 'The Higher Concepts',
+      title   : 'Digital Content Creator',
+      type    : 'Self-Employed',
+      class   : 'left',
+      link    : 'https://www.corticacare.com/'
+    },
+    {
+      dates   : '2022-2023',
       company : 'Cortica',
       title   : 'Full Stack<br>Software Engineer',
       type    : 'Full-time',
-      class   : 'left',
+      class   : 'right',
       link    : 'https://www.corticacare.com/'
     },
     {
@@ -257,7 +265,7 @@ export default function Home({props}) {
       company : 'Rescue Agency',
       title   : 'Web Developer',
       type    : 'Full-time',
-      class   : 'right',
+      class   : 'left',
       link    : 'https://rescueagency.com/'
     },
     {
@@ -265,7 +273,7 @@ export default function Home({props}) {
       company : 'SoftStack Factory',
       title   : 'Programming <br>Instructor',
       type    : 'Part-time',
-      class   : 'left',
+      class   : 'right',
       link    : 'https://www.softstackfactory.com/'
     },
     {
@@ -273,7 +281,7 @@ export default function Home({props}) {
       company : 'Learning Equality',
       title   : 'Software Intern',
       type    : "Internship",
-      class   : 'right',
+      class   : 'left',
       link    : 'https://learningequality.org/'
     },
     {
@@ -281,7 +289,7 @@ export default function Home({props}) {
       company : 'Rescue Agency',
       title   : 'Web Intern',
       type    : "Internship",
-      class   : 'left',
+      class   : 'right',
       link    : 'https://rescueagency.com/'
     },
     {
@@ -289,7 +297,7 @@ export default function Home({props}) {
       company : "Porter's Pub",
       title   : 'Graphic Designer',
       type    : 'Part-time',
-      class   : 'right',
+      class   : 'left',
       link    : 'https://www.porterspublodica.com/'
     }
   ]

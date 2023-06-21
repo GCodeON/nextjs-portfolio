@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 export default class Contact extends React.Component {
   constructor(props) {
@@ -58,6 +58,9 @@ export default class Contact extends React.Component {
           </a>
           <a href="https://github.com/GCodeON" target="_blank">
             <FaGithub className="github icon"/>
+          </a>
+          <a href="https://instagram.com/GCodeON" target="_blank">
+            <FaInstagram className="insta icon"/>
           </a>
         </div>
         
