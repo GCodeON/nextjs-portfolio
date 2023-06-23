@@ -250,7 +250,7 @@ export default function Home({props}) {
       title   : 'Digital Content Creator',
       type    : 'Self-Employed',
       class   : 'left',
-      link    : 'https://www.corticacare.com/'
+      link    : ''
     },
     {
       dates   : '2022-2023',
