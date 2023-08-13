@@ -343,9 +343,9 @@ export default function Home({props}) {
         <a href="https://github.com/GCodeON" target="_blank">
           <FaGithub className="github icon"/>
         </a>
-        <a href="https://instagram.com/GCodeON" target="_blank">
+        {/* <a href="https://instagram.com/GCodeON" target="_blank">
           <FaInstagram className="insta icon"/>
-        </a>
+        </a> */}
       </div>
 
       <style jsx>{`
