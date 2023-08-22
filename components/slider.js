@@ -36,7 +36,7 @@ export default class Slider extends React.Component {
           grabCursor      = {true}
           spaceBetween    = {10}
           slidesPerView   = {2}
-          initialSlide    = {2}
+          initialSlide    = {3}
           observer        = {true}
           observeParents  = {true}
           autoplay        = {true}
