@@ -244,14 +244,14 @@ export default function Home({props}) {
   ]
 
   const timeline = [
-    {
-      dates   : '2023-Present',
-      company : 'The Higher Concepts',
-      title   : 'Digital Content Creator',
-      type    : 'Self-Employed',
-      class   : 'left',
-      link    : ''
-    },
+    // {
+    //   dates   : '2023-Present',
+    //   company : 'The Higher Concepts',
+    //   title   : 'Digital Content Creator',
+    //   type    : 'Self-Employed',
+    //   class   : 'left',
+    //   link    : ''
+    // },
     {
       dates   : '2022-2023',
       company : 'Cortica',
