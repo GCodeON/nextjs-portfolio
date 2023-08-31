@@ -59,9 +59,6 @@ export default class Contact extends React.Component {
           <a href="https://github.com/GCodeON" target="_blank">
             <FaGithub className="github icon"/>
           </a>
-          {/* <a href="https://instagram.com/GCodeON" target="_blank">
-            <FaInstagram className="insta icon"/>
-          </a> */}
         </div>
         
         <style jsx global>{`
