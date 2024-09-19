@@ -99,14 +99,35 @@ export default function Home({props}) {
       tools: []
     },
     {
-      image   : '/images/rescue.png',
-      link    : 'https://rescueagency.com/',
+      image   : '/images/tpalmeragency.png',
+      link    : 'https://tpalmeragency.com/',
       tools: [
         {
           image   : '/tools/php.svg',
         },
         {
-          image   : '/tools/laravel.png',
+          image   : '/tools/wordpress.png',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/mysql.png',
+        }
+      ]
+    },
+    {
+      image   : '/images/fof.png',
+      link    : 'https://futureoffounders.com/',
+      tools: [
+        {
+          image   : '/tools/php.svg',
+        },
+        {
+          image   : '/tools/wordpress.png',
         },
         {
           image   : '/tools/vue.png',
@@ -137,6 +158,49 @@ export default function Home({props}) {
         },
         {
           image   : '/tools/strapi.svg',
+        }
+      ]
+    },
+    {
+      image   : '/images/rescue.png',
+      link    : 'https://rescueagency.com/',
+      tools: [
+        {
+          image   : '/tools/php.svg',
+        },
+        {
+          image   : '/tools/laravel.png',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/mysql.png',
+        }
+      ]
+    },
+
+    {
+      image   : '/images/hartleygroup.png',
+      link    : 'https://harteygroup.co/',
+      tools: [
+        {
+          image   : '/tools/php.svg',
+        },
+        {
+          image   : '/tools/wordpress.png',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/mysql.png',
         }
       ]
     },
@@ -244,14 +308,14 @@ export default function Home({props}) {
   ]
 
   const timeline = [
-    // {
-    //   dates   : '2023-Present',
-    //   company : 'The Higher Concepts',
-    //   title   : 'Digital Content Creator',
-    //   type    : 'Self-Employed',
-    //   class   : 'left',
-    //   link    : ''
-    // },
+    {
+      dates   : '2024-Present',
+      company : 'TPalmer Agency',
+      title   : 'Web Developer',
+      type    : 'Full-time',
+      class   : 'left',
+      link    : 'https://www.tpalmeragency.com/'
+    },
     {
       dates   : '2022-2023',
       company : 'Cortica',
