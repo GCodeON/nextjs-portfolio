@@ -310,7 +310,7 @@ export default function Home({props}) {
   const timeline = [
     {
       dates   : '2024-Present',
-      company : 'TPalmer Agency',
+      company : 'T Palmer Agency',
       title   : 'Web Developer',
       type    : 'Full-time',
       class   : 'left',
