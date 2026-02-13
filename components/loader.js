@@ -28,6 +28,7 @@ export default class CircularText extends React.Component {
     this.circleTextTotal = this.circleText.length
 
     this.setup(); 
+    this.showFinalState();
 
     // this.nav    = document.querySelector('.nav'),
     // this.slides = document.querySelector('.work-component'),
@@ -35,14 +36,31 @@ export default class CircularText extends React.Component {
   }
 
   setup() {
-    gsap.set(this.enterCtrl, {opacity: '0'});
-    gsap.set([this.circleText, this.content.children], {opacity: 0});
-    gsap.set([this.content], {display: 'none'});
-    gsap.set('body', { overflow: 'hidden' });
     gsap.set(this.circleText, { transformOrigin: '50% 50%' });
     gsap.set(this.enterCtrl, {pointerEvents: 'none'});
+  }
 
-    this.start();
+  showFinalState() {
+    gsap.set('body', { overflow: 'visible' });
+    gsap.set(this.content, { display: 'flex', opacity: 1, background: 'transparent' });
+    gsap.set(this.content.children, { opacity: 1, scale: 1 });
+    gsap.set(this.enterCtrl, { opacity: 0.8, scale: 1.2, pointerEvents: 'none' });
+    gsap.set(this.enterText, { opacity: 0 });
+    gsap.set(this.circleText, { opacity: 1, scale: 0.5, rotation: -270 });
+    gsap.set(this.overlay, { background: 'none' });
+
+    let video = document.getElementById('video');
+    if (video) {
+      video.play();
+    }
+
+    if (window.location.hash) {
+      setTimeout(() => {
+        document
+          .getElementById(window.location.hash.replace('#', ''))
+          .scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 0);
+    }
   }
 
 
