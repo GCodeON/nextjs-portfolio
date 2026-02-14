@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "./modal";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { EffectCoverflow, Pagination, Scrollbar, Navigation } from 'swiper/core';
@@ -134,8 +135,6 @@ export default class Slider extends React.Component {
     document.body.style.overflow = locked ? 'hidden' : '';
   }
 
-
-
   render() {
     const activeProject =
       this.state.activeIndex !== null
@@ -148,18 +147,18 @@ export default class Slider extends React.Component {
         <Swiper
           className       = "slider"
           autoHeight      = {true}
-          effect          = {"coverflow"}
-          centeredSlides  = {true}
-          grabCursor      = {true}
+          // effect          = {"coverflow"}
+          centeredSlides  = {false}
+          grabCursor      = {false}
           spaceBetween    = {10}
           slidesPerView   = {2}
-          initialSlide    = {3}
+          initialSlide    = {1}
           observer        = {true}
           observeParents  = {true}
           autoplay        = {true}
           navigation      = {true}
           pagination      = {{ clickable: true }}
-          scrollbar       = {{ draggable: true }}
+          scrollbar       = {{ draggable: false }}
           coverflowEffect = {{
             rotate       : 25,
             stretch      : 0,
@@ -170,36 +169,36 @@ export default class Slider extends React.Component {
           breakpoints={{
             320: {
               width         : 320,
-              slidesPerView : 1.75,
+              slidesPerView : 1.5,
               spaceBetween  : 10,
               initialSlide   : 1
             },
             767: {
               width         : 767,
-              slidesPerView : 2.5,
+              slidesPerView : 2,
               spaceBetween  : 10,
               initialSlide   : 3
             },
             1024: {
               width          : 1024,
-              slidesPerView  : 3,
+              slidesPerView  : 2.5,
               spaceBetween   : 50,
               initialSlide   : 1,
               centeredSlides : false
             },
             1220: {
               width          : 1220,
-              slidesPerView  : 4,
+              slidesPerView  : 3.5,
               spaceBetween   : 50,
-              initialSlide   : 1,
-              centeredSlides : false
+              initialSlide   : 2,
+              centeredSlides : true
             },
             1660: {
               width          : 1660,
               slidesPerView  : 4,
               spaceBetween   : 50,
-              initialSlide   : 1,
-              centeredSlides : false
+              initialSlide   : 2,
+              centeredSlides : true
             },
           }}
         >
@@ -215,7 +214,7 @@ export default class Slider extends React.Component {
             >
               {slide.image ? <img src={slide.image} alt={slide.title || 'Project preview'} /> : null}
             </button>
-            <div className="tools">
+            {/* <div className="tools">
               {slide.tools.map((tool, i) => (
                 <img
                   className="tool image"
@@ -224,105 +223,17 @@ export default class Slider extends React.Component {
                   key={i}
                 />
               ))}
-            </div>
+            </div> */}
           </SwiperSlide>
         ))}
 
         </Swiper>
 
         {activeProject ? (
-          <div className="portfolio-modal" role="dialog" aria-modal="true">
-            <div className="portfolio-modal__backdrop" onClick={() => this.closeModal()} />
-            <div className="portfolio-modal__card">
-              <button
-                className="portfolio-modal__close"
-                type="button"
-                onClick={() => this.closeModal()}
-                aria-label="Close project details"
-              >
-                ×
-              </button>
-              <div className="portfolio-modal__scroll">
-                <aside className="portfolio-modal__sidebar">
-                  <h3 className="portfolio-modal__title">
-                    {activeProject.title || 'Project'}
-                  </h3>
-                  {activeProject.role ? (
-                    <p className="portfolio-modal__role">
-                      <span>My role:</span> {activeProject.role}
-                    </p>
-                  ) : null}
-                  {activeProject.summary ? (
-                    <div className="portfolio-modal__section">
-                      <h4>Project description</h4>
-                      <p className="portfolio-modal__summary">{activeProject.summary}</p>
-                    </div>
-                  ) : null}
-
-                  {Array.isArray(activeProject.skills) && activeProject.skills.length > 0 ? (
-                    <div className="portfolio-modal__section">
-                      <h4>Skills used</h4>
-                      <ul className="portfolio-modal__skills">
-                        {activeProject.skills.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
-
-                  {!activeProject.skills && Array.isArray(activeProject.tools) && activeProject.tools.length > 0 ? (
-                    <div className="portfolio-modal__section">
-                      <h4>Skills used</h4>
-                      <div className="portfolio-modal__stack">
-                        {activeProject.tools.map((tool, index) => (
-                          <img src={tool.image} alt="" key={index} />
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-
-                </aside>
-
-                <div className="portfolio-modal__main">
-                  <div className="portfolio-modal__media">
-                    {activeProject.image ? (
-                      <img src={activeProject.image} alt={activeProject.title || 'Project preview'} />
-                    ) : null}
-                    {activeProject.link ? (
-                      <div className="portfolio-modal__link-wrap">
-                        <a
-                          className="portfolio-modal__link"
-                          href={activeProject.link}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          View Live Site
-                        </a>
-                      </div>
-                    ) : null}
-                    {Array.isArray(activeProject.gallery) && activeProject.gallery.length > 0 ? (
-                      <div className="portfolio-modal__gallery">
-                        {activeProject.gallery.map((image, index) => (
-                          <img src={image} alt="" key={index} />
-                        ))}
-                      </div>
-                    ) : null}
-                  </div>
-
-                  {Array.isArray(activeProject.highlights) && activeProject.highlights.length > 0 ? (
-                    <div className="portfolio-modal__section">
-                      <h4>Highlights</h4>
-                      <ul>
-                        {activeProject.highlights.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Modal
+            project={activeProject}
+            onClose={() => this.closeModal()}
+          />
         ) : null}
 
         <style jsx global>{`

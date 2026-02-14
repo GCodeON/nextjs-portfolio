@@ -94,11 +94,8 @@ export default function Home({props}) {
 
   const slider = [
     {
-      image   : '',
-      link    : '',
-      tools: []
-    },
-    {
+      title: "T Palmer Agency Website", 
+      role: "Full Stack Web Developer",
       image   : '/images/tpalmeragency.png',
       link    : 'https://tpalmeragency.com/',
       tools: [
@@ -120,48 +117,8 @@ export default function Home({props}) {
       ]
     },
     {
-      image   : '/images/fof.png',
-      link    : 'https://futureoffounders.com/',
-      tools: [
-        {
-          image   : '/tools/php.svg',
-        },
-        {
-          image   : '/tools/wordpress.png',
-        },
-        {
-          image   : '/tools/vue.png',
-        },
-        {
-          image   : '/tools/js.png',
-        },
-        {
-          image   : '/tools/mysql.png',
-        }
-      ]
-    },
-    {
-      image   : '/images/up2sd.png',
-      link    : 'https://up2sd.org/',
-      tools: [
-        {
-          image   : '/tools/nuxtjs.svg',
-        },
-        {
-          image   : '/tools/vue.png',
-        },
-        {
-          image   : '/tools/js.png',
-        },
-        {
-          image   : '/tools/nodejs.svg',
-        },
-        {
-          image   : '/tools/strapi.svg',
-        }
-      ]
-    },
-    {
+      title: "Rescue Agency Website", 
+      role: "Full Stack Web Developer",
       image   : '/images/rescue.png',
       link    : 'https://rescueagency.com/',
       tools: [
@@ -179,6 +136,29 @@ export default function Home({props}) {
         },
         {
           image   : '/tools/mysql.png',
+        }
+      ]
+    },
+    {
+      title: "Up2SD Website", 
+      role: "Full Stack Web Developer",
+      image   : '/images/up2sd.png',
+      link    : 'https://up2sd.org/',
+      tools: [
+        {
+          image   : '/tools/nuxtjs.svg',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/nodejs.svg',
+        },
+        {
+          image   : '/tools/strapi.svg',
         }
       ]
     },
@@ -297,6 +277,27 @@ export default function Home({props}) {
         },
         {
           image   : '/tools/css3.png',
+        }
+      ]
+    },
+    {
+      image   : '/images/fof.png',
+      link    : 'https://futureoffounders.com/',
+      tools: [
+        {
+          image   : '/tools/php.svg',
+        },
+        {
+          image   : '/tools/wordpress.png',
+        },
+        {
+          image   : '/tools/vue.png',
+        },
+        {
+          image   : '/tools/js.png',
+        },
+        {
+          image   : '/tools/mysql.png',
         }
       ]
     },
