@@ -1,6 +1,9 @@
 #projects {
 	max-height: 400px;
 
+	position: relative;
+	z-index: 1;
+
 	@include breakpoint(medium) {
 		max-height: 550px;
 	}
@@ -49,6 +52,19 @@
 		width   : 100%;
 	}
 
+	.slide {
+		background : none;
+		border     : none;
+		padding    : 0;
+		width      : 100%;
+		cursor     : pointer;
+	}
+
+	.slide:disabled {
+		cursor  : default;
+		opacity : 0;
+	}
+
 
 	.swiper-slide-active .tools {
 		display : inline-flex;
@@ -90,6 +106,196 @@
 
 	.swiper-button-next, .swiper-button-prev  {
 		color: var(--color-primary) !important;
+	}
+}
+
+.portfolio-modal {
+	position : absolute;
+	top      : 0%;
+	left     : 0;
+	width    : 100vw;
+	height   : 100vh;
+	z-index  : 9999;
+	display  : flex;
+	align-items     : center;
+	justify-content : center;
+	padding : 2rem;
+	@include breakpoint(medium) {
+		top:15%;
+	}
+
+}
+
+.portfolio-modal__backdrop {
+	position   : absolute;
+	top        : 0;
+	left       : 0;
+	width      : 100%;
+	height     : 100%;
+	background : rgba(0, 0, 0, 0.9);
+}
+
+.portfolio-modal__card {
+	position      : relative;
+	background    : #0a0a0a;
+	color         : #f5f5f5;
+	flex          : 0 1 auto;
+	max-width     : 100%;
+	width         : 100%;
+	// max-height    : calc(100vh - 4rem);
+	overflow      : auto;
+	padding       : 2rem;
+	border-radius : 18px;
+	box-shadow    : none;
+	border        : none;
+	margin        : auto;
+	z-index: 1000;
+}
+
+.portfolio-modal__scroll {
+	display        : grid;
+	grid-template-columns : minmax(240px, 320px) minmax(0, 1fr);
+	gap           : 2rem;
+	padding       : 0.5rem 1rem 1rem 0;
+}
+
+.portfolio-modal__sidebar {
+	position : sticky;
+	top      : 1rem;
+	align-self : start;
+}
+
+.portfolio-modal__main {
+	min-width : 0;
+}
+
+.portfolio-modal__close {
+	position   : absolute;
+	top        : 1rem;
+	right      : 1rem;
+	background : rgba(255, 255, 255, 0.1);
+	border     : none;
+	color      : #fff;
+	width      : 36px;
+	height     : 36px;
+	border-radius : 50%;
+	font-size  : 22px;
+	cursor     : pointer;
+}
+
+.portfolio-modal__media img {
+	width        : 100%;
+	border-radius : 12px;
+	object-fit   : cover;
+}
+
+.portfolio-modal__link-wrap {
+	display         : flex;
+	justify-content : center;
+	margin-top      : 1rem;
+}
+
+.portfolio-modal__gallery {
+	margin-top : 1rem;
+	display    : grid;
+	grid-template-columns : repeat(auto-fit, minmax(160px, 1fr));
+	gap        : 0.75rem;
+}
+
+.portfolio-modal__gallery img {
+	width        : 100%;
+	border-radius : 10px;
+}
+
+.portfolio-modal__title {
+	font-size : 2rem;
+	margin    : 0 0 0.5rem;
+}
+
+.portfolio-modal__role {
+	font-size : 0.95rem;
+	color     : rgba(255, 255, 255, 0.75);
+}
+
+.portfolio-modal__role span {
+	color : rgba(255, 255, 255, 0.5);
+}
+
+.portfolio-modal__summary {
+	color : rgba(255, 255, 255, 0.75);
+}
+
+.portfolio-modal__section {
+	margin-top : 1.5rem;
+}
+
+.portfolio-modal__section h4 {
+	margin-bottom : 0.5rem;
+}
+
+.portfolio-modal__section ul {
+	padding-left : 1.2rem;
+}
+
+.portfolio-modal__skills {
+	list-style : none;
+	padding    : 0;
+	margin     : 0;
+	display    : flex;
+	flex-wrap  : wrap;
+	gap        : 0.5rem;
+}
+
+.portfolio-modal__skills li {
+	padding       : 0.35rem 0.75rem;
+	border-radius : 999px;
+	background    : rgba(255, 255, 255, 0.08);
+	font-size     : 0.85rem;
+}
+
+.portfolio-modal__stack {
+	display : flex;
+	flex-wrap : wrap;
+	gap : 0.75rem;
+	justify-content: center;
+}
+
+.portfolio-modal__stack img {
+	width  : 46px;
+	height : 46px;
+}
+
+.portfolio-modal__link {
+	display        : inline-flex;
+	align-items    : center;
+	justify-content: center;
+	padding        : 0.75rem 1.25rem;
+	background     : var(--color-primary);
+	color          : #0a0a0a;
+	border-radius  : 999px;
+	font-weight    : 600;
+}
+
+@media (max-width: 768px) {
+	.portfolio-modal__card {
+		padding    : 1.25rem;
+		max-height : calc(100vh - 2rem);
+	}
+
+	.portfolio-modal {
+		padding : 1rem;
+	}
+
+	.portfolio-modal__title {
+		font-size : 1.6rem;
+	}
+
+	.portfolio-modal__scroll {
+		grid-template-columns : 1fr;
+	}
+
+	.portfolio-modal__sidebar {
+		position : static;
 	}
 }
 

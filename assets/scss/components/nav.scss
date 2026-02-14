@@ -80,8 +80,8 @@
 		grid-area: 2 / 1 / 3 / 3;
 		display: flex;
 		flex-direction: column;
-		align-self: end;
-		align-items: end;
+		align-self: flex-end;
+		align-items: flex-end;
 		justify-content: space-between;
 		padding: 2rem 3rem;
 		z-index: 100;
