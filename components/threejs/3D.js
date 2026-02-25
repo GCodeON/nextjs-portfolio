@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 
 import * as THREE from 'three'
 
@@ -80,9 +79,6 @@ export default class threeD extends React.Component {
   render() {
     return (
     <div className="3d-component">
-      <Head>
-     
-      </Head>
       <canvas className="bg"></canvas>
       <style jsx>{`
 

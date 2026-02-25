@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 .portfolio-modal {
 	position : absolute;
 	top      : 0%;

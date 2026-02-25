@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 
 import { gsap } from 'gsap';
 
@@ -224,8 +223,6 @@ export default class CircularText extends React.Component {
 
     return (
       <div className="circular-text-component">
-      <Head>
-      </Head>
           <svg className="circles" width="100%" height="100%" viewBox="0 0 1400 1400">
             <def>
               <path id="circle-1" d="M250,700.5A450.5,450.5 0 1 11151,700.5A450.5,450.5 0 1 1250,700.5" />

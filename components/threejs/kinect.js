@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 
 import * as THREE from 'three';
 
@@ -166,9 +165,6 @@ export default class Kinect extends React.Component {
   render() {
     return (
       <div>
-      <Head>
-       
-      </Head>
       <div className="video-kinect" ref={(mount) => { this.mount = mount }}>
         
         <video id="video" autoPlay loop muted playsInline crossOrigin="anonymous">

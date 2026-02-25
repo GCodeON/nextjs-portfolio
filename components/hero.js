@@ -1,6 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
 
 // import { gsap } from "gsap/dist/gsap";
 // import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -33,9 +31,6 @@ render() {
 
   return (
     <div className="hero-component">
-    <Head>
-      <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
-    </Head>
       <div className="hero">
           <div className="intro">
               <h2 className="title">

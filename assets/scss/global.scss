@@ -1,15 +1,15 @@
-@import "mixins";
-@import "settings";
-@import "fonts";
+@use "./settings" as *;
+@use "./mixins" as *;
+@use "./fonts";
 
-@import "./components/intro";
-@import "./components/nav";
-@import "./components/hero";
-@import "./components/about";
-@import "./components/slider";
-@import "./components/modal";
-@import "./components/timeline";
-@import "./components/contact";
+@use "./components/intro";
+@use "./components/nav";
+@use "./components/hero";
+@use "./components/about";
+@use "./components/slider";
+@use "./components/modal";
+@use "./components/timeline";
+@use "./components/contact";
 
 
 *,
@@ -39,9 +39,10 @@ body {
 	--color-description     : #3b343a;
 	
 	margin           : 0;
+	min-height       : 100vh;
 	color            : var(--color-text);
 	background-color : var(--color-bg);
-	font-family      : tenon, sans-serif;
+	font-family      : 'Source Sans Pro', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 
@@ -94,7 +95,7 @@ body {
 	width: 100vw;
 	text-align: center;
 }
-  
+
 .panel span {
 	position  : relative;
 	display   : block;

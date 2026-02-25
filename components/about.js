@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 
 import { ReactTyped } from 'react-typed';
 
@@ -182,9 +181,6 @@ export default class About extends React.Component {
   render() {
     return (
       <div className='about-component'>
-        <Head>
-        
-        </Head>
         <div 
           className="about container" 
           ref={(mount) => { this.mount = mount }}>
