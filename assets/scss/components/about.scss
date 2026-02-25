@@ -61,7 +61,7 @@
 			&:hover {
 				@include breakpoint(medium) {
 					-webkit-text-stroke     : 0.9px white;
-					text-stroke             : 0.9px var(white);
+					text-stroke             : 0.9px white;
 					-webkit-text-fill-color : transparent;
 					text-fill-color         : transparent;
 					color                   : transparent;

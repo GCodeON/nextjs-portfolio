@@ -1,3 +1,3 @@
-nvm use 14.15.0
+nvm use
 npm install
 npm run dev

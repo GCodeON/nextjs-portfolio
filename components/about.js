@@ -1,10 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
 
-import Typed from 'react-typed';
+import { ReactTyped } from 'react-typed';
 
 import * as THREE from 'three';
-import { PCDLoader } from '/node_modules/three/examples/jsm/loaders/PCDLoader.js';
+import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader.js';
 
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -199,7 +199,7 @@ export default class About extends React.Component {
                   <p className="description pretitle">
                   Full stack developer<br/>highly experienced
                   </p> 
-                  <Typed
+                  <ReactTyped
                     strings      = {this.description}
                     typeSpeed    = {60}
                     backSpeed    = {200}
@@ -213,7 +213,7 @@ export default class About extends React.Component {
                     dangerouslySetInnerHTML={{__html: this.description}}
                     >
                     </p> 
-                  </Typed>
+                  </ReactTyped>
           </div>
           <div className="media right">
             <div className='skills'>
