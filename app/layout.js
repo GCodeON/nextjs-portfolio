@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
         <link rel="stylesheet" href="https://use.typekit.net/kxo3pgz.css" />
       </head>
-      <body>{children}</body>
+      <body className="app-loading">{children}</body>
     </html>
   )
 }

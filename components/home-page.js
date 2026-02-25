@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
 import Layout from './layout'
@@ -12,6 +13,70 @@ import Contact from './contact'
 import Kinect from './threejs/kinect'
 
 export default function HomePage() {
+  useEffect(() => {
+    let cancelled = false
+
+    const waitForWindowLoad = () => {
+      if (document.readyState === 'complete') {
+        return Promise.resolve()
+      }
+
+      return new Promise((resolve) => {
+        window.addEventListener('load', resolve, { once: true })
+      })
+    }
+
+    const waitForFonts = () => {
+      if (!document.fonts || !document.fonts.ready) {
+        return Promise.resolve()
+      }
+
+      return document.fonts.ready.catch(() => Promise.resolve())
+    }
+
+    const waitForImages = () => {
+      const images = Array.from(document.images || [])
+
+      if (!images.length) {
+        return Promise.resolve()
+      }
+
+      return Promise.all(
+        images.map((image) => {
+          if (image.complete) {
+            return Promise.resolve()
+          }
+
+          return new Promise((resolve) => {
+            image.addEventListener('load', resolve, { once: true })
+            image.addEventListener('error', resolve, { once: true })
+          })
+        })
+      )
+    }
+
+    const waitForPaint = () =>
+      new Promise((resolve) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(resolve)
+        })
+      })
+
+    ;(async () => {
+      await Promise.all([waitForWindowLoad(), waitForFonts(), waitForImages()])
+      await waitForPaint()
+
+      if (!cancelled) {
+        document.body.classList.remove('app-loading')
+        document.body.classList.add('app-ready')
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   const about = [
     'Transforming static<br> design comps <br>into pixel perfect <br>interactive <br>applications',
     'Using NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS,<br> Laravel',
@@ -224,56 +289,58 @@ export default function HomePage() {
   ]
 
   return (
-    <Layout>
-      <ThreeD />
-      <Loader strings={[]}>
-        <Hero />
-        <section id="about">
-          <About skills={tools} title="About" description={about} />
-        </section>
+    <div className="app-shell">
+      <Layout>
+        <ThreeD />
+        <Loader strings={[]}>
+          <Hero />
+          <section id="about">
+            <About skills={tools} title="About" description={about} />
+          </section>
 
-        <section id="projects">
-          <Slider slides={slider} />
-        </section>
+          <section id="projects">
+            <Slider slides={slider} />
+          </section>
 
-        <section id="experience">
-          <Timeline exp={timeline} />
-        </section>
-        <section id="contact">
-          <Contact />
-          <Kinect />
-        </section>
-      </Loader>
+          <section id="experience">
+            <Timeline exp={timeline} />
+          </section>
+          <section id="contact">
+            <Contact />
+            <Kinect />
+          </section>
+        </Loader>
 
-      <div className="links">
-        <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank" rel="noreferrer">
-          <FaLinkedin className="linkedin icon" />
-        </a>
-        <a href="https://github.com/GCodeON" target="_blank" rel="noreferrer">
-          <FaGithub className="github icon" />
-        </a>
-      </div>
+        <div className="links">
+          <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank" rel="noreferrer">
+            <FaLinkedin className="linkedin icon" />
+          </a>
+          <a href="https://github.com/GCodeON" target="_blank" rel="noreferrer">
+            <FaGithub className="github icon" />
+          </a>
+        </div>
 
-      <style jsx>{`
-        .links {
-          position: absolute;
-          bottom: 20px;
-          left: 0;
-          right: 0;
-          display: inline-flex;
-          justify-content: center;
-          z-index: 2;
-        }
+        <style jsx>{`
+          .links {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: inline-flex;
+            justify-content: center;
+            z-index: 2;
+          }
 
-        .container {
-          position: relative;
-          margin: 0 auto;
-          padding: 0;
-          cursor: pointer;
-        }
-      `}</style>
+          .container {
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+            cursor: pointer;
+          }
+        `}</style>
 
-      <style jsx global>{``}</style>
-    </Layout>
+        <style jsx global>{``}</style>
+      </Layout>
+    </div>
   )
 }

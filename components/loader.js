@@ -16,8 +16,9 @@ export default class CircularText extends React.Component {
       this.enterText       = null
       this.startTL         = null
       this.active          = false
+        this.assetTimeoutMs  = 8000
   }
-  componentDidMount() {
+      async componentDidMount() {
     this.circleText      = document.querySelectorAll('text.circles__text')
     this.content         = document.querySelector('.content')
     this.overlay         = document.querySelector('.overlay')
@@ -26,7 +27,9 @@ export default class CircularText extends React.Component {
     this.enterText = document.querySelector('.enter__text')
     this.circleTextTotal = this.circleText.length
 
-    this.setup(); 
+    this.setup();
+    this.prepareInitialState();
+    await this.waitForAssets();
     this.showFinalState();
 
     // this.nav    = document.querySelector('.nav'),
@@ -39,14 +42,78 @@ export default class CircularText extends React.Component {
     gsap.set(this.enterCtrl, {pointerEvents: 'none'});
   }
 
-  showFinalState() {
-    gsap.set('body', { overflow: 'visible' });
-    gsap.set(this.content, { display: 'flex', opacity: 1, background: 'transparent' });
-    gsap.set(this.content.children, { opacity: 1, scale: 1 });
-    gsap.set(this.enterCtrl, { opacity: 0.8, scale: 1.2, pointerEvents: 'none' });
+  prepareInitialState() {
+    gsap.set('body', { overflow: 'hidden' });
+    gsap.set(this.content, { display: 'flex', opacity: 0, background: 'transparent' });
+    gsap.set(this.content.children, { opacity: 0, scale: 0.98 });
+    gsap.set(this.enterCtrl, { opacity: 0, scale: 1.2, pointerEvents: 'none' });
     gsap.set(this.enterText, { opacity: 0 });
     gsap.set(this.circleText, { opacity: 1, scale: 0.5, rotation: -270 });
     gsap.set(this.overlay, { background: 'none' });
+  }
+
+  waitForFonts() {
+    if (typeof document === 'undefined' || !document.fonts || !document.fonts.ready) {
+      return Promise.resolve();
+    }
+
+    return document.fonts.ready.catch(() => Promise.resolve());
+  }
+
+  waitForImages() {
+    const images = Array.from(document.querySelectorAll('img'));
+
+    if (!images.length) {
+      return Promise.resolve();
+    }
+
+    return Promise.all(
+      images.map((image) => {
+        if (image.complete) {
+          return Promise.resolve();
+        }
+
+        return new Promise((resolve) => {
+          image.addEventListener('load', resolve, { once: true });
+          image.addEventListener('error', resolve, { once: true });
+        });
+      })
+    );
+  }
+
+  waitForAssets() {
+    const assetPromise = Promise.all([this.waitForFonts(), this.waitForImages()]);
+    const timeoutPromise = new Promise((resolve) => {
+      setTimeout(resolve, this.assetTimeoutMs);
+    });
+
+    return Promise.race([assetPromise, timeoutPromise]);
+  }
+
+  showFinalState() {
+    gsap.timeline()
+      .set('body', { overflow: 'visible' })
+      .to(this.content, {
+        duration: 0.9,
+        opacity: 1,
+        ease: 'power2.out'
+      })
+      .to(this.content.children, {
+        duration: 1.1,
+        opacity: 1,
+        scale: 1,
+        ease: 'power2.out',
+        stagger: {
+          amount: 0.2
+        }
+      }, '-=0.55')
+      .to(this.enterCtrl, {
+        duration: 0.4,
+        opacity: 0.8,
+        scale: 1.2,
+        pointerEvents: 'none',
+        ease: 'power2.out'
+      }, '-=0.6');
 
     let video = document.getElementById('video');
     if (video) {

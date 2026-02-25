@@ -33,7 +33,7 @@ body {
 	-moz-osx-font-smoothing : grayscale;
 	--color-text            : #a5a5a5;
 	--dim-button            : 90px;
-	--color-bg              : #1a0a0a;
+	--color-bg              : #000000;
 	--color-primary         : #88e7c4;
 	--color-secondary       : #c5517d;
 	--color-description     : #3b343a;
@@ -43,6 +43,23 @@ body {
 	color            : var(--color-text);
 	background-color : var(--color-bg);
 	font-family      : 'Source Sans Pro', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body.app-loading {
+	overflow: hidden;
+}
+
+body.app-loading .app-shell {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+body.app-ready .app-shell {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition: opacity 600ms ease;
 }
 
 
