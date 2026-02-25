@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
@@ -12,7 +14,8 @@ import Timeline from './timeline'
 import Contact from './contact'
 import Kinect from './threejs/kinect'
 
-export default function HomePage() {
+export default function HomePage({ data }) {
+  console.log('image', data?.tools || 'no image');
   useEffect(() => {
     let cancelled = false
 
@@ -77,12 +80,11 @@ export default function HomePage() {
     }
   }, [])
 
-  const about = [
-    'Transforming static<br> design comps <br>into pixel perfect <br>interactive <br>applications',
-    'Using NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS,<br> Laravel',
-    'Designing, Building,<br> and scaling <br>cloud hosted <br>software'
-  ]
-
+  // const about = data?.about || [
+  //   'Transforming static<br> design comps <br>into pixel perfect <br>interactive <br>applications',
+  //   'Using NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS,<br> Laravel',
+  //   'Designing, Building,<br> and scaling <br>cloud hosted <br>software'
+  // ]
   const tools = [
     { image: '/tools/vue.png' },
     { image: '/tools/nuxtjs.svg' },
@@ -295,7 +297,7 @@ export default function HomePage() {
         <Loader strings={[]}>
           <Hero />
           <section id="about">
-            <About skills={tools} title="About" description={about} />
+            <About skills={tools} title="About" description={data?.description} />
           </section>
 
           <section id="projects">
@@ -312,10 +314,10 @@ export default function HomePage() {
         </Loader>
 
         <div className="links">
-          <a href="https://www.linkedin.com/in/gerardo-soto-becerra/" target="_blank" rel="noreferrer">
+          <a href={data?.linkedIn.current} target="_blank" rel="noreferrer">
             <FaLinkedin className="linkedin icon" />
           </a>
-          <a href="https://github.com/GCodeON" target="_blank" rel="noreferrer">
+          <a href={data?.GitHub.current} target="_blank" rel="noreferrer">
             <FaGithub className="github icon" />
           </a>
         </div>

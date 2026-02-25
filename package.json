@@ -11,9 +11,11 @@
     "node": ">=20.9.0"
   },
   "dependencies": {
+    "@sanity/image-url": "^2.0.3",
     "aos": "^2.3.4",
     "gsap": "^3.7.1",
     "next": "^16.1.6",
+    "next-sanity": "^12.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^4.3.1",
