@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 import { ReactTyped } from 'react-typed';
 
@@ -214,13 +215,18 @@ export default class About extends React.Component {
           <div className="media right">
             <div className='skills'>
               { this.skills ? this.skills.map((skill,index) => (
-                  <img 
-                    src={skill.image}  
-                    className="skill" 
-                    data-aos="zoom-out" 
+                  <Image
+                    src={skill.image}
+                    alt={skill.alt || 'Skill icon'}
+                    width={55}
+                    height={55}
+                    className="skill-image"
+                    sizes="55px"
+                    data-aos="zoom-out"
                     data-aos-offset="-100"
-                    data-aos-delay={`${index * 50}`} 
-                    key={index}/>
+                    data-aos-delay={`${index * 50}`}
+                    key={index}
+                  />
                 )) : <p></p>
               }
             </div>

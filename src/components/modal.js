@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image'
 
 export default function Modal({ project, onClose }) {
   if (!project) {
@@ -56,7 +57,15 @@ export default function Modal({ project, onClose }) {
                 <h4>Tools used</h4>
                 <div className="portfolio-modal__stack">
                   {project.tools.map((tool, index) => (
-                    <img src={tool.image} alt="" key={index} />
+                    <div className="portfolio-modal__tool-media" key={index}>
+                      <Image
+                        src={tool.image}
+                        alt={tool.alt || ''}
+                        fill
+                        className="portfolio-modal__tool-image"
+                        sizes="46px"
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -66,10 +75,15 @@ export default function Modal({ project, onClose }) {
           <div className="portfolio-modal__main">
             <div className="portfolio-modal__media">
               {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.title || "Project preview"}
-                />
+                <div className="portfolio-modal__hero-media">
+                  <Image
+                    src={project.image}
+                    alt={project.title || "Project preview"}
+                    fill
+                    className="portfolio-modal__hero-image"
+                    sizes="(max-width: 768px) 92vw, 62vw"
+                  />
+                </div>
               ) : null}
               {project.link ? (
                 <div className="portfolio-modal__link-wrap">
@@ -86,7 +100,15 @@ export default function Modal({ project, onClose }) {
               {Array.isArray(project.gallery) && project.gallery.length > 0 ? (
                 <div className="portfolio-modal__gallery">
                   {project.gallery.map((image, index) => (
-                    <img src={image} alt="" key={index} />
+                    <div className="portfolio-modal__gallery-item" key={index}>
+                      <Image
+                        src={image}
+                        alt=""
+                        fill
+                        className="portfolio-modal__gallery-image"
+                        sizes="(max-width: 768px) 44vw, 28vw"
+                      />
+                    </div>
                   ))}
                 </div>
               ) : null}

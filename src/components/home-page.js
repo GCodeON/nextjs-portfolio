@@ -13,6 +13,112 @@ import Slider from './slider'
 import Timeline from './timeline'
 import Contact from './contact'
 import Kinect from './threejs/kinect'
+import { urlFor } from '@/sanity/sanityImageUrl'
+
+const asLink = (value) => {
+  if (typeof value === 'string') {
+    return value
+  }
+
+  return value?.current || ''
+}
+
+const asImageUrl = (value, width, height, fitMode) => {
+  if (!value) {
+    return ''
+  }
+
+  if (typeof value === 'string') {
+    return value
+  }
+
+  if (typeof value?.url === 'string') {
+    return value.url
+  }
+
+  try {
+    let imageBuilder = urlFor(value).auto('format')
+
+    if (width) {
+      imageBuilder = imageBuilder.width(width)
+    }
+
+    if (height) {
+      imageBuilder = imageBuilder.height(height)
+    }
+
+    if (fitMode) {
+      imageBuilder = imageBuilder.fit(fitMode)
+    }
+
+    return imageBuilder.url()
+  } catch {
+    return ''
+  }
+}
+
+const normalizeTool = (tool, index) => {
+  const imageSource = tool?.image || tool?.icon || tool
+  const image = asImageUrl(imageSource, 120, undefined, 'max')
+
+  if (!image) {
+    return null
+  }
+
+  return {
+    image,
+    alt: tool?.alt || tool?.name || `Tool ${index + 1}`
+  }
+}
+
+const normalizeProjectTool = (tool) => {
+  const imageSource = tool?.image || tool?.icon || tool
+  const image = asImageUrl(imageSource, 80, undefined, 'max')
+
+  if (!image) {
+    return null
+  }
+
+  return {
+    image,
+    alt: tool?.alt || tool?.name || ''
+  }
+}
+
+const normalizeGallery = (gallery) => {
+  if (!Array.isArray(gallery)) {
+    return []
+  }
+
+  return gallery
+    .map((image) => {
+      if (typeof image === 'string') {
+        return image
+      }
+
+      return asImageUrl(image, 1800, 1200)
+    })
+    .filter(Boolean)
+}
+
+const normalizeProject = (project) => {
+  const projectImage = asImageUrl(project?.image, 1800, 1200)
+
+  if (!projectImage) {
+    return null
+  }
+
+  return {
+    ...project,
+    title: project?.title || project?.name || 'Project',
+    image: projectImage,
+    link: asLink(project?.link),
+    tools: Array.isArray(project?.tools)
+      ? project.tools.map(normalizeProjectTool).filter(Boolean)
+      : [],
+    gallery: normalizeGallery(project?.gallery)
+  }
+}
 
 export default function HomePage({ data }) {
   console.log('image', data?.tools || 'no image');
@@ -85,7 +191,7 @@ export default function HomePage({ data }) {
   //   'Using NUXTjs, VUE, <br>NEXTjs, React, <br>NODE, AWS,<br> Laravel',
   //   'Designing, Building,<br> and scaling <br>cloud hosted <br>software'
   // ]
-  const tools = [
+  const fallbackTools = [
     { image: '/tools/vue.png' },
     { image: '/tools/nuxtjs.svg' },
     { image: '/tools/react.png' },
@@ -110,7 +216,7 @@ export default function HomePage({ data }) {
     { image: '/tools/aws.png' }
   ]
 
-  const slider = [
+  const fallbackSlider = [
     {
       title: 'T Palmer Agency Website',
       role: 'Full Stack Web Developer',
@@ -231,6 +337,20 @@ export default function HomePage({ data }) {
     }
   ]
 
+  const tools = Array.isArray(data?.tools)
+    ? data.tools.map(normalizeTool).filter(Boolean)
+    : []
+
+  const slider = Array.isArray(data?.projects)
+    ? data.projects.map(normalizeProject).filter(Boolean)
+    : []
+
+  const skillsList = tools.length ? tools : fallbackTools
+  const projectsList = slider.length ? slider : fallbackSlider
+
+  const linkedInUrl = asLink(data?.linkedIn || data?.linkedin)
+  const gitHubUrl = asLink(data?.GitHub || data?.github || data?.gitHub)
+
   const timeline = [
     {
       dates: '2024-Present',
@@ -297,11 +417,11 @@ export default function HomePage({ data }) {
         <Loader strings={[]}>
           <Hero />
           <section id="about">
-            <About skills={tools} title="About" description={data?.description} />
+            <About skills={skillsList} title="About" description={data?.description} />
           </section>
 
           <section id="projects">
-            <Slider slides={slider} />
+            <Slider slides={projectsList} />
           </section>
 
           <section id="experience">
@@ -314,10 +434,10 @@ export default function HomePage({ data }) {
         </Loader>
 
         <div className="links">
-          <a href={data?.linkedIn.current} target="_blank" rel="noreferrer">
+          <a href={linkedInUrl} target="_blank" rel="noreferrer">
             <FaLinkedin className="linkedin icon" />
           </a>
-          <a href={data?.GitHub.current} target="_blank" rel="noreferrer">
+          <a href={gitHubUrl} target="_blank" rel="noreferrer">
             <FaGithub className="github icon" />
           </a>
         </div>

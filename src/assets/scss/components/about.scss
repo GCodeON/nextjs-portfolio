@@ -106,12 +106,16 @@
 		align-items           : center;
 		justify-content       : center ;
 		margin                : 2em 0;
-		.skill {
-			width  : 100%;
-			cursor : pointer;
+		.skill-image {
+			display         : block;
+			width           : 55px;
+			height          : 55px;
+			object-fit      : contain;
+			object-position : center;
+			cursor          : pointer;
+			transition      : transform 0.1s;
 			&:hover {
 				transform: scale(1.2);
-				transition: 0.1s all;
 			}
 		}
 	}

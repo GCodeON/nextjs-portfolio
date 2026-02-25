@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image'
 import Modal from "./modal";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -212,7 +213,17 @@ export default class Slider extends React.Component {
               aria-label={slide.title ? `Open ${slide.title}` : 'Open project'}
               disabled={!slide.image}
             >
-              {slide.image ? <img src={slide.image} alt={slide.title || 'Project preview'} /> : null}
+              {slide.image ? (
+                <div className="slide-media">
+                  <Image
+                    src={slide.image}
+                    alt={slide.title || 'Project preview'}
+                    fill
+                    className="slide-image"
+                    sizes="(max-width: 767px) 80vw, (max-width: 1220px) 45vw, 30vw"
+                  />
+                </div>
+              ) : null}
             </button>
             {/* <div className="tools">
               {slide.tools.map((tool, i) => (

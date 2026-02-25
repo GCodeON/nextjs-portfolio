@@ -74,10 +74,17 @@
 	cursor     : pointer;
 }
 
-.portfolio-modal__media img {
-	width        : 100%;
+.portfolio-modal__hero-media {
+	position      : relative;
+	width         : 100%;
+	aspect-ratio  : 16 / 10;
+	overflow      : hidden;
 	border-radius : 12px;
-	object-fit   : cover;
+}
+
+.portfolio-modal__hero-image {
+	object-fit      : cover;
+	object-position : center;
 }
 
 .portfolio-modal__link-wrap {
@@ -93,9 +100,17 @@
 	gap        : 0.75rem;
 }
 
-.portfolio-modal__gallery img {
-	width        : 100%;
+.portfolio-modal__gallery-item {
+	position      : relative;
+	width         : 100%;
+	aspect-ratio  : 4 / 3;
+	overflow      : hidden;
 	border-radius : 10px;
+}
+
+.portfolio-modal__gallery-image {
+	object-fit      : cover;
+	object-position : center;
 }
 
 .portfolio-modal__title {
@@ -151,9 +166,15 @@
 	justify-content: center;
 }
 
-.portfolio-modal__stack img {
-	width  : 46px;
-	height : 46px;
+.portfolio-modal__tool-media {
+	position : relative;
+	width    : 46px;
+	height   : 46px;
+}
+
+.portfolio-modal__tool-image {
+	object-fit      : contain;
+	object-position : center;
 }
 
 .portfolio-modal__link {

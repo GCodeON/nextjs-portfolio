@@ -49,17 +49,24 @@
 		max-height          : 768px !important;
 	}
 
-	.swiper-slide img {
-		display : block;
-		width   : 100%;
-	}
-
 	.slide {
 		background : none;
 		border     : none;
 		padding    : 0;
 		width      : 100%;
 		cursor     : pointer;
+	}
+
+	.slide-media {
+		position     : relative;
+		width        : 100%;
+		aspect-ratio : 16 / 10;
+		overflow     : hidden;
+	}
+
+	.slide-image {
+		object-fit      : cover;
+		object-position : center;
 	}
 
 	.slide:disabled {
