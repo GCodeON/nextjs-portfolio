@@ -1,4 +1,3 @@
-import Script from 'next/script'
 import '../assets/scss/global.scss'
 
 export const metadata = {
@@ -17,17 +16,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://use.typekit.net/xjr3lgi.css" />
         <link rel="stylesheet" href="https://use.typekit.net/kxo3pgz.css" />
       </head>
-      <body>
-        <Script src="https://use.typekit.net/kxo3pgz.js" strategy="beforeInteractive" />
-        <Script
-          id="typekit-init"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: 'try{Typekit.load({ async: true });}catch(e){}'
-          }}
-        />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
