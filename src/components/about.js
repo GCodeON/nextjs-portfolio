@@ -204,6 +204,12 @@ export default class About extends React.Component {
   }
 
   render() {
+    const typedStrings = Array.isArray(this.props.description)
+      ? this.props.description.filter((item) => typeof item === 'string' && item.length > 0)
+      : (typeof this.props.description === 'string' && this.props.description.length > 0
+        ? [this.props.description]
+        : [])
+
     return (
       <div className='about-component'>
         <div
@@ -220,19 +226,16 @@ export default class About extends React.Component {
               Full stack developer<br />highly experienced
             </p>
             <ReactTyped
-              strings={this.props.description}
+              strings={typedStrings}
               typeSpeed={60}
               backSpeed={200}
               fadeOut={true}
               fadeOutDelay={500}
               loopCount={2}
+              smartBackspace={true}
               loop
             >
-              <p
-                className="description pretitle"
-                dangerouslySetInnerHTML={{ __html: this.props.description }}
-              >
-              </p>
+              <span className="description pretitle" />
             </ReactTyped>
           </div>
           <div className="media right">

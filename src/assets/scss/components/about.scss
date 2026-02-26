@@ -9,6 +9,12 @@
 		min-height : 200px;
 		&.left {
 			min-height : 290px;
+			text-align : center;
+
+			.description,
+			.pretitle {
+				text-align : center;
+			}
 		}
 		
 		@include breakpoint(large) {
@@ -44,8 +50,12 @@
 				left : 4%;
 				top  : 5%;
 				width: 35%;
+				text-align: left;
 				.description, .pretitle {
 					text-align: left;
+				}
+				.description {
+					margin : 0;
 				}
 			}
 			&.right {
@@ -75,6 +85,7 @@
 			font-size   : 1em !important;
 			max-width   : 425px !important;
 			line-height : 35px;
+			white-space : pre-wrap;
 
 			font-family : vortice-concept, sans-serif;
 			font-weight : 400;
@@ -97,6 +108,7 @@
 			}
 	
 		}
+
 	}
 
 	.skills {
