@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from 'next/image'
 
 export default function Modal({ project, onClose }) {
+  const [isIframeLoading, setIsIframeLoading] = useState(Boolean(project?.link));
+
+  useEffect(() => {
+    setIsIframeLoading(Boolean(project?.link));
+  }, [project?.link]);
+
   if (!project) {
     return null;
   }
@@ -74,7 +80,41 @@ export default function Modal({ project, onClose }) {
 
           <div className="portfolio-modal__main">
             <div className="portfolio-modal__media">
-              {project.image ? (
+              {project.link ? (
+                <div className="portfolio-modal__iframe-shell">
+                  <iframe
+                    src={project.link}
+                    title={`${project.title || 'Project'} preview`}
+                    className="portfolio-modal__iframe"
+                    loading="lazy"
+                    onLoad={() => setIsIframeLoading(false)}
+                  />
+                  {project.image ? (
+                    <div
+                      className={`portfolio-modal__iframe-placeholder${
+                        isIframeLoading ? '' : ' portfolio-modal__iframe-placeholder--hidden'
+                      }`}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title || "Project preview"}
+                        fill
+                        className="portfolio-modal__hero-image"
+                        sizes="(max-width: 768px) 92vw, 62vw"
+                        priority
+                      />
+                      {isIframeLoading ? (
+                        <div className="portfolio-modal__loader-wrap" aria-live="polite">
+                          <span className="portfolio-modal__loader" aria-hidden="true" />
+                          <span className="portfolio-modal__loader-text">Loading preview…</span>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {!project.link && project.image ? (
                 <div className="portfolio-modal__hero-media">
                   <Image
                     src={project.image}
@@ -85,6 +125,7 @@ export default function Modal({ project, onClose }) {
                   />
                 </div>
               ) : null}
+
               {project.link ? (
                 <div className="portfolio-modal__link-wrap">
                   <a

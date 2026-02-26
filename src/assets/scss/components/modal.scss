@@ -58,6 +58,7 @@
 
 .portfolio-modal__main {
 	min-width : 0;
+	max-height: 85vh;
 }
 
 .portfolio-modal__close {
@@ -80,6 +81,71 @@
 	aspect-ratio  : 16 / 10;
 	overflow      : hidden;
 	border-radius : 12px;
+}
+
+.portfolio-modal__iframe-shell {
+	position      : relative;
+	width         : 100%;
+	aspect-ratio  : 16 / 10;
+	overflow      : hidden;
+	border-radius : 12px;
+	background    : #000;
+}
+
+.portfolio-modal__iframe {
+	width  : 100%;
+	height : 100%;
+	border : 0;
+}
+
+.portfolio-modal__iframe-placeholder {
+	position   : absolute;
+	top        : 0;
+	left       : 0;
+	width      : 100%;
+	height     : 100%;
+	z-index    : 2;
+	transition : opacity 240ms ease;
+	opacity    : 1;
+	pointer-events: none;
+}
+
+.portfolio-modal__loader-wrap {
+	position        : absolute;
+	inset           : 0;
+	display         : flex;
+	flex-direction  : column;
+	align-items     : center;
+	justify-content : center;
+	gap             : 0.6rem;
+	background      : rgba(0, 0, 0, 0.32);
+	color           : #fff;
+	z-index         : 3;
+}
+
+.portfolio-modal__loader {
+	width         : 40px;
+	height        : 40px;
+	border-radius : 50%;
+	border        : 3px solid rgba(255, 255, 255, 0.35);
+	border-top-color : var(--color-primary);
+	animation     : portfolio-modal-spin 900ms linear infinite;
+}
+
+.portfolio-modal__loader-text {
+	font-size   : 0.9rem;
+	font-weight : 600;
+	letter-spacing : 0.01em;
+}
+
+.portfolio-modal__iframe-placeholder--hidden {
+	opacity : 0;
+}
+
+@keyframes portfolio-modal-spin {
+	to {
+		transform : rotate(360deg);
+	}
 }
 
 .portfolio-modal__hero-image {
