@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from 'next/image'
 
 export default function Modal({ project, onClose }) {
   const [isIframeLoading, setIsIframeLoading] = useState(Boolean(project?.link));
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsIframeLoading(Boolean(project?.link));
   }, [project?.link]);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   if (!project) {
     return null;
   }
 
-  return (
+  const modalContent = (
     <div className="portfolio-modal" role="dialog" aria-modal="true">
       <div className="portfolio-modal__backdrop" onClick={onClose} />
       <div className="portfolio-modal__card">
@@ -170,4 +176,10 @@ export default function Modal({ project, onClose }) {
       </div>
     </div>
   );
+
+  if (!isMounted) {
+    return null;
+  }
+
+  return createPortal(modalContent, document.body);
 }

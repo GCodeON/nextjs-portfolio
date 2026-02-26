@@ -1,19 +1,16 @@
 @use "../mixins" as *;
 
 .portfolio-modal {
-	position : absolute;
-	top      : 0%;
-	left     : 0;
+	position : fixed;
+	inset    : 0;
 	width    : 100vw;
-	height   : 100vh;
+	height   : 100dvh;
+	min-height : 100dvh;
 	z-index  : 9999;
-	display  : flex;
-	align-items     : center;
-	justify-content : center;
+	display  : grid;
+	place-items : center;
 	padding : 2rem;
-	@include breakpoint(medium) {
-		top:15%;
-	}
+	overflow : hidden;
 
 }
 
@@ -31,15 +28,16 @@
 	background    : #0a0a0a;
 	color         : #f5f5f5;
 	flex          : 0 1 auto;
-	max-width     : 100%;
+	max-width     : 1400px;
 	width         : 100%;
+	max-height    : calc(100dvh - 4rem);
 	// max-height    : calc(100vh - 4rem);
-	overflow      : auto;
+	overflow      : hidden;
 	padding       : 2rem;
 	border-radius : 18px;
 	box-shadow    : none;
 	border        : none;
-	margin        : auto;
+	margin        : 0;
 	z-index: 1000;
 }
 
@@ -48,6 +46,8 @@
 	grid-template-columns : minmax(240px, 320px) minmax(0, 1fr);
 	gap           : 2rem;
 	padding       : 0.5rem 1rem 1rem 0;
+	overflow      : auto;
+	min-height    : 0;
 }
 
 .portfolio-modal__sidebar {
@@ -58,7 +58,7 @@
 
 .portfolio-modal__main {
 	min-width : 0;
-	max-height: 85vh;
+	max-height: none;
 }
 
 .portfolio-modal__close {
@@ -257,7 +257,7 @@
 @media (max-width: 768px) {
 	.portfolio-modal__card {
 		padding    : 1.25rem;
-		max-height : calc(100vh - 2rem);
+		max-height : calc(100dvh - 4rem);
 	}
 
 	.portfolio-modal {
@@ -270,6 +270,10 @@
 
 	.portfolio-modal__scroll {
 		grid-template-columns : 1fr;
+	}
+
+	.portfolio-modal__iframe-shell {
+    	min-height: 45dvh; 
 	}
 
 	.portfolio-modal__sidebar {
