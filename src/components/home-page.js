@@ -11,7 +11,6 @@ import Contact from './contact'
 
 import useAppReady from '@/hooks/useAppReady'
 import useHomePageData from '@/hooks/useHomePageData'
-import { TIMELINE } from '@/constants/homePage'
 
 const ThreeD = dynamic(() => import('./threejs/3D'), { ssr: false })
 const About = dynamic(() => import('./about'), { ssr: false })
@@ -20,7 +19,7 @@ const Kinect = dynamic(() => import('./threejs/kinect'), { ssr: false })
 export default function HomePage({ data }) {
   useAppReady()
 
-  const { skillsList, projectsList, linkedInUrl, gitHubUrl } = useHomePageData(data);
+  const { skillsList, projectsList, experienceList, linkedInUrl, gitHubUrl } = useHomePageData(data);
 
   return (
     <div className="app-shell">
@@ -37,7 +36,7 @@ export default function HomePage({ data }) {
           </section>
 
           <section id="experience">
-            <Timeline exp={TIMELINE} />
+            <Timeline exp={experienceList} />
           </section>
           <section id="contact">
             <Contact />

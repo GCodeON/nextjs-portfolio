@@ -1,51 +1,8 @@
 import HomePage from '../components/home-page'
 import { client } from "@/sanity/client";
-
-const QUERY = `*[_type == "about"][0]{
-  description,
-  linkedIn,
-  linkedin,
-  GitHub,
-  github,
-  gitHub,
-  tools[]{
-    _key,
-    _type,
-    alt,
-    name,
-    title,
-    image,
-    icon,
-    asset
-  },
-  projects[]{
-    _key,
-    title,
-    name,
-    role,
-    summary,
-    skills,
-    highlights,
-    slug,
-    link,
-    siteUrl,
-    image,
-    mainImage,
-    gallery,
-    tools[]{
-      _key,
-      _type,
-      alt,
-      name,
-      title,
-      image,
-      icon,
-      asset
-    }
-  }
-}`;
+import { HOME_PAGE_QUERY } from '@/sanity/queries/homePage'
 
 export default async function Page() {
-  const data = await client.fetch(QUERY, {});
+  const data = await client.fetch(HOME_PAGE_QUERY, {});
   return <HomePage data={data} />
 }
