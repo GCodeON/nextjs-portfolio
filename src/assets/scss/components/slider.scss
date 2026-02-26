@@ -55,6 +55,8 @@
 		padding    : 0;
 		width      : 100%;
 		cursor     : pointer;
+		position   : relative;
+		z-index    : 1;
 	}
 
 	.slide-media {
@@ -108,6 +110,34 @@
 
 	.swiper-button-next, .swiper-button-prev  {
 		color: var(--color-primary) !important;
+		width: 26px;
+		height: 26px;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-top: 0;
+		z-index: 3;
+		background: rgba(0, 0, 0, 0.4);
+		border-radius: 999px;
+
+		&::after {
+			font-size: 15px;
+			font-weight: 700;
+		}
+
+		@include breakpoint(large) {
+			width: 28px;
+			height: 28px;
+		}
+	}
+
+	@include breakpoint(large) {
+		.swiper-button-prev {
+			left: 6px;
+		}
+
+		.swiper-button-next {
+			right: 6px;
+		}
 	}
 }
 

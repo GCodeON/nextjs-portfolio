@@ -285,6 +285,7 @@
 
 	.portfolio-modal__scroll {
 		grid-template-columns : 1fr;
+		overflow : hidden;
 	}
 
 	.portfolio-modal__iframe-shell {
@@ -300,6 +301,8 @@
 		justify-content: flex-start;
 		overflow-x: auto;
 		overflow-y: hidden;
+		touch-action: pan-x;
+		overscroll-behavior-x: contain;
 		padding-bottom: 0.25rem;
 		-webkit-overflow-scrolling: touch;
 	}
