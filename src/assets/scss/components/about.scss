@@ -114,6 +114,18 @@
 			object-position : center;
 			cursor          : pointer;
 			transition      : transform 0.1s;
+
+			&[data-aos] {
+				opacity             : 0;
+				transition-property : opacity, transform;
+				transition-duration : 0.6s;
+				transition-timing-function : ease;
+			}
+
+			&[data-aos].aos-animate {
+				opacity : 1;
+			}
+
 			&:hover {
 				transform: scale(1.2);
 			}

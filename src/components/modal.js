@@ -3,9 +3,12 @@ import { createPortal } from "react-dom";
 import Image from 'next/image'
 import { isSanityImageUrl } from '@/sanity/sanityImageUrl'
 
+const DESKTOP_QUERY = '(min-width: 769px)'
+
 export default function Modal({ project, isOpen, onClose }) {
   const [isIframeLoading, setIsIframeLoading] = useState(Boolean(project?.link));
   const [isMounted, setIsMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [cachedLinks, setCachedLinks] = useState(() =>
     project?.link ? [project.link] : []
   );
@@ -14,17 +17,44 @@ export default function Modal({ project, isOpen, onClose }) {
   const activeLink = project?.link || '';
 
   useEffect(() => {
-    if (!activeLink) {
+    if (!activeLink || !isDesktop) {
       setIsIframeLoading(false);
       return;
     }
 
     setCachedLinks((prev) => (prev.includes(activeLink) ? prev : [...prev, activeLink]));
     setIsIframeLoading(!loadedLinks[activeLink]);
-  }, [activeLink, loadedLinks]);
+  }, [activeLink, loadedLinks, isDesktop]);
 
   useEffect(() => {
     setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia(DESKTOP_QUERY);
+    const updateViewport = (event) => {
+      setIsDesktop(event.matches);
+    };
+
+    setIsDesktop(mediaQuery.matches);
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', updateViewport);
+    } else {
+      mediaQuery.addListener(updateViewport);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', updateViewport);
+      } else {
+        mediaQuery.removeListener(updateViewport);
+      }
+    };
   }, []);
 
   if (!project) {
@@ -118,7 +148,7 @@ export default function Modal({ project, isOpen, onClose }) {
 
           <div className="portfolio-modal__main">
             <div className="portfolio-modal__media">
-              {project.link ? (
+              {project.link && isDesktop ? (
                 <div className="portfolio-modal__iframe-shell">
                   {cachedLinks.map((link) => (
                     <iframe
@@ -158,7 +188,7 @@ export default function Modal({ project, isOpen, onClose }) {
                 </div>
               ) : null}
 
-              {!project.link && project.image ? (
+              {(!project.link || !isDesktop) && project.image ? (
                 <div className="portfolio-modal__hero-media">
                   <Image
                     src={project.image}

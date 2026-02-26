@@ -18,10 +18,6 @@ gsap.registerPlugin(ScrollTrigger)
 export default class About extends React.Component {
   constructor(props) {
     super(props)
-    this.title = this.props.title
-    this.skills = this.props.skills
-    this.description = this.props.description
-
     this.canvasRef = React.createRef()
 
     this.scene = null
@@ -37,6 +33,9 @@ export default class About extends React.Component {
     this.onWindowResize = this.onWindowResize.bind(this)
     this.onDocumentMouseMove = this.onDocumentMouseMove.bind(this)
     this.onScroll = this.onScroll.bind(this)
+    this.scheduleAosRefresh = this.scheduleAosRefresh.bind(this)
+
+    this.aosRefreshTimer = null
   }
 
   componentDidMount() {
@@ -47,6 +46,16 @@ export default class About extends React.Component {
 
     this.init()
     this.onWindowResize()
+    this.scheduleAosRefresh()
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevSkillsCount = Array.isArray(prevProps.skills) ? prevProps.skills.length : 0
+    const skillsCount = Array.isArray(this.props.skills) ? this.props.skills.length : 0
+
+    if (prevSkillsCount !== skillsCount || prevProps.description !== this.props.description) {
+      this.scheduleAosRefresh()
+    }
   }
 
   componentWillUnmount() {
@@ -77,6 +86,21 @@ export default class About extends React.Component {
     this.scene = null
     this.camera = null
     this.model = null
+
+    if (this.aosRefreshTimer) {
+      clearTimeout(this.aosRefreshTimer)
+      this.aosRefreshTimer = null
+    }
+  }
+
+  scheduleAosRefresh() {
+    if (this.aosRefreshTimer) {
+      clearTimeout(this.aosRefreshTimer)
+    }
+
+    this.aosRefreshTimer = setTimeout(() => {
+      AOS.refreshHard()
+    }, 80)
   }
 
   init() {
@@ -167,7 +191,7 @@ export default class About extends React.Component {
         const size = new THREE.Vector3()
         box.getSize(size)
         const maxDimension = Math.max(size.x, size.y, size.z) || 1
-        const targetSize = 9
+        const targetSize = 7
         const scale = targetSize / maxDimension
         this.model.scale.setScalar(scale)
       }
@@ -190,13 +214,13 @@ export default class About extends React.Component {
             <h2
               className="title"
             >
-              {this.title}
+              {this.props.title}
             </h2>
             <p className="description pretitle">
               Full stack developer<br />highly experienced
             </p>
             <ReactTyped
-              strings={this.description}
+              strings={this.props.description}
               typeSpeed={60}
               backSpeed={200}
               fadeOut={true}
@@ -206,14 +230,14 @@ export default class About extends React.Component {
             >
               <p
                 className="description pretitle"
-                dangerouslySetInnerHTML={{ __html: this.description }}
+                dangerouslySetInnerHTML={{ __html: this.props.description }}
               >
               </p>
             </ReactTyped>
           </div>
           <div className="media right">
             <div className='skills'>
-              {this.skills ? this.skills.map((skill, index) => (
+              {this.props.skills ? this.props.skills.map((skill, index) => (
                 <Image
                   src={skill.image}
                   alt={skill.alt || 'Skill icon'}
@@ -225,6 +249,7 @@ export default class About extends React.Component {
                   data-aos="zoom-out"
                   data-aos-offset="-100"
                   data-aos-delay={`${index * 50}`}
+                  onLoad={this.scheduleAosRefresh}
                   key={index}
                 />
               )) : <p></p>
