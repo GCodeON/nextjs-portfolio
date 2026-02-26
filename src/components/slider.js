@@ -20,6 +20,9 @@ export default class Slider extends React.Component {
       activeIndex: null,
       isModalOpen: false
     };
+    this.isBodyLocked = false;
+    this.lockedScrollY = 0;
+    this.previousBodyStyles = {};
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
   
@@ -155,10 +158,54 @@ export default class Slider extends React.Component {
   }
 
   setBodyScrollLock(locked) {
-    if (typeof document === 'undefined') {
+    if (typeof document === 'undefined' || typeof window === 'undefined') {
       return;
     }
-    document.body.style.overflow = locked ? 'hidden' : '';
+
+    const body = document.body;
+
+    if (locked) {
+      if (this.isBodyLocked) {
+        return;
+      }
+
+      this.lockedScrollY = window.scrollY || window.pageYOffset || 0;
+      this.previousBodyStyles = {
+        overflow: body.style.overflow,
+        position: body.style.position,
+        top: body.style.top,
+        width: body.style.width,
+        left: body.style.left,
+        right: body.style.right,
+      };
+
+      body.style.overflow = 'hidden';
+      body.style.position = 'fixed';
+      body.style.top = `-${this.lockedScrollY}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+      this.isBodyLocked = true;
+      return;
+    }
+
+    if (!this.isBodyLocked) {
+      return;
+    }
+
+    const restoreY = this.lockedScrollY;
+    body.style.overflow = this.previousBodyStyles.overflow || '';
+    body.style.position = this.previousBodyStyles.position || '';
+    body.style.top = this.previousBodyStyles.top || '';
+    body.style.width = this.previousBodyStyles.width || '';
+    body.style.left = this.previousBodyStyles.left || '';
+    body.style.right = this.previousBodyStyles.right || '';
+
+    this.isBodyLocked = false;
+    this.lockedScrollY = 0;
+    this.previousBodyStyles = {};
+
+    window.scrollTo(0, restoreY);
   }
 
   render() {
