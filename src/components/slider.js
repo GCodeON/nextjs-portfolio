@@ -206,8 +206,8 @@ export default class Slider extends React.Component {
             767: {
               width         : 767,
               slidesPerView : 2,
-              spaceBetween  : 10,
-              initialSlide   : clampInitialSlide(3)
+              spaceBetween  : 25,
+              initialSlide   : clampInitialSlide(1)
             },
             1024: {
               width          : 1024,
@@ -220,14 +220,14 @@ export default class Slider extends React.Component {
               width          : 1220,
               slidesPerView  : 3.5,
               spaceBetween   : 50,
-              initialSlide   : clampInitialSlide(2),
+              initialSlide   : clampInitialSlide(1),
               centeredSlides : true
             },
             1660: {
               width          : 1660,
               slidesPerView  : 4,
               spaceBetween   : 50,
-              initialSlide   : clampInitialSlide(2),
+              initialSlide   : clampInitialSlide(1),
               centeredSlides : true
             },
           }}
