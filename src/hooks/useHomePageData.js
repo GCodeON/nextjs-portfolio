@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { urlFor } from '@/sanity/sanityImageUrl'
+import { buildSanityImageUrl } from '@/sanity/sanityImageUrl'
 import { FALLBACK_SLIDER, FALLBACK_TOOLS } from '@/constants/homePage'
 
 const asLink = (value) => {
@@ -25,21 +25,13 @@ const asImageUrl = (value, width, height, fitMode) => {
   }
 
   try {
-    let imageBuilder = urlFor(value).auto('format')
-
-    if (width) {
-      imageBuilder = imageBuilder.width(width)
-    }
-
-    if (height) {
-      imageBuilder = imageBuilder.height(height)
-    }
-
-    if (fitMode) {
-      imageBuilder = imageBuilder.fit(fitMode)
-    }
-
-    return imageBuilder.url()
+    return buildSanityImageUrl(value, {
+      width,
+      height,
+      fit: fitMode || 'max',
+      quality: 75,
+      autoFormat: true
+    })
   } catch {
     return ''
   }

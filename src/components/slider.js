@@ -252,16 +252,6 @@ export default class Slider extends React.Component {
                 </div>
               ) : null}
             </button>
-            {/* <div className="tools">
-              {slide.tools.map((tool, i) => (
-                <img
-                  className="tool image"
-                  src={tool.image}
-                  alt=""
-                  key={i}
-                />
-              ))}
-            </div> */}
           </SwiperSlide>
         ))}
 
