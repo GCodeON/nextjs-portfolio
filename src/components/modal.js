@@ -200,6 +200,14 @@ export default function Modal({ project, isOpen, onClose }) {
                       ) : null}
                     </div>
                   ) : null}
+                  <a
+                    className="portfolio-modal__link portfolio-modal__media-cta"
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View Live Site
+                  </a>
                 </div>
               ) : null}
 
@@ -220,6 +228,9 @@ export default function Modal({ project, isOpen, onClose }) {
                       sizes="(max-width: 768px) 92vw, 62vw"
                       unoptimized={isSanityImageUrl(project.image)}
                     />
+                    <span className="portfolio-modal__link portfolio-modal__media-cta">
+                      View Live Site
+                    </span>
                   </a>
                 ) : (
                   <div className="portfolio-modal__hero-media">
@@ -234,7 +245,6 @@ export default function Modal({ project, isOpen, onClose }) {
                   </div>
                 )
               ) : null}
-
               {project.link ? (
                 <div className="portfolio-modal__link-wrap">
                   <a

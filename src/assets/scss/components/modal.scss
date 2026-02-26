@@ -279,6 +279,16 @@
 	font-weight    : 600;
 }
 
+.portfolio-modal__media-cta {
+	display   : none;
+	position : absolute;
+	top      : 50%;
+	left     : 50%;
+	transform: translate(-50%, -50%);
+	z-index  : 4;
+	text-decoration : none;
+}
+
 @media (max-width: 768px) {
 	.portfolio-modal__card {
 		padding    : 1.25rem;
@@ -312,5 +322,14 @@
 
 	.portfolio-modal__tool-media {
 		flex : 0 0 auto;
+	}
+
+	.portfolio-modal__media-cta {
+		display  : inline-flex;
+		padding : 0.6rem 1rem;
+	}
+
+	.portfolio-modal__link-wrap {
+		display : none;
 	}
 }
