@@ -4,6 +4,20 @@ import Image from 'next/image'
 import { isSanityImageUrl } from '@/sanity/sanityImageUrl'
 
 const DESKTOP_QUERY = '(min-width: 769px)'
+const IFRAME_BLOCKED_HOSTS = new Set(['syntaxdata.com', 'www.syntaxdata.com'])
+
+const canUseIframeForLink = (link) => {
+  if (!link) {
+    return false
+  }
+
+  try {
+    const parsedUrl = new URL(link)
+    return !IFRAME_BLOCKED_HOSTS.has(parsedUrl.hostname)
+  } catch {
+    return false
+  }
+}
 
 export default function Modal({ project, isOpen, onClose }) {
   const [isIframeLoading, setIsIframeLoading] = useState(Boolean(project?.link));
@@ -15,16 +29,17 @@ export default function Modal({ project, isOpen, onClose }) {
   const [loadedLinks, setLoadedLinks] = useState({});
 
   const activeLink = project?.link || '';
+  const canUseIframe = isDesktop && canUseIframeForLink(activeLink)
 
   useEffect(() => {
-    if (!activeLink || !isDesktop) {
+    if (!activeLink || !canUseIframe) {
       setIsIframeLoading(false);
       return;
     }
 
     setCachedLinks((prev) => (prev.includes(activeLink) ? prev : [...prev, activeLink]));
     setIsIframeLoading(!loadedLinks[activeLink]);
-  }, [activeLink, loadedLinks, isDesktop]);
+  }, [activeLink, loadedLinks, canUseIframe]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -148,7 +163,7 @@ export default function Modal({ project, isOpen, onClose }) {
 
           <div className="portfolio-modal__main">
             <div className="portfolio-modal__media">
-              {project.link && isDesktop ? (
+              {project.link && canUseIframe ? (
                 <div className="portfolio-modal__iframe-shell">
                   {cachedLinks.map((link) => (
                     <iframe
@@ -188,7 +203,7 @@ export default function Modal({ project, isOpen, onClose }) {
                 </div>
               ) : null}
 
-              {(!project.link || !isDesktop) && project.image ? (
+              {(!project.link || !canUseIframe) && project.image ? (
                 <div className="portfolio-modal__hero-media">
                   <Image
                     src={project.image}
