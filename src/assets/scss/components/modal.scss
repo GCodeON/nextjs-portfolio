@@ -195,8 +195,12 @@
 }
 
 .portfolio-modal__title {
-	font-size : 1.25rem;
+	font-size : 1rem;
 	margin    : 0 0 0.5rem;
+
+	@media (min-width: 768px) { 
+		font-size : 2rem;
+	}
 }
 
 .portfolio-modal__role {
