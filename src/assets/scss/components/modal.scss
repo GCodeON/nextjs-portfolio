@@ -14,6 +14,12 @@
 
 }
 
+.portfolio-modal--closed {
+	opacity : 0;
+	visibility : hidden;
+	pointer-events : none;
+}
+
 .portfolio-modal__backdrop {
 	position   : absolute;
 	top        : 0;
@@ -93,9 +99,18 @@
 }
 
 .portfolio-modal__iframe {
-	width  : 100%;
-	height : 100%;
-	border : 0;
+	position : absolute;
+	inset    : 0;
+	width    : 100%;
+	height   : 100%;
+	border   : 0;
+	opacity  : 0;
+	pointer-events : none;
+}
+
+.portfolio-modal__iframe--active {
+	opacity : 1;
+	pointer-events : auto;
 }
 
 .portfolio-modal__iframe-placeholder {

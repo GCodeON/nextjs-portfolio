@@ -16,7 +16,8 @@ export default class Slider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: null
+      activeIndex: null,
+      isModalOpen: false
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
@@ -32,8 +33,8 @@ export default class Slider extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.activeIndex !== this.state.activeIndex) {
-      this.setBodyScrollLock(this.state.activeIndex !== null);
+    if (prevState.isModalOpen !== this.state.isModalOpen) {
+      this.setBodyScrollLock(this.state.isModalOpen);
     }
   }
 
@@ -47,13 +48,13 @@ export default class Slider extends React.Component {
     if (!this.props.slides[idx] || !this.props.slides[idx].image) {
       return;
     }
-    this.setState({ activeIndex: idx });
+    this.setState({ activeIndex: idx, isModalOpen: true });
     this.updateUrlParam(this.props.slides[idx]);
     this.scrollToProjects();
   }
 
   closeModal() {
-    this.setState({ activeIndex: null });
+    this.setState({ isModalOpen: false });
     this.clearUrlParam();
   }
 
@@ -106,7 +107,7 @@ export default class Slider extends React.Component {
     );
 
     if (index >= 0) {
-      this.setState({ activeIndex: index });
+      this.setState({ activeIndex: index, isModalOpen: true });
       this.scrollToProjects();
     }
   }
@@ -260,6 +261,7 @@ export default class Slider extends React.Component {
         {activeProject ? (
           <Modal
             project={activeProject}
+            isOpen={this.state.isModalOpen}
             onClose={() => this.closeModal()}
           />
         ) : null}

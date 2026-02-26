@@ -2,13 +2,25 @@ import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from 'next/image'
 
-export default function Modal({ project, onClose }) {
+export default function Modal({ project, isOpen, onClose }) {
   const [isIframeLoading, setIsIframeLoading] = useState(Boolean(project?.link));
   const [isMounted, setIsMounted] = useState(false);
+  const [cachedLinks, setCachedLinks] = useState(() =>
+    project?.link ? [project.link] : []
+  );
+  const [loadedLinks, setLoadedLinks] = useState({});
+
+  const activeLink = project?.link || '';
 
   useEffect(() => {
-    setIsIframeLoading(Boolean(project?.link));
-  }, [project?.link]);
+    if (!activeLink) {
+      setIsIframeLoading(false);
+      return;
+    }
+
+    setCachedLinks((prev) => (prev.includes(activeLink) ? prev : [...prev, activeLink]));
+    setIsIframeLoading(!loadedLinks[activeLink]);
+  }, [activeLink, loadedLinks]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -18,8 +30,26 @@ export default function Modal({ project, onClose }) {
     return null;
   }
 
+  const markLinkAsLoaded = (link) => {
+    setLoadedLinks((prev) => {
+      if (prev[link]) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        [link]: true,
+      };
+    });
+  };
+
   const modalContent = (
-    <div className="portfolio-modal" role="dialog" aria-modal="true">
+    <div
+      className={`portfolio-modal${isOpen ? '' : ' portfolio-modal--closed'}`}
+      role="dialog"
+      aria-modal="true"
+      aria-hidden={!isOpen}
+    >
       <div className="portfolio-modal__backdrop" onClick={onClose} />
       <div className="portfolio-modal__card">
         <button
@@ -88,13 +118,18 @@ export default function Modal({ project, onClose }) {
             <div className="portfolio-modal__media">
               {project.link ? (
                 <div className="portfolio-modal__iframe-shell">
-                  <iframe
-                    src={project.link}
-                    title={`${project.title || 'Project'} preview`}
-                    className="portfolio-modal__iframe"
-                    loading="lazy"
-                    onLoad={() => setIsIframeLoading(false)}
-                  />
+                  {cachedLinks.map((link) => (
+                    <iframe
+                      key={link}
+                      src={link}
+                      title={`${project.title || 'Project'} preview`}
+                      className={`portfolio-modal__iframe${
+                        link === activeLink ? ' portfolio-modal__iframe--active' : ''
+                      }`}
+                      loading="lazy"
+                      onLoad={() => markLinkAsLoaded(link)}
+                    />
+                  ))}
                   {project.image ? (
                     <div
                       className={`portfolio-modal__iframe-placeholder${
