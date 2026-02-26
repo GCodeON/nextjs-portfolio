@@ -108,9 +108,9 @@ export default function Modal({ project, isOpen, onClose }) {
         </button>
         <div className="portfolio-modal__scroll">
           <aside className="portfolio-modal__sidebar">
-            <h3 className="portfolio-modal__title">
+            <h4 className="portfolio-modal__title">
               {project.title || "Project"}
-              </h3>
+              </h4>
               <hr/> 
             {project.role ? (
               <>
@@ -204,16 +204,35 @@ export default function Modal({ project, isOpen, onClose }) {
               ) : null}
 
               {(!project.link || !canUseIframe) && project.image ? (
-                <div className="portfolio-modal__hero-media">
-                  <Image
-                    src={project.image}
-                    alt={project.title || "Project preview"}
-                    fill
-                    className="portfolio-modal__hero-image"
-                    sizes="(max-width: 768px) 92vw, 62vw"
-                    unoptimized={isSanityImageUrl(project.image)}
-                  />
-                </div>
+                project.link ? (
+                  <a
+                    className="portfolio-modal__hero-media portfolio-modal__hero-link"
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open ${project.title || 'project'} site`}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title || "Project preview"}
+                      fill
+                      className="portfolio-modal__hero-image"
+                      sizes="(max-width: 768px) 92vw, 62vw"
+                      unoptimized={isSanityImageUrl(project.image)}
+                    />
+                  </a>
+                ) : (
+                  <div className="portfolio-modal__hero-media">
+                    <Image
+                      src={project.image}
+                      alt={project.title || "Project preview"}
+                      fill
+                      className="portfolio-modal__hero-image"
+                      sizes="(max-width: 768px) 92vw, 62vw"
+                      unoptimized={isSanityImageUrl(project.image)}
+                    />
+                  </div>
+                )
               ) : null}
 
               {project.link ? (
