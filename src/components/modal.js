@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from 'next/image'
+import { isSanityImageUrl } from '@/sanity/sanityImageUrl'
 
 export default function Modal({ project, isOpen, onClose }) {
   const [isIframeLoading, setIsIframeLoading] = useState(Boolean(project?.link));
@@ -106,6 +107,7 @@ export default function Modal({ project, isOpen, onClose }) {
                         fill
                         className="portfolio-modal__tool-image"
                         sizes="46px"
+                        unoptimized={isSanityImageUrl(tool.image)}
                       />
                     </div>
                   ))}
@@ -143,6 +145,7 @@ export default function Modal({ project, isOpen, onClose }) {
                         className="portfolio-modal__hero-image"
                         sizes="(max-width: 768px) 92vw, 62vw"
                         priority
+                        unoptimized={isSanityImageUrl(project.image)}
                       />
                       {isIframeLoading ? (
                         <div className="portfolio-modal__loader-wrap" aria-live="polite">
@@ -163,6 +166,7 @@ export default function Modal({ project, isOpen, onClose }) {
                     fill
                     className="portfolio-modal__hero-image"
                     sizes="(max-width: 768px) 92vw, 62vw"
+                    unoptimized={isSanityImageUrl(project.image)}
                   />
                 </div>
               ) : null}
@@ -189,6 +193,7 @@ export default function Modal({ project, isOpen, onClose }) {
                         fill
                         className="portfolio-modal__gallery-image"
                         sizes="(max-width: 768px) 44vw, 28vw"
+                        unoptimized={isSanityImageUrl(image)}
                       />
                     </div>
                   ))}

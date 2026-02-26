@@ -1,6 +1,7 @@
 import React from "react";
 import Image from 'next/image'
 import Modal from "./modal";
+import { isSanityImageUrl } from '@/sanity/sanityImageUrl'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { EffectCoverflow, Pagination, Scrollbar, Navigation } from 'swiper/core';
@@ -249,6 +250,7 @@ export default class Slider extends React.Component {
                     fill
                     className="slide-image"
                     sizes="(max-width: 767px) 80vw, (max-width: 1220px) 45vw, 30vw"
+                    unoptimized={isSanityImageUrl(slide.image)}
                   />
                 </div>
               ) : null}

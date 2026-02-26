@@ -3,6 +3,10 @@ import { client } from './client';
 
 const builder = createImageUrlBuilder(client);
 
+export function isSanityImageUrl(value) {
+  return typeof value === 'string' && value.includes('cdn.sanity.io/images/');
+}
+
 export function buildSanityImageUrl(source, options = {}) {
   if (!source) {
     return '';

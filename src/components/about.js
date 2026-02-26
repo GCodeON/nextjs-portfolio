@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { isSanityImageUrl } from '@/sanity/sanityImageUrl'
 
 import { ReactTyped } from 'react-typed';
 
@@ -222,6 +223,7 @@ export default class About extends React.Component {
                     height={55}
                     className="skill-image"
                     sizes="55px"
+                    unoptimized={isSanityImageUrl(skill.image)}
                     data-aos="zoom-out"
                     data-aos-offset="-100"
                     data-aos-delay={`${index * 50}`}
