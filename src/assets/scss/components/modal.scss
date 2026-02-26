@@ -59,7 +59,9 @@
 .portfolio-modal__sidebar {
 	position : sticky;
 	top      : 1rem;
-	align-self : start;
+	align-self : stretch;
+	display : flex;
+	flex-direction : column;
 }
 
 .portfolio-modal__main {
@@ -179,6 +181,12 @@
 	margin-top      : 1rem;
 }
 
+.portfolio-modal__link-wrap--sidebar {
+	justify-content : flex-start;
+	margin-top      : auto;
+	padding-top     : 1.5rem;
+}
+
 .portfolio-modal__gallery {
 	margin-top : 1rem;
 	display    : grid;
@@ -289,6 +297,44 @@
 	text-decoration : none;
 }
 
+.portfolio-modal__project-nav {
+	position : absolute;
+	inset    : 0;
+	z-index  : 5;
+	pointer-events : none;
+}
+
+.portfolio-modal__project-nav-btn {
+	position      : absolute;
+	top           : 50%;
+	transform     : translateY(-50%);
+	width         : 36px;
+	height        : 36px;
+	border        : 2px solid var(--color-primary);
+	border-radius : 999px;
+	background    : rgba(0, 0, 0, 0.48);
+	color         : var(--color-primary);
+	font-size     : 1rem;
+	cursor        : pointer;
+	display       : inline-flex;
+	pointer-events : auto;
+	align-items   : center;
+	justify-content : center;
+}
+
+.portfolio-modal__project-nav-btn--prev {
+	left : 0.75rem;
+}
+
+.portfolio-modal__project-nav-btn--next {
+	right : 0.75rem;
+}
+
+.portfolio-modal__project-nav-btn:focus-visible {
+	outline : 2px solid var(--color-primary);
+	outline-offset : 2px;
+}
+
 @media (max-width: 768px) {
 	.portfolio-modal__card {
 		padding    : 1.25rem;
@@ -311,8 +357,24 @@
 	    	min-height: 32dvh; 
 	}
 
+	.portfolio-modal__project-nav {
+		inset   : auto;
+		bottom: 0.5rem;
+		left  : 50%;
+		transform: translateX(-50%);
+		display : flex;
+		gap     : 0.5rem;
+		pointer-events : auto;
+	}
+
+	.portfolio-modal__project-nav-btn {
+		position  : static;
+		transform : none;
+	}
+
 	.portfolio-modal__sidebar {
 		position : static;
+		align-self : auto;
 	}
 
 	.portfolio-modal__stack {

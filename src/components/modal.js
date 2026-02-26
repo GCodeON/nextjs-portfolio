@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from 'next/image'
 import { isSanityImageUrl } from '@/sanity/sanityImageUrl'
@@ -19,7 +19,14 @@ const canUseIframeForLink = (link) => {
   }
 }
 
-export default function Modal({ project, isOpen, onClose }) {
+export default function Modal({
+  project,
+  isOpen,
+  onClose,
+  onPrevious,
+  onNext,
+  hasMultipleProjects,
+}) {
   const [isIframeLoading, setIsIframeLoading] = useState(Boolean(project?.link));
   const [isMounted, setIsMounted] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -27,6 +34,7 @@ export default function Modal({ project, isOpen, onClose }) {
     project?.link ? [project.link] : []
   );
   const [loadedLinks, setLoadedLinks] = useState({});
+  const touchStartRef = useRef({ x: null, y: null });
 
   const activeLink = project?.link || '';
   const canUseIframe = isDesktop && canUseIframeForLink(activeLink)
@@ -89,6 +97,50 @@ export default function Modal({ project, isOpen, onClose }) {
     });
   };
 
+  const handleTouchStart = (event) => {
+    const touch = event.touches?.[0];
+    if (!touch) {
+      return;
+    }
+
+    touchStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+    };
+  };
+
+  const handleTouchEnd = (event) => {
+    if (!hasMultipleProjects) {
+      return;
+    }
+
+    const startX = touchStartRef.current.x;
+    const startY = touchStartRef.current.y;
+    const touch = event.changedTouches?.[0];
+
+    touchStartRef.current = { x: null, y: null };
+
+    if (startX === null || startY === null || !touch) {
+      return;
+    }
+
+    const deltaX = touch.clientX - startX;
+    const deltaY = touch.clientY - startY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    if (absX < 40 || absX <= absY) {
+      return;
+    }
+
+    if (deltaX > 0) {
+      onPrevious?.();
+      return;
+    }
+
+    onNext?.();
+  };
+
   const modalContent = (
     <div
       className={`portfolio-modal${isOpen ? '' : ' portfolio-modal--closed'}`}
@@ -111,13 +163,11 @@ export default function Modal({ project, isOpen, onClose }) {
             <h4 className="portfolio-modal__title">
               {project.title || "Project"}
               </h4>
-              <hr/> 
             {project.role ? (
               <>
                 <h5 className="portfolio-modal__role">
                   <span>My role:</span> {project.role}
                 </h5>
-                <hr/>
               </>
             ) : null}
             {project.summary ? (
@@ -159,10 +209,47 @@ export default function Modal({ project, isOpen, onClose }) {
                 </div>
               </div>
             ) : null}
+
+            {project.link ? (
+              <div className="portfolio-modal__link-wrap portfolio-modal__link-wrap--sidebar">
+                <a
+                  className="portfolio-modal__link"
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Live Site
+                </a>
+              </div>
+            ) : null}
           </aside>
 
           <div className="portfolio-modal__main">
-            <div className="portfolio-modal__media">
+            <div
+              className="portfolio-modal__media"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              {hasMultipleProjects ? (
+                <div className="portfolio-modal__project-nav" aria-label="Project navigation">
+                  <button
+                    type="button"
+                    className="portfolio-modal__project-nav-btn portfolio-modal__project-nav-btn--prev"
+                    onClick={onPrevious}
+                    aria-label="Previous project"
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    className="portfolio-modal__project-nav-btn portfolio-modal__project-nav-btn--next"
+                    onClick={onNext}
+                    aria-label="Next project"
+                  >
+                    →
+                  </button>
+                </div>
+              ) : null}
               {project.link && canUseIframe ? (
                 <div className="portfolio-modal__iframe-shell">
                   {cachedLinks.map((link) => (
@@ -244,18 +331,6 @@ export default function Modal({ project, isOpen, onClose }) {
                     />
                   </div>
                 )
-              ) : null}
-              {project.link ? (
-                <div className="portfolio-modal__link-wrap">
-                  <a
-                    className="portfolio-modal__link"
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    View Live Site
-                  </a>
-                </div>
               ) : null}
               {Array.isArray(project.gallery) && project.gallery.length > 0 ? (
                 <div className="portfolio-modal__gallery">

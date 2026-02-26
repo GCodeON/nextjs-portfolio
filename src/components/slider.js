@@ -43,9 +43,51 @@ export default class Slider extends React.Component {
   }
 
   handleKeyDown(event) {
+    if (!this.state.isModalOpen) {
+      return;
+    }
+
     if (event.key === 'Escape') {
       this.closeModal();
+      return;
     }
+
+    if (event.key === 'ArrowLeft') {
+      this.openPreviousProject();
+      return;
+    }
+
+    if (event.key === 'ArrowRight') {
+      this.openNextProject();
+    }
+  }
+
+  openPreviousProject() {
+    const slidesCount = Array.isArray(this.props.slides) ? this.props.slides.length : 0;
+    if (slidesCount < 2 || this.state.activeIndex === null) {
+      return;
+    }
+
+    const previousIndex = this.state.activeIndex > 0
+      ? this.state.activeIndex - 1
+      : slidesCount - 1;
+
+    this.setState({ activeIndex: previousIndex });
+    this.updateUrlParam(this.props.slides[previousIndex]);
+  }
+
+  openNextProject() {
+    const slidesCount = Array.isArray(this.props.slides) ? this.props.slides.length : 0;
+    if (slidesCount < 2 || this.state.activeIndex === null) {
+      return;
+    }
+
+    const nextIndex = this.state.activeIndex < slidesCount - 1
+      ? this.state.activeIndex + 1
+      : 0;
+
+    this.setState({ activeIndex: nextIndex });
+    this.updateUrlParam(this.props.slides[nextIndex]);
   }
 
   openModal(idx) {
@@ -312,6 +354,9 @@ export default class Slider extends React.Component {
             project={activeProject}
             isOpen={this.state.isModalOpen}
             onClose={() => this.closeModal()}
+            onPrevious={() => this.openPreviousProject()}
+            onNext={() => this.openNextProject()}
+            hasMultipleProjects={slidesCount > 1}
           />
         ) : null}
 
