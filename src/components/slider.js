@@ -74,12 +74,29 @@ export default class Slider extends React.Component {
     return '';
   }
 
+  getProjectSlugFromHash() {
+    if (typeof window === 'undefined') {
+      return '';
+    }
+
+    const hashValue = window.location.hash || '';
+    const hashIndex = hashValue.indexOf('?');
+
+    if (hashIndex < 0) {
+      return '';
+    }
+
+    const hashParams = new URLSearchParams(hashValue.slice(hashIndex + 1));
+    return hashParams.get('project') || '';
+  }
+
   openFromUrl() {
     if (typeof window === 'undefined') {
       return;
     }
+    const hashSlug = this.getProjectSlugFromHash();
     const params = new URLSearchParams(window.location.search);
-    const slug = params.get('project');
+    const slug = hashSlug || params.get('project');
     if (!slug) {
       return;
     }
@@ -102,11 +119,10 @@ export default class Slider extends React.Component {
     if (!slug) {
       return;
     }
+
     const url = new URL(window.location.href);
-    url.searchParams.set('project', slug);
-    if (url.hash !== '#projects') {
-      url.hash = '#projects';
-    }
+    url.searchParams.delete('project');
+    url.hash = `#projects?project=${encodeURIComponent(slug)}`;
     window.history.pushState({}, '', url.toString());
   }
 
@@ -114,8 +130,15 @@ export default class Slider extends React.Component {
     if (typeof window === 'undefined') {
       return;
     }
+
     const url = new URL(window.location.href);
     url.searchParams.delete('project');
+
+    if (url.hash.includes('?')) {
+      const hashBase = url.hash.split('?')[0] || '#projects';
+      url.hash = hashBase;
+    }
+
     window.history.replaceState({}, '', url.toString());
   }
 
