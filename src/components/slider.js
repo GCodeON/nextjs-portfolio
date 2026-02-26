@@ -137,6 +137,10 @@ export default class Slider extends React.Component {
   }
 
   render() {
+    const slidesCount = Array.isArray(this.props.slides) ? this.props.slides.length : 0;
+    const maxSlideIndex = Math.max(slidesCount - 1, 0);
+    const clampInitialSlide = (preferred) => Math.min(preferred, maxSlideIndex);
+
     const activeProject =
       this.state.activeIndex !== null
         ? this.props.slides[this.state.activeIndex]
@@ -153,7 +157,7 @@ export default class Slider extends React.Component {
           grabCursor      = {false}
           spaceBetween    = {10}
           slidesPerView   = {2}
-          initialSlide    = {1}
+          initialSlide    = {clampInitialSlide(1)}
           observer        = {true}
           observeParents  = {true}
           autoplay        = {true}
@@ -172,33 +176,33 @@ export default class Slider extends React.Component {
               width         : 320,
               slidesPerView : 1.5,
               spaceBetween  : 10,
-              initialSlide   : 1
+              initialSlide   : clampInitialSlide(1)
             },
             767: {
               width         : 767,
               slidesPerView : 2,
               spaceBetween  : 10,
-              initialSlide   : 3
+              initialSlide   : clampInitialSlide(3)
             },
             1024: {
               width          : 1024,
               slidesPerView  : 2.5,
               spaceBetween   : 50,
-              initialSlide   : 1,
+              initialSlide   : clampInitialSlide(1),
               centeredSlides : false
             },
             1220: {
               width          : 1220,
               slidesPerView  : 3.5,
               spaceBetween   : 50,
-              initialSlide   : 2,
+              initialSlide   : clampInitialSlide(2),
               centeredSlides : true
             },
             1660: {
               width          : 1660,
               slidesPerView  : 4,
               spaceBetween   : 50,
-              initialSlide   : 2,
+              initialSlide   : clampInitialSlide(2),
               centeredSlides : true
             },
           }}

@@ -1,20 +1,21 @@
 'use client'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import dynamic from 'next/dynamic'
 
 import Layout from './layout'
 import Loader from './loader'
-import ThreeD from './threejs/3D'
-
 import Hero from './hero'
-import About from './about'
 import Slider from './slider'
 import Timeline from './timeline'
 import Contact from './contact'
-import Kinect from './threejs/kinect'
 
 import useAppReady from '@/hooks/useAppReady'
 import useHomePageData from '@/hooks/useHomePageData'
 import { TIMELINE } from '@/constants/homePage'
+
+const ThreeD = dynamic(() => import('./threejs/3D'), { ssr: false })
+const About = dynamic(() => import('./about'), { ssr: false })
+const Kinect = dynamic(() => import('./threejs/kinect'), { ssr: false })
 
 export default function HomePage({ data }) {
   useAppReady()

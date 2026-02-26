@@ -90,17 +90,19 @@ const normalizeGallery = (gallery) => {
 }
 
 const normalizeProject = (project) => {
-  const projectImage = asImageUrl(project?.image, 1800, 1200)
+  const galleryImage = Array.isArray(project?.gallery) ? project.gallery[0] : null
+  const imageSource = project?.image || project?.mainImage || galleryImage
+  const projectImage = asImageUrl(imageSource, 1800, 1200)
 
-  if (!projectImage) {
+  if (!project?.title && !projectImage) {
     return null
   }
 
   return {
     ...project,
     title: project?.title || project?.name || 'Project',
-    image: projectImage,
-    link: asLink(project?.link),
+    image: projectImage || '',
+    link: asLink(project?.link || project?.siteUrl),
     tools: Array.isArray(project?.tools)
       ? project.tools.map(normalizeProjectTool).filter(Boolean)
       : [],
