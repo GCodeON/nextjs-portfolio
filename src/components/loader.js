@@ -90,6 +90,21 @@ export default class CircularText extends React.Component {
     return Promise.race([assetPromise, timeoutPromise]);
   }
 
+  getHashTarget() {
+    if (typeof window === 'undefined' || !window.location.hash) {
+      return null;
+    }
+
+    const rawHash = window.location.hash.replace('#', '');
+    const hashTargetId = rawHash.split('?')[0];
+
+    if (!hashTargetId) {
+      return null;
+    }
+
+    return document.getElementById(hashTargetId);
+  }
+
   showFinalState() {
     gsap.timeline()
       .set('body', { overflow: 'visible' })
@@ -120,12 +135,14 @@ export default class CircularText extends React.Component {
       video.play();
     }
 
-    if (window.location.hash) {
+    const hashTarget = this.getHashTarget();
+
+    if (hashTarget) {
       setTimeout(() => {
-        document
-          .getElementById(window.location.hash.replace('#', ''))
-          .scrollIntoView({ behavior: 'smooth', block: 'end' });
+        hashTarget.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 0);
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
   }
 
@@ -274,10 +291,11 @@ export default class CircularText extends React.Component {
       video.play();
     }
     
-    if(window.location.hash) {
-      console.log('has id hash:', window.location.hash);
+    const hashTarget = this.getHashTarget();
+
+    if(hashTarget) {
       setTimeout(() => {
-        document.getElementById(window.location.hash.replace("#", "")).scrollIntoView({ behavior: 'smooth', block: 'end' })
+        hashTarget.scrollIntoView({ behavior: 'smooth', block: 'end' })
       }, 2700);
     }
 

@@ -294,4 +294,26 @@
 	.portfolio-modal__sidebar {
 		position : static;
 	}
+
+	.portfolio-modal__stack {
+		flex-wrap : nowrap;
+		justify-content: flex-start;
+		overflow-x: auto;
+		overflow-y: hidden;
+		padding-bottom: 0.25rem;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.portfolio-modal__stack::-webkit-scrollbar {
+		height : 6px;
+	}
+
+	.portfolio-modal__stack::-webkit-scrollbar-thumb {
+		background    : rgba(255, 255, 255, 0.25);
+		border-radius : 999px;
+	}
+
+	.portfolio-modal__tool-media {
+		flex : 0 0 auto;
+	}
 }
