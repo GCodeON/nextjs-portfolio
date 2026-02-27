@@ -105,6 +105,63 @@ export default class CircularText extends React.Component {
     return document.getElementById(hashTargetId);
   }
 
+  waitForNextPaint() {
+    return new Promise((resolve) => {
+      requestAnimationFrame(() => resolve());
+    });
+  }
+
+  async waitForStableAnchor(target, timeoutMs = 4000, stableFrames = 6) {
+    if (!target || typeof window === 'undefined') {
+      return false;
+    }
+
+    const startedAt = performance.now();
+    let previousTop = null;
+    let previousHeight = null;
+    let stableCount = 0;
+
+    while (performance.now() - startedAt < timeoutMs) {
+      const rect = target.getBoundingClientRect();
+      const currentTop = Math.round(rect.top);
+      const currentHeight = Math.round(rect.height);
+
+      const hasBox = currentHeight > 0;
+      const isStable =
+        hasBox &&
+        previousTop === currentTop &&
+        previousHeight === currentHeight;
+
+      stableCount = isStable ? stableCount + 1 : 0;
+      previousTop = currentTop;
+      previousHeight = currentHeight;
+
+      if (stableCount >= stableFrames) {
+        return true;
+      }
+
+      await this.waitForNextPaint();
+    }
+
+    return true;
+  }
+
+  async scrollHashTargetWhenReady({ behavior, block = 'start', delayMs = 0 }) {
+    const hashTarget = this.getHashTarget();
+
+    if (!hashTarget) {
+      return false;
+    }
+
+    if (delayMs > 0) {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+
+    await this.waitForStableAnchor(hashTarget);
+    hashTarget.scrollIntoView({ behavior, block });
+    return true;
+  }
+
   showFinalState() {
     gsap.timeline()
       .set('body', { overflow: 'visible' })
@@ -135,15 +192,12 @@ export default class CircularText extends React.Component {
       video.play();
     }
 
-    const hashTarget = this.getHashTarget();
-
-    if (hashTarget) {
-      setTimeout(() => {
-        hashTarget.scrollIntoView({ behavior: 'auto', block: 'start' });
-      }, 0);
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    }
+    this.scrollHashTargetWhenReady({ behavior: 'auto', block: 'start' })
+      .then((didScroll) => {
+        if (!didScroll) {
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        }
+      });
   }
 
 
@@ -291,13 +345,7 @@ export default class CircularText extends React.Component {
       video.play();
     }
     
-    const hashTarget = this.getHashTarget();
-
-    if(hashTarget) {
-      setTimeout(() => {
-        hashTarget.scrollIntoView({ behavior: 'smooth', block: 'end' })
-      }, 2700);
-    }
+    this.scrollHashTargetWhenReady({ behavior: 'smooth', block: 'end', delayMs: 2700 });
 
 
   }
