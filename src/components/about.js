@@ -26,6 +26,7 @@ export default class About extends React.Component {
     this.model = null
     this.isMountedFlag = false
     this.activeModelRequestId = 0
+    this.aboutObserver = null
 
     this.animationFrameId = null
     this.pageX = 0.5
@@ -48,8 +49,7 @@ export default class About extends React.Component {
       mirror: true
     })
 
-    this.init()
-    this.onWindowResize()
+    this.observeAboutVisibility()
     this.scheduleAosRefresh()
   }
 
@@ -73,6 +73,11 @@ export default class About extends React.Component {
     if (this.animationFrameId) {
       cancelAnimationFrame(this.animationFrameId)
       this.animationFrameId = null
+    }
+
+    if (this.aboutObserver) {
+      this.aboutObserver.disconnect()
+      this.aboutObserver = null
     }
 
     if (this.model) {
@@ -111,6 +116,10 @@ export default class About extends React.Component {
   }
 
   init() {
+    if (this.renderer) {
+      return
+    }
+
     const canvas = this.canvasRef.current
 
     if (!canvas) {
@@ -137,6 +146,43 @@ export default class About extends React.Component {
     window.addEventListener('resize', this.onWindowResize)
     document.addEventListener('mousemove', this.onDocumentMouseMove)
     document.addEventListener('scroll', this.onScroll)
+  }
+
+  observeAboutVisibility() {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const host = this.mount
+    if (!host) {
+      this.init()
+      this.onWindowResize()
+      return
+    }
+
+    this.aboutObserver = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (!entry?.isIntersecting) {
+          return
+        }
+
+        this.init()
+        this.onWindowResize()
+
+        if (this.aboutObserver) {
+          this.aboutObserver.disconnect()
+          this.aboutObserver = null
+        }
+      },
+      {
+        root: null,
+        rootMargin: '220px 0px',
+        threshold: 0.01
+      }
+    )
+
+    this.aboutObserver.observe(host)
   }
 
   animate() {

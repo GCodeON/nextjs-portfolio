@@ -16,7 +16,8 @@ export default class CircularText extends React.Component {
       this.enterText       = null
       this.startTL         = null
       this.active          = false
-        this.assetTimeoutMs  = 8000
+        this.assetTimeoutMs  = 3000
+        this.isMobileViewport = false
   }
       async componentDidMount() {
     this.circleText      = document.querySelectorAll('text.circles__text')
@@ -26,6 +27,11 @@ export default class CircularText extends React.Component {
     this.enterBackground = document.querySelector('.enter__bg')
     this.enterText = document.querySelector('.enter__text')
     this.circleTextTotal = this.circleText.length
+    this.isMobileViewport = window.matchMedia('(max-width: 768px)').matches
+
+    if (this.isMobileViewport) {
+      this.assetTimeoutMs = 1200
+    }
 
     this.setup();
     this.prepareInitialState();
@@ -63,12 +69,19 @@ export default class CircularText extends React.Component {
   waitForImages() {
     const images = Array.from(document.querySelectorAll('img'));
 
-    if (!images.length) {
+    const nearViewportImages = images.filter((image) => {
+      const rect = image.getBoundingClientRect();
+      return rect.top <= window.innerHeight * 1.25;
+    });
+
+    const targetImages = (nearViewportImages.length ? nearViewportImages : images).slice(0, 8);
+
+    if (!targetImages.length) {
       return Promise.resolve();
     }
 
     return Promise.all(
-      images.map((image) => {
+      targetImages.map((image) => {
         if (image.complete) {
           return Promise.resolve();
         }
@@ -76,13 +89,15 @@ export default class CircularText extends React.Component {
         return new Promise((resolve) => {
           image.addEventListener('load', resolve, { once: true });
           image.addEventListener('error', resolve, { once: true });
+          setTimeout(resolve, this.isMobileViewport ? 350 : 700);
         });
       })
     );
   }
 
   waitForAssets() {
-    const assetPromise = Promise.all([this.waitForFonts(), this.waitForImages()]);
+    const fontPromise = this.isMobileViewport ? Promise.resolve() : this.waitForFonts();
+    const assetPromise = Promise.all([fontPromise, this.waitForImages()]);
     const timeoutPromise = new Promise((resolve) => {
       setTimeout(resolve, this.assetTimeoutMs);
     });
@@ -163,6 +178,20 @@ export default class CircularText extends React.Component {
   }
 
   showFinalState() {
+    if (this.isMobileViewport) {
+      gsap.set('body', { overflow: 'visible' });
+      gsap.set(this.content, { opacity: 1, display: 'flex' });
+      gsap.set(this.content.children, { opacity: 1, scale: 1 });
+      gsap.set(this.enterCtrl, { opacity: 0, pointerEvents: 'none' });
+      gsap.set(this.enterText, { opacity: 0 });
+      return this.scrollHashTargetWhenReady({ behavior: 'auto', block: 'start' })
+        .then((didScroll) => {
+          if (!didScroll) {
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+          }
+        });
+    }
+
     gsap.timeline()
       .set('body', { overflow: 'visible' })
       .to(this.content, {
