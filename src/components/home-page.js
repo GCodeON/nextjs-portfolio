@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useRef, useState } from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
 
@@ -18,13 +19,80 @@ const Kinect = dynamic(() => import('./threejs/kinect'), { ssr: false })
 
 export default function HomePage({ data }) {
   useAppReady()
+  const [showThreeD, setShowThreeD] = useState(false)
+  const [showKinect, setShowKinect] = useState(false)
+  const contactSectionRef = useRef(null)
 
   const { skillsList, projectsList, experienceList, linkedInUrl, gitHubUrl } = useHomePageData(data);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined
+    }
+
+    let cancelled = false
+    let idleId = null
+    let timeoutId = null
+
+    const mountThree = () => {
+      if (!cancelled) {
+        setShowThreeD(true)
+      }
+    }
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(mountThree, { timeout: 2000 })
+    } else {
+      timeoutId = window.setTimeout(mountThree, 800)
+    }
+
+    return () => {
+      cancelled = true
+
+      if (idleId !== null && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId)
+      }
+
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || showKinect) {
+      return undefined
+    }
+
+    const target = contactSectionRef.current
+    if (!target) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (!entry?.isIntersecting) {
+          return
+        }
+
+        setShowKinect(true)
+        observer.disconnect()
+      },
+      { root: null, rootMargin: '250px 0px', threshold: 0.01 }
+    )
+
+    observer.observe(target)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [showKinect])
 
   return (
     <div className="app-shell">
       <Layout>
-        <ThreeD />
+        {showThreeD ? <ThreeD /> : null}
         <Loader strings={[]}>
           <Hero />
           <section id="about">
@@ -38,9 +106,9 @@ export default function HomePage({ data }) {
           <section id="experience">
             <Timeline exp={experienceList} />
           </section>
-          <section id="contact">
+          <section id="contact" ref={contactSectionRef}>
             <Contact />
-            <Kinect />
+            {showKinect ? <Kinect /> : null}
           </section>
         </Loader>
 

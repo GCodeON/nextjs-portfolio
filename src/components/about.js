@@ -24,6 +24,8 @@ export default class About extends React.Component {
     this.camera = null
     this.renderer = null
     this.model = null
+    this.isMountedFlag = false
+    this.activeModelRequestId = 0
 
     this.animationFrameId = null
     this.pageX = 0.5
@@ -39,6 +41,8 @@ export default class About extends React.Component {
   }
 
   componentDidMount() {
+    this.isMountedFlag = true
+
     AOS.init({
       delay: 100,
       mirror: true
@@ -59,6 +63,9 @@ export default class About extends React.Component {
   }
 
   componentWillUnmount() {
+    this.isMountedFlag = false
+    this.activeModelRequestId += 1
+
     window.removeEventListener('resize', this.onWindowResize)
     document.removeEventListener('mousemove', this.onDocumentMouseMove)
     document.removeEventListener('scroll', this.onScroll)
@@ -178,8 +185,33 @@ export default class About extends React.Component {
 
   loadModel() {
     const loader = new PCDLoader()
+    const requestId = ++this.activeModelRequestId
 
     loader.load('/models/Zaghetto.pcd', (points) => {
+      if (!this.isMountedFlag || requestId !== this.activeModelRequestId || !this.scene) {
+        if (points.geometry) {
+          points.geometry.dispose()
+        }
+
+        if (points.material) {
+          points.material.dispose()
+        }
+
+        return
+      }
+
+      if (this.model && this.scene) {
+        this.scene.remove(this.model)
+
+        if (this.model.geometry) {
+          this.model.geometry.dispose()
+        }
+
+        if (this.model.material) {
+          this.model.material.dispose()
+        }
+      }
+
       this.model = points
       this.model.geometry.center()
       this.model.geometry.rotateX(Math.PI)

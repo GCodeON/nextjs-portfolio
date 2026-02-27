@@ -8,9 +8,13 @@ let mouse, center;
 let controls;
 
 let objectA, objectB;
+let animationFrameId = null;
 
 function animate () {
-  requestAnimationFrame( animate );
+  animationFrameId = requestAnimationFrame( animate );
+  if (!renderer || !scene || !camera || !objectA || !objectB) {
+    return;
+  }
   rotate();
   renderer.render( scene, camera );
 };
@@ -24,6 +28,7 @@ function rotate() {
 export default class threeD extends React.Component {
   constructor(props) {
     super(props);
+    this.onWindowResize = this.onWindowResize.bind(this);
   }
   
   componentDidMount() {
@@ -31,7 +36,7 @@ export default class threeD extends React.Component {
       canvas: document.querySelector('.bg')
     });
     renderer.setSize( window.innerWidth , window.innerHeight )
-    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setPixelRatio( Math.min(window.devicePixelRatio || 1, 1.5) );
 
     scene = new THREE.Scene(); 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -47,7 +52,41 @@ export default class threeD extends React.Component {
     animate();
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onWindowResize);
+
+    if (animationFrameId !== null) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+
+    if (objectA) {
+      objectA.geometry?.dispose?.();
+      objectA.material?.dispose?.();
+      scene?.remove?.(objectA);
+      objectA = null;
+    }
+
+    if (objectB) {
+      objectB.geometry?.dispose?.();
+      objectB.material?.dispose?.();
+      scene?.remove?.(objectB);
+      objectB = null;
+    }
+
+    renderer?.dispose?.();
+    scene = null;
+    camera = null;
+    renderer = null;
+    geometry = null;
+    material = null;
+  }
+
   onWindowResize() {
+    if (!renderer || !camera) {
+      return;
+    }
+
     renderer.setSize( window.innerWidth, window.innerHeight );
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();

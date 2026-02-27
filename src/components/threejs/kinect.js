@@ -5,9 +5,14 @@ import * as THREE from 'three';
 let scene, camera, renderer;
 let geometry, mesh, material;
 let mouse, center;
+let animationFrameId = null;
 
 function animate () {
-  requestAnimationFrame( animate );
+  animationFrameId = requestAnimationFrame( animate );
+
+  if (!camera || !renderer || !scene || !mouse || !center) {
+    return;
+  }
 
   camera.position.x += ( mouse.x - camera.position.x ) * 0.15;
   camera.position.y += ( - mouse.y - camera.position.y ) * 0.05;
@@ -21,6 +26,8 @@ export default class Kinect extends React.Component {
     super(props);
     this.video    = null,
     this.frame = null
+    this.onWindowResize = this.onWindowResize.bind(this)
+    this.onDocumentMouseMove = this.onDocumentMouseMove.bind(this)
   }
   componentDidMount() {
     this.video = document.getElementById( 'video' );
@@ -29,6 +36,39 @@ export default class Kinect extends React.Component {
 
     animate();
 
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousemove', this.onDocumentMouseMove);
+    window.removeEventListener('resize', this.onWindowResize);
+
+    if (animationFrameId !== null) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+
+    if (this.video) {
+      this.video.pause();
+      this.video.removeAttribute('src');
+      this.video.load();
+    }
+
+    geometry?.dispose?.();
+    material?.dispose?.();
+    renderer?.dispose?.();
+
+    if (mesh && scene) {
+      scene.remove(mesh);
+    }
+
+    scene = null;
+    camera = null;
+    renderer = null;
+    geometry = null;
+    mesh = null;
+    material = null;
+    mouse = null;
+    center = null;
   }
 
 
@@ -135,7 +175,7 @@ export default class Kinect extends React.Component {
       canvas: document.querySelector('.video')
     });
 
-    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setPixelRatio( Math.min(window.devicePixelRatio || 1, 1.5) );
     renderer.setSize( window.innerWidth, window.innerHeight );
 
     mouse = new THREE.Vector3( 0, 0, 1 );
@@ -148,6 +188,9 @@ export default class Kinect extends React.Component {
   }
 
   onWindowResize() {
+    if (!camera || !renderer) {
+      return;
+    }
  
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -157,6 +200,10 @@ export default class Kinect extends React.Component {
   }
 
   onDocumentMouseMove( event ) {
+    if (!mouse) {
+      return;
+    }
+
     mouse.x = ( event.clientX - window.innerWidth / 2 ) * 8;
     mouse.y = ( event.clientY - window.innerHeight / 2 ) * 8;
   }
