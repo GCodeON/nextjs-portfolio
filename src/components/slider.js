@@ -4,15 +4,12 @@ import Modal from "./modal";
 import { isSanityImageUrl } from '@/sanity/sanityImageUrl'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { EffectCoverflow, Pagination, Scrollbar, Navigation } from 'swiper/core';
+import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules'
 
-import 'swiper/swiper.min.css'
-import "swiper/components/effect-coverflow/effect-coverflow.min.css";
-import "swiper/components/navigation/navigation.min.css";
-import "swiper/components/pagination/pagination.min.css";
-import "swiper/components/scrollbar/scrollbar.min.css";
-
-SwiperCore.use([EffectCoverflow, Pagination, Scrollbar, Navigation]);
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
 export default class Slider extends React.Component {
   constructor(props) {
     super(props);
@@ -264,6 +261,7 @@ export default class Slider extends React.Component {
       <div className="slider-component">
         <h2 className="title">Projects</h2>
         <Swiper
+          modules         = {[Navigation, Pagination, Scrollbar, Autoplay]}
           className       = "slider"
           autoHeight      = {true}
           // effect          = {"coverflow"}
@@ -274,17 +272,10 @@ export default class Slider extends React.Component {
           initialSlide    = {clampInitialSlide(1)}
           observer        = {true}
           observeParents  = {true}
-          autoplay        = {true}
+          autoplay        = {{ delay: 5000, disableOnInteraction: false }}
           navigation      = {true}
           pagination      = {{ clickable: true }}
           scrollbar       = {{ draggable: false }}
-          coverflowEffect = {{
-            rotate       : 25,
-            stretch      : 0,
-            depth        : 100,
-            modifier     : 1,
-            slideShadows : true
-          }}
           breakpoints={{
             320: {
               width         : 320,

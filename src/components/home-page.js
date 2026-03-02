@@ -6,9 +6,6 @@ import dynamic from 'next/dynamic'
 import Layout from './layout'
 import Loader from './loader'
 import Hero from './hero'
-import Slider from './slider'
-import Timeline from './timeline'
-import Contact from './contact'
 
 import useAppReady from '@/hooks/useAppReady'
 import useHomePageData from '@/hooks/useHomePageData'
@@ -16,11 +13,19 @@ import useHomePageData from '@/hooks/useHomePageData'
 const ThreeD = dynamic(() => import('./threejs/3D'), { ssr: false })
 const About = dynamic(() => import('./about'), { ssr: false })
 const Kinect = dynamic(() => import('./threejs/kinect'), { ssr: false })
+const Slider = dynamic(() => import('./slider'), { ssr: false })
+const Timeline = dynamic(() => import('./timeline'), { ssr: false })
+const Contact = dynamic(() => import('./contact'), { ssr: false })
 
 export default function HomePage({ data }) {
   useAppReady()
   const [showThreeD, setShowThreeD] = useState(false)
   const [showKinect, setShowKinect] = useState(false)
+  const [showProjects, setShowProjects] = useState(false)
+  const [showExperience, setShowExperience] = useState(false)
+  const [showContact, setShowContact] = useState(false)
+  const projectsSectionRef = useRef(null)
+  const experienceSectionRef = useRef(null)
   const contactSectionRef = useRef(null)
 
   const { skillsList, projectsList, experienceList, linkedInUrl, gitHubUrl } = useHomePageData(data);
@@ -89,6 +94,44 @@ export default function HomePage({ data }) {
     }
   }, [showKinect])
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined
+    }
+
+    const observeAndReveal = (target, reveal) => {
+      if (!target) {
+        return null
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries
+          if (!entry?.isIntersecting) {
+            return
+          }
+
+          reveal(true)
+          observer.disconnect()
+        },
+        { root: null, rootMargin: '320px 0px', threshold: 0.01 }
+      )
+
+      observer.observe(target)
+      return observer
+    }
+
+    const projectsObserver = observeAndReveal(projectsSectionRef.current, setShowProjects)
+    const experienceObserver = observeAndReveal(experienceSectionRef.current, setShowExperience)
+    const contactObserver = observeAndReveal(contactSectionRef.current, setShowContact)
+
+    return () => {
+      projectsObserver?.disconnect()
+      experienceObserver?.disconnect()
+      contactObserver?.disconnect()
+    }
+  }, [])
+
   return (
     <div className="app-shell">
       <Layout>
@@ -99,24 +142,24 @@ export default function HomePage({ data }) {
             <About skills={skillsList} title="About" description={data?.description} />
           </section>
 
-          <section id="projects">
-            <Slider slides={projectsList} />
+          <section id="projects" ref={projectsSectionRef}>
+            {showProjects ? <Slider slides={projectsList} /> : null}
           </section>
 
-          <section id="experience">
-            <Timeline exp={experienceList} />
+          <section id="experience" ref={experienceSectionRef}>
+            {showExperience ? <Timeline exp={experienceList} /> : null}
           </section>
           <section id="contact" ref={contactSectionRef}>
-            <Contact />
-            {showKinect ? <Kinect /> : null}
+            {showContact ? <Contact /> : null}
+            {showContact && showKinect ? <Kinect /> : null}
           </section>
         </Loader>
 
         <div className="links">
-          <a href={linkedInUrl} target="_blank" rel="noreferrer">
+          <a href={linkedInUrl} target="_blank" rel="noreferrer" aria-label="Open LinkedIn profile">
             <FaLinkedin className="linkedin icon" />
           </a>
-          <a href={gitHubUrl} target="_blank" rel="noreferrer">
+          <a href={gitHubUrl} target="_blank" rel="noreferrer" aria-label="Open GitHub profile">
             <FaGithub className="github icon" />
           </a>
         </div>

@@ -7,6 +7,23 @@ let geometry, mesh, material;
 let mouse, center;
 let animationFrameId = null;
 
+function startAnimation() {
+  if (animationFrameId !== null) {
+    return;
+  }
+
+  animate();
+}
+
+function stopAnimation() {
+  if (animationFrameId === null) {
+    return;
+  }
+
+  cancelAnimationFrame(animationFrameId);
+  animationFrameId = null;
+}
+
 function animate () {
   animationFrameId = requestAnimationFrame( animate );
 
@@ -26,26 +43,46 @@ export default class Kinect extends React.Component {
     super(props);
     this.video    = null,
     this.frame = null
+    this.visibilityObserver = null
     this.onWindowResize = this.onWindowResize.bind(this)
     this.onDocumentMouseMove = this.onDocumentMouseMove.bind(this)
+    this.onVisibilityChange = this.onVisibilityChange.bind(this)
+    this.onSectionIntersection = this.onSectionIntersection.bind(this)
   }
   componentDidMount() {
     this.video = document.getElementById( 'video' );
 
     this.init();
 
-    animate();
+    document.addEventListener('visibilitychange', this.onVisibilityChange)
+
+    if (this.mount && typeof IntersectionObserver !== 'undefined') {
+      this.visibilityObserver = new IntersectionObserver(this.onSectionIntersection, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.01,
+      })
+
+      this.visibilityObserver.observe(this.mount)
+    }
+
+    if (!document.hidden) {
+      startAnimation();
+    }
 
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousemove', this.onDocumentMouseMove);
     window.removeEventListener('resize', this.onWindowResize);
+    document.removeEventListener('visibilitychange', this.onVisibilityChange)
 
-    if (animationFrameId !== null) {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = null;
+    if (this.visibilityObserver) {
+      this.visibilityObserver.disconnect()
+      this.visibilityObserver = null
     }
+
+    stopAnimation();
 
     if (this.video) {
       this.video.pause();
@@ -69,6 +106,33 @@ export default class Kinect extends React.Component {
     material = null;
     mouse = null;
     center = null;
+  }
+
+  onVisibilityChange() {
+    if (document.hidden) {
+      stopAnimation();
+      return;
+    }
+
+    if (renderer && scene && camera && mouse && center) {
+      startAnimation();
+    }
+  }
+
+  onSectionIntersection(entries) {
+    const [entry] = entries
+    if (!entry) {
+      return
+    }
+
+    if (!entry.isIntersecting) {
+      stopAnimation()
+      return
+    }
+
+    if (!document.hidden && renderer && scene && camera && mouse && center) {
+      startAnimation()
+    }
   }
 
 

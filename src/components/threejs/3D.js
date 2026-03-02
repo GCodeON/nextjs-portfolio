@@ -25,10 +25,28 @@ function rotate() {
   objectB.rotation.y += 0.01;
 }
 
+function startAnimation() {
+  if (animationFrameId !== null) {
+    return;
+  }
+
+  animate();
+}
+
+function stopAnimation() {
+  if (animationFrameId === null) {
+    return;
+  }
+
+  cancelAnimationFrame(animationFrameId);
+  animationFrameId = null;
+}
+
 export default class threeD extends React.Component {
   constructor(props) {
     super(props);
     this.onWindowResize = this.onWindowResize.bind(this);
+    this.onVisibilityChange = this.onVisibilityChange.bind(this);
   }
   
   componentDidMount() {
@@ -48,17 +66,18 @@ export default class threeD extends React.Component {
     this.createDodecahedron();
 
     window.addEventListener( 'resize', this.onWindowResize );
+    document.addEventListener('visibilitychange', this.onVisibilityChange);
 
-    animate();
+    if (!document.hidden) {
+      startAnimation();
+    }
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.onWindowResize);
+    document.removeEventListener('visibilitychange', this.onVisibilityChange);
 
-    if (animationFrameId !== null) {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = null;
-    }
+    stopAnimation();
 
     if (objectA) {
       objectA.geometry?.dispose?.();
@@ -80,6 +99,17 @@ export default class threeD extends React.Component {
     renderer = null;
     geometry = null;
     material = null;
+  }
+
+  onVisibilityChange() {
+    if (document.hidden) {
+      stopAnimation();
+      return;
+    }
+
+    if (renderer && scene && camera && objectA && objectB) {
+      startAnimation();
+    }
   }
 
   onWindowResize() {
