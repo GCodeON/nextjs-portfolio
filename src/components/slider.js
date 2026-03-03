@@ -272,7 +272,7 @@ export default class Slider extends React.Component {
           initialSlide    = {clampInitialSlide(1)}
           observer        = {true}
           observeParents  = {true}
-          autoplay        = {{ delay: 5000, disableOnInteraction: false }}
+          autoplay        = {{ delay: 35000, disableOnInteraction: true }}
           navigation      = {true}
           pagination      = {{ clickable: true }}
           scrollbar       = {{ draggable: false }}
