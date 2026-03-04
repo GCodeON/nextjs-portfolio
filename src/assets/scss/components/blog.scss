@@ -1,0 +1,69 @@
+@use "../mixins" as *;
+
+.blog-preview {
+  position: relative;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  max-width: 900px;
+
+  @include breakpoint(medium) {
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  .pretitle {
+    display: inline-block;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+  }
+}
+
+.blog-preview-list {
+  display: grid;
+  gap: 1rem;
+
+  @include breakpoint(medium) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.blog-preview-item {
+  border: 1px solid var(--color-secondary);
+  border-radius: 12px;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.blog-preview-image-wrap {
+  margin: -1rem -1rem 0.9rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+.blog-preview-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.blog-preview-title {
+  margin: 0 0 0.5rem;
+  font-family: vortice-concept, sans-serif;
+  font-size: 1.1rem;
+
+  a {
+    color: var(--color-primary);
+  }
+}
+
+.blog-preview-summary {
+  margin: 0;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.blog-preview-date {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}

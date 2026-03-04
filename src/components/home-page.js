@@ -15,6 +15,7 @@ const About = dynamic(() => import('./about'), { ssr: false })
 const Kinect = dynamic(() => import('./threejs/kinect'), { ssr: false })
 const Slider = dynamic(() => import('./slider'), { ssr: false })
 const Timeline = dynamic(() => import('./timeline'), { ssr: false })
+const BlogPreview = dynamic(() => import('./blog-preview'), { ssr: false })
 const Contact = dynamic(() => import('./contact'), { ssr: false })
 
 export default function HomePage({ data }) {
@@ -28,7 +29,7 @@ export default function HomePage({ data }) {
   const experienceSectionRef = useRef(null)
   const contactSectionRef = useRef(null)
 
-  const { skillsList, projectsList, experienceList, linkedInUrl, gitHubUrl } = useHomePageData(data);
+  const { skillsList, projectsList, experienceList, blogPosts, linkedInUrl, gitHubUrl } = useHomePageData(data);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -149,6 +150,11 @@ export default function HomePage({ data }) {
           <section id="experience" ref={experienceSectionRef}>
             {showExperience ? <Timeline exp={experienceList} /> : null}
           </section>
+
+          <section id="blog">
+            <BlogPreview posts={blogPosts} />
+          </section>
+
           <section id="contact" ref={contactSectionRef}>
             {showContact ? <Contact /> : null}
             {showContact && showKinect ? <Kinect /> : null}

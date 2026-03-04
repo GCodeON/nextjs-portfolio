@@ -104,6 +104,27 @@ export const normalizeExperience = (item, index) => {
   }
 }
 
+export const normalizeBlogPost = (post) => {
+  if (!post?._id) {
+    return null
+  }
+
+  const title = post?.title || 'Untitled post'
+  const slug = typeof post?.slug === 'string' ? post.slug : ''
+  const summary = post?.description || post?.summary || post?.excerpt || ''
+  const publishedAt = post?.publishedAt || post?._createdAt || ''
+  const image = asImageUrl(post?.mainImage, 960, 540, 'crop')
+
+  return {
+    id: post._id,
+    title,
+    slug,
+    summary,
+    publishedAt,
+    image
+  }
+}
+
 export const buildHomePageData = (data) => {
   const tools = Array.isArray(data?.tools)
     ? data.tools.map(normalizeTool).filter(Boolean)
@@ -116,10 +137,15 @@ export const buildHomePageData = (data) => {
   const experienceSource = Array.isArray(data?.experience) ? data.experience : []
   const experience = experienceSource.map(normalizeExperience).filter(Boolean)
 
+  const blogPosts = Array.isArray(data?.blogPosts)
+    ? data.blogPosts.map(normalizeBlogPost).filter(Boolean)
+    : []
+
   return {
     skillsList: tools.length ? tools : FALLBACK_TOOLS,
     projectsList: slider.length ? slider : FALLBACK_SLIDER,
     experienceList: experience.length ? experience : TIMELINE,
+    blogPosts,
     linkedInUrl: asLink(data?.linkedIn),
     gitHubUrl: asLink(data?.GitHub)
   }

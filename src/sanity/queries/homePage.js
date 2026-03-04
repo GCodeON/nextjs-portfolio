@@ -39,5 +39,15 @@ export const HOME_PAGE_QUERY = `*[_type == "about"][0]{
   },
   projects[]{
     ${PROJECT_FIELDS}
-  }
+  },
+  "blogPosts": *[_type == "blog"]
+    | order(coalesce(publishedAt, _createdAt) desc)[0...3]{
+      _id,
+      "title": coalesce(title, "Untitled post"),
+      "slug": slug.current,
+      description,
+      mainImage,
+      publishedAt,
+      _createdAt
+    }
 }`
