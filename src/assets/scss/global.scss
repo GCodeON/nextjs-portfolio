@@ -79,34 +79,83 @@ body.app-ready .app-shell {
 
 
 .nav {
-	display         : flex;
-	flex-direction  : row;
-	// align-self      : flex-end;
-	// align-items     : flex-end;
-	justify-content : space-between;
-	padding         : 2rem 3rem;
-	z-index         : 100;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.25rem;
+	padding: 1.25rem 1.5rem;
+	z-index: 120;
+	background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.99) 0%, rgba(0, 0, 0, 0) 100%);
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity 350ms ease;
 
-	position: sticky;
-
-	@include breakpoint(medium) {
-		position: absolute;
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-	}
-		
 	.item {
 		font-family: vortice-concept, sans-serif;
 		font-weight: 400;
 		color: var(--color-secondary);
 		font-size: 1rem;
 		cursor: pointer;
+		transition: color 200ms ease;
 	}
-	
+
 	.current {
 		color: var(--color-link-hover);
 	}
+
+	&__logo {
+		font-family: vortice-concept, sans-serif;
+		font-size: 1.35rem;
+		font-weight: 400;
+		-webkit-text-stroke: 1.5px var(--color-primary);
+		-webkit-text-fill-color: transparent;
+		color: transparent;
+		text-transform: lowercase;
+		letter-spacing: 0.06em;
+		line-height: 1;
+	}
+
+	&__links {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1.1rem;
+	}
+
+	&--page {
+		justify-content: space-between;
+	}
+
+	&--home {
+		display: none;
+
+		@include breakpoint(medium) {
+			display: flex;
+		}
+	}
+
+	&__links--page {
+		justify-content: flex-end;
+	}
+
+	@include breakpoint(medium) {
+		padding: 1.5rem 2.25rem;
+	}
+}
+
+body.app-ready .nav {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
+
+section[id] {
+	scroll-margin-top: 110px;
 }
 
 .panel {

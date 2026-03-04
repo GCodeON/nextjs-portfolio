@@ -1,5 +1,7 @@
 import '../assets/scss/global.scss'
 import Script from 'next/script'
+import AppReady from '@/components/app-ready'
+import SiteNav from '@/components/site-nav'
 
 export const metadata = {
   title: 'GS | Gerardo Soto',
@@ -29,6 +31,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="app-loading">
+        <AppReady />
+        <SiteNav />
         <Script
           id="typekit-async-loader"
           strategy="afterInteractive"
