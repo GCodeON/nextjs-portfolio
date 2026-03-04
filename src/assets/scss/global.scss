@@ -87,6 +87,7 @@ body.app-ready .app-shell {
 	gap: 1.25rem;
 	padding: 1.25rem 1.5rem;
 	z-index: 120;
+	background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.99) 0%, rgba(0, 0, 0, 0) 100%);
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
@@ -108,9 +109,13 @@ body.app-ready .app-shell {
 	&__logo {
 		font-family: vortice-concept, sans-serif;
 		font-size: 1.35rem;
-		color: var(--color-secondary);
+		font-weight: 400;
+		-webkit-text-stroke: 1.5px var(--color-primary);
+		-webkit-text-fill-color: transparent;
+		color: transparent;
 		text-transform: lowercase;
 		letter-spacing: 0.06em;
+		line-height: 1;
 	}
 
 	&__links {
