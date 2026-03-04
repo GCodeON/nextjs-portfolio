@@ -276,7 +276,6 @@ export default function Modal({
                         fill
                         className="portfolio-modal__hero-image"
                         sizes="(max-width: 768px) 92vw, 62vw"
-                        priority
                         unoptimized={isSanityImageUrl(project.image)}
                       />
                       {isIframeLoading ? (
