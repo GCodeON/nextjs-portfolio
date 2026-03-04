@@ -150,10 +150,12 @@ export default function HomePage({ data }) {
           <section id="experience" ref={experienceSectionRef}>
             {showExperience ? <Timeline exp={experienceList} /> : null}
           </section>
-
-          <section id="blog">
-            <BlogPreview posts={blogPosts} />
-          </section>
+          
+          {Array.isArray(blogPosts) && blogPosts.length > 0 ? (
+            <section id="blog">
+              <BlogPreview posts={blogPosts} />
+            </section>
+          ) : null}
 
           <section id="contact" ref={contactSectionRef}>
             {showContact ? <Contact /> : null}

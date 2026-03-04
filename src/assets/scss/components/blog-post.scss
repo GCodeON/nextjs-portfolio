@@ -2,6 +2,7 @@
 
 .blog-post-page {
   background: var(--color-bg);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.95));
   min-height: 100vh;
   padding: 2rem 1rem 4rem;
 
@@ -13,6 +14,7 @@
 .blog-post {
   max-width: 980px;
   margin: 0 auto;
+  color: #fff;
 }
 
 .blog-post-header {
@@ -49,7 +51,7 @@
   border: 1px solid var(--color-secondary);
   border-radius: 20px 0;
   padding: 1.25rem 1rem;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.5);
 
   @include breakpoint(medium) {
     padding: 1.5rem 1.5rem;

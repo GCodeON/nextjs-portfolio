@@ -14,12 +14,22 @@
     display: inline-block;
     margin: 0 auto 1.5rem;
     text-align: center;
+    transition: opacity 170ms cubic-bezier(0.4, 0, 0.2, 1), transform 170ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &.is-transitioning {
+    .pretitle,
+    .blog-preview-list {
+      opacity: 0.35;
+      transform: translateY(6px);
+    }
   }
 }
 
 .blog-preview-list {
   display: grid;
   gap: 1rem;
+  transition: opacity 170ms cubic-bezier(0.4, 0, 0.2, 1), transform 170ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @include breakpoint(medium) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
