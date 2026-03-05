@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
   max-width: 900px;
+  text-align: center;
 
   @include breakpoint(medium) {
     padding: 2.5rem 2rem 4rem;

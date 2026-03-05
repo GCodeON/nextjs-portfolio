@@ -51,3 +51,14 @@ export const HOME_PAGE_QUERY = `*[_type == "about"][0]{
       _createdAt
     }
 }`
+
+export const BLOG_LIST_QUERY = `*[_type == "blog"]
+  | order(coalesce(publishedAt, _createdAt) desc){
+    _id,
+    "title": coalesce(title, "Untitled post"),
+    "slug": slug.current,
+    description,
+    mainImage,
+    publishedAt,
+    _createdAt
+  }`

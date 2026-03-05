@@ -1,6 +1,6 @@
 import HomePage from '../components/home-page'
 import { client } from "@/sanity/client";
-import { HOME_PAGE_QUERY } from '@/sanity/queries/homePage'
+import { HOME_PAGE_QUERY } from '@/sanity/queries/index'
 
 export const revalidate = 60
 
