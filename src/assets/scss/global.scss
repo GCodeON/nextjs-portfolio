@@ -161,6 +161,19 @@ body.app-ready .app-shell {
 	&--home {
 		display: none;
 
+		.item {
+			transition: color 400ms ease-out, background-color 400ms ease-out;
+
+			&:hover {
+				color: var(--color-secondary);
+			}
+
+			&.current {
+				background-color: var(--color-primary);
+				color: var(--color-bg);
+			}
+		}
+
 		@include breakpoint(medium) {
 			display: flex;
 		}
