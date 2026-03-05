@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 const HOME_SECTIONS = [
@@ -17,7 +17,6 @@ export default function SiteNav() {
   const currentPath = pathname || ''
   const isHome = currentPath === '/'
   const [activeSection, setActiveSection] = useState('')
-  const clickLockedSectionRef = useRef('')
 
   useEffect(() => {
     if (!isHome || typeof window === 'undefined') {
@@ -46,31 +45,9 @@ export default function SiteNav() {
     }
 
     let frameId = null
-    let unlockTimerId = null
-
-    const clearUnlockTimer = () => {
-      if (unlockTimerId !== null) {
-        window.clearTimeout(unlockTimerId)
-        unlockTimerId = null
-      }
-    }
-
-    const scheduleUnlock = () => {
-      clearUnlockTimer()
-      unlockTimerId = window.setTimeout(() => {
-        clickLockedSectionRef.current = ''
-        requestUpdate()
-      }, 160)
-    }
 
     const updateActiveSection = () => {
       frameId = null
-
-      if (clickLockedSectionRef.current) {
-        const lockedId = clickLockedSectionRef.current
-        setActiveSection((previous) => (previous === lockedId ? previous : lockedId))
-        return
-      }
 
       const triggerLine = 140
 
@@ -104,15 +81,7 @@ export default function SiteNav() {
       frameId = window.requestAnimationFrame(updateActiveSection)
     }
 
-    const handleScroll = () => {
-      if (clickLockedSectionRef.current) {
-        scheduleUnlock()
-      }
-
-      requestUpdate()
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', requestUpdate, { passive: true })
     window.addEventListener('resize', requestUpdate)
 
     const currentHashId = window.location.hash.replace('#', '').split('?')[0]
@@ -125,19 +94,13 @@ export default function SiteNav() {
     requestUpdate()
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', requestUpdate)
       window.removeEventListener('resize', requestUpdate)
-      clearUnlockTimer()
       if (frameId !== null) {
         window.cancelAnimationFrame(frameId)
       }
     }
   }, [isHome])
-
-  const handleSectionClick = (sectionId) => {
-    clickLockedSectionRef.current = sectionId
-    setActiveSection(sectionId)
-  }
 
   if (isHome) {
     return (
@@ -148,7 +111,7 @@ export default function SiteNav() {
               key={id}
               href={`#${id}`}
               className={`item ${activeSection === id ? 'current' : ''}`}
-              onClick={() => handleSectionClick(id)}
+              onClick={() => setActiveSection(id)}
             >
               {label}
             </a>
