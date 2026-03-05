@@ -162,8 +162,6 @@ body.app-ready .app-shell {
 		display: none;
 
 		.item {
-			transition: color 400ms ease-out, background-color 400ms ease-out;
-
 			&:hover {
 				color: var(--color-secondary);
 			}
