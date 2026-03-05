@@ -78,19 +78,24 @@
 		text-align      : center;
 		height          : 100%;
 		z-index         : 1;
+		transform       : translateZ(0);
+		backface-visibility: hidden;
 
 
 	}
 
 	.overlay {
-		background-color : rgba(0,0,0,0.35);
+		background-color : rgb(10, 10, 10);
 		width            : 100vw;
-		background-image : linear-gradient(180deg, rgba(255,0,0,0), rgb(10, 10, 10));
+		background-image : none;
 		// max-width: 80vw;
 		// max-width: 50%;
 		// height: 25%;
 		// margin: 0 auto;
 		overflow: hidden;
+		transform: translateZ(0);
+		will-change: transform;
+		backface-visibility: hidden;
 	}
 
 	.content p {

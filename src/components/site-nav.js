@@ -8,7 +8,7 @@ const HOME_SECTIONS = [
   { id: 'about', label: 'About' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
-//   { id: 'blog', label: 'Blog' },
+  { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' }
 ]
 
@@ -51,7 +51,7 @@ export default function SiteNav() {
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0
       const triggerLine = viewportHeight * 0.4
 
-      let nextId = sections[0].id
+      let nextId = ''
 
       for (const section of sections) {
         const rect = section.element.getBoundingClientRect()
@@ -65,7 +65,10 @@ export default function SiteNav() {
           return previous
         }
 
-        syncHash(nextId)
+        if (nextId) {
+          syncHash(nextId)
+        }
+
         return nextId
       })
     }
@@ -85,7 +88,7 @@ export default function SiteNav() {
     if (currentHashId && sections.some(({ id }) => id === currentHashId)) {
       setActiveSection(currentHashId)
     } else {
-      setActiveSection(sections[0].id)
+      setActiveSection('')
     }
 
     requestUpdate()
