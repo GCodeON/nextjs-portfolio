@@ -72,8 +72,7 @@ export default function SiteNav() {
         return
       }
 
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0
-      const triggerLine = viewportHeight * 0.4
+      const triggerLine = 140
 
       let nextId = ''
 
