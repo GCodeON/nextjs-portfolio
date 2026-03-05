@@ -90,7 +90,7 @@ export default function BlogPreview({ posts = [] }) {
 
   return (
     <div className={`blog-preview container${isTransitioning ? ' is-transitioning' : ''}`}>
-      <h2 className="pretitle transparent">Latest Blog</h2>
+      <h2 className="pretitle transparent"> Blog</h2>
       <div className="blog-preview-list">
         {posts.map((post) => (
           <article key={post.id} className="blog-preview-item">
