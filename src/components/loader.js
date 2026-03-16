@@ -241,18 +241,10 @@ export default class CircularText extends React.Component {
 
     gsap.killTweensOf([this.enterBackground, this.circleText]);
 
-    gsap.to(this.enterBackground, {
-        duration  : 1.3,
-        ease      : 'expo',
-        scale     : 1.4,
-        overwrite : true
-    });
     gsap.to(this.circleText, {
         duration  : 0.5,
         ease      : 'expo',
         rotation  : '+=120',
-        scale     : 0.5,
-        opacity   : 0.9,
         overwrite : true,
         stagger   : {
             amount : -0.15
@@ -267,18 +259,10 @@ export default class CircularText extends React.Component {
 
     gsap.killTweensOf([this.enterBackground, this.circleText]);
 
-    gsap.to(this.enterBackground, {
-        duration  : 1,
-        ease      : 'expo',
-        scale     : 1,
-        overwrite : true
-    });
     gsap.to(this.circleText, {
         duration  : 1,
         ease      : 'expo',
-        scale     : 0.8,
         rotation  : i => i%2 ? '+=120' : '-=120',
-        opacity   : 1,
         overwrite : true,
         stagger   : {
             amount : -0.2

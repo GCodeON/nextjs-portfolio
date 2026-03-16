@@ -32,7 +32,8 @@
 			background     : radial-gradient(circle, rgba(241, 249, 7, 0.36) 0%, rgba(142, 10, 69, 0.283) 38%, rgba(0, 0, 0, 0.176) 72%);
 			filter         : blur(24px);
 			opacity        : 0.5;
-			animation      : heroGlowPulse 10s ease-in-out infinite;
+			// animation      : heroGlowPulse 10s ease-in-out infinite;
+			will-change    : transform, opacity;
 			pointer-events : none;
 			z-index        : -1;
 
@@ -55,7 +56,7 @@
 		text-fill-color         : transparent;
 		color                   : transparent;
 		text-align              : center;
-		transition              : 0.75s all ease-in-out;
+		transition              : transform 0.75s ease-in-out, opacity 0.75s ease-in-out;
 
 		@include breakpoint(medium) {
 			font-size   : 5em;
@@ -82,13 +83,18 @@
 	100% {
 		transform : translate(-50%, -52%) scale(0.94);
 		opacity   : 0.32;
-		filter    : blur(18px);
 	}
 
 	50% {
 		transform : translate(-50%, -52%) scale(1.06);
 		opacity   : 0.64;
-		filter    : blur(30px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero .intro::before {
+		animation : none;
+		opacity   : 0.42;
 	}
 }
 
@@ -124,7 +130,7 @@
 	text-fill-color         : transparent;
 	color                   : transparent;
 	text-align              : center;
-	transition              : 1s all ease-in-out;
+	transition              : transform 1s ease-in-out, opacity 1s ease-in-out;
 
 	@include breakpoint(large) {
 		font-size: 3em;

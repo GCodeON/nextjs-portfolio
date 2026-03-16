@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import styles from './blog-preview.module.scss'
 
 const PAGE_TRANSITION_MS = 90
 const TRANSITION_RESET_MS = 650
@@ -89,13 +90,13 @@ export default function BlogPreview({ posts = [] }) {
   }
 
   return (
-    <div className={`blog-preview container${isTransitioning ? ' is-transitioning' : ''}`}>
-      <h2 className="pretitle transparent"> Blog</h2>
-      <div className="blog-preview-list">
+    <div className={`${styles.blogPreview} container${isTransitioning ? ` ${styles.isTransitioning}` : ''}`}>
+      <h2 className={`${styles.pretitle} transparent`}> Blog</h2>
+      <div className={styles.blogPreviewList}>
         {posts.map((post) => (
-          <article key={post.id} className="blog-preview-item">
+          <article key={post.id} className={styles.blogPreviewItem}>
             {post.image ? (
-              <div className="blog-preview-image-wrap">
+              <div className={styles.blogPreviewImageWrap}>
                 {post.slug ? (
                   <Link
                     href={`/blog/${post.slug}`}
@@ -107,7 +108,7 @@ export default function BlogPreview({ posts = [] }) {
                       alt={post.title || 'Blog preview image'}
                       width={960}
                       height={540}
-                      className="blog-preview-image"
+                      className={styles.blogPreviewImage}
                     />
                   </Link>
                 ) : (
@@ -116,22 +117,22 @@ export default function BlogPreview({ posts = [] }) {
                     alt={post.title || 'Blog preview image'}
                     width={960}
                     height={540}
-                    className="blog-preview-image"
+                    className={styles.blogPreviewImage}
                   />
                 )}
               </div>
             ) : null}
 
-            <h3 className="blog-preview-title">
+            <h3 className={styles.blogPreviewTitle}>
               {post.slug ? (
                 <Link href={`/blog/${post.slug}`} onClick={(event) => onNavigate(event, post.slug)}>
                   {post.title}
                 </Link>
               ) : post.title}
             </h3>
-            {post.summary ? <p className="blog-preview-summary">{post.summary}</p> : null}
+            {post.summary ? <p className={styles.blogPreviewSummary}>{post.summary}</p> : null}
             {post.publishedAt ? (
-              <time className="blog-preview-date" dateTime={post.publishedAt}>
+              <time className={styles.blogPreviewDate} dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt)}
               </time>
             ) : null}
