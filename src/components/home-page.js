@@ -44,7 +44,7 @@ export default function HomePage({ data }) {
     <div className="app-shell">
       <Layout>
         {showThreeD ? <ThreeD /> : null}
-        <Loader strings={[]}>
+        <Loader strings={[]} showThreeD={showThreeD}>
           <Hero />
           <section id="about">
             <About skills={skillsList} title="About" description={data?.description} />

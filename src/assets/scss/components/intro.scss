@@ -85,9 +85,10 @@
 	}
 
 	.overlay {
-		background-color : rgb(10, 10, 10);
+		background-color : rgba(0, 0, 0, 0.4) !important;
 		width            : 100vw;
 		background-image : none;
+		pointer-events   : none;
 		// max-width: 80vw;
 		// max-width: 50%;
 		// height: 25%;

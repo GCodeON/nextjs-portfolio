@@ -152,9 +152,10 @@ export default class threeD extends React.Component {
       <style jsx>{`
 
         canvas {
-          position : fixed;
-          top      : 0;
-          left     : 0;
+          position       : fixed;
+          top            : 0;
+          left           : 0;
+          pointer-events : none;
         }
         .content {
           position : relative;

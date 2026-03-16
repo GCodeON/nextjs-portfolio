@@ -111,7 +111,7 @@ export default function SiteNav() {
               key={id}
               href={`#${id}`}
               className={`item ${activeSection === id ? 'current' : ''}`}
-              onClick={() => setActiveSection(id)}
+              onClick={() => handleSectionClick(id)}
             >
               {label}
             </a>

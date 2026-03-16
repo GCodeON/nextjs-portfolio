@@ -16,8 +16,14 @@ export default class CircularText extends React.Component {
       this.enterText       = null
       this.startTL         = null
       this.active          = false
-        this.assetTimeoutMs  = 3000
-        this.isMobileViewport = false
+      this.assetTimeoutMs  = 3000
+      this.isMobileViewport = false
+      this.isLoaderReady = false
+      this.isLoaderOpened = false
+  }
+
+  componentDidUpdate(prevProps) {
+    // hover becomes active once showThreeD is true
   }
       async componentDidMount() {
     this.circleText      = document.querySelectorAll('text.circles__text')
@@ -38,14 +44,10 @@ export default class CircularText extends React.Component {
     await this.waitForAssets();
     this.showFinalState();
 
-    // this.nav    = document.querySelector('.nav'),
-    // this.slides = document.querySelector('.work-component'),
-
   }
 
   setup() {
     gsap.set(this.circleText, { transformOrigin: '50% 50%' });
-    gsap.set(this.enterCtrl, {pointerEvents: 'none'});
   }
 
   prepareInitialState() {
@@ -178,6 +180,8 @@ export default class CircularText extends React.Component {
   }
 
   showFinalState() {
+    this.isLoaderReady = true
+
     if (this.isMobileViewport) {
       gsap.set('body', { overflow: 'visible' });
       gsap.set(this.content, { opacity: 1, display: 'flex' });
@@ -212,7 +216,7 @@ export default class CircularText extends React.Component {
         duration: 0.4,
         opacity: 0.8,
         scale: 1.2,
-        pointerEvents: 'none',
+        pointerEvents: 'auto',
         ease: 'power2.out'
       }, '-=0.6');
 
@@ -231,40 +235,52 @@ export default class CircularText extends React.Component {
 
 
   hoverEnter() {
-    gsap.killTweensOf([this.enterBackground,this.circleText]);
-    
+    if (!this.isLoaderReady || this.isLoaderOpened || !this.props.showThreeD) {
+      return;
+    }
+
+    gsap.killTweensOf([this.enterBackground, this.circleText]);
+
     gsap.to(this.enterBackground, {
-        duration : 1.3,
-        ease     : 'expo',
-        scale    : 1.4
+        duration  : 1.3,
+        ease      : 'expo',
+        scale     : 1.4,
+        overwrite : true
     });
     gsap.to(this.circleText, {
-        duration : 0.5,
-        ease     : 'expo',
-        rotation : '+=120',
-        scale    : 0.5,
-        opacity  : 0.9,
-        stagger  : {
+        duration  : 0.5,
+        ease      : 'expo',
+        rotation  : '+=120',
+        scale     : 0.5,
+        opacity   : 0.9,
+        overwrite : true,
+        stagger   : {
             amount : -0.15
         }
     });
   };
 
   hoverLeave() {
+    if (!this.isLoaderReady || this.isLoaderOpened || !this.props.showThreeD) {
+      return;
+    }
+
     gsap.killTweensOf([this.enterBackground, this.circleText]);
 
     gsap.to(this.enterBackground, {
-        duration : 1,
-        ease     : 'expo',
-        scale    : 1
+        duration  : 1,
+        ease      : 'expo',
+        scale     : 1,
+        overwrite : true
     });
     gsap.to(this.circleText, {
-        duration : 1,
-        ease     : 'expo',
-        scale    : 0.8,
-        rotation : i => i%2 ? '+=120' : '-=120',
-        opacity  : 1,
-        stagger  : {
+        duration  : 1,
+        ease      : 'expo',
+        scale     : 0.8,
+        rotation  : i => i%2 ? '+=120' : '-=120',
+        opacity   : 1,
+        overwrite : true,
+        stagger   : {
             amount : -0.2
         }
     });
@@ -305,6 +321,11 @@ export default class CircularText extends React.Component {
       }, 'start+=2');
   }
   enter() {
+    if (!this.isLoaderReady || this.isLoaderOpened) {
+      return;
+    }
+
+    this.isLoaderOpened = true;
     gsap.killTweensOf([this.circleText]);
 
     gsap.set([this.content], {display: 'flex'});
@@ -384,7 +405,7 @@ export default class CircularText extends React.Component {
 
 
     return (
-      <div className="circular-text-component">
+      <div className="circular-text-component" onMouseEnter={this.hoverEnter.bind(this)} onMouseLeave={this.hoverLeave.bind(this)}>
           <svg className="circles" width="100%" height="100%" viewBox="0 0 1400 1400">
             <def>
               <path id="circle-1" d="M250,700.5A450.5,450.5 0 1 11151,700.5A450.5,450.5 0 1 1250,700.5" />
@@ -433,7 +454,7 @@ export default class CircularText extends React.Component {
             </div>
           </div>
           
-          <button className="enter" onClick={this.enter.bind(this)} onMouseEnter={this.hoverLeave.bind(this)} onMouseLeave={this.hoverEnter.bind(this)} >
+          <button className="enter" onClick={this.enter.bind(this)}>
             <div className="enter__bg" ></div>
             <span className="enter__text">Enter</span>
           </button>
@@ -451,7 +472,7 @@ export default class CircularText extends React.Component {
             z-index  : 2;
           }
           .typed {
-            font-family             : vortice-concept, sans-serif;
+            font-family: vortice-concept, sans-serif;
             font-size: 2em;
           }
         `}</style>
