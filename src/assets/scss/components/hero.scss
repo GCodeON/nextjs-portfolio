@@ -18,6 +18,29 @@
 		align-self   : center;
 		justify-self : center;
 		position     : relative;
+		z-index      : 1;
+
+		&::before {
+			content        : "";
+			position       : absolute;
+			top            : 50%;
+			left           : 50%;
+			width          : min(96vw, 900px);
+			height         : min(62vw, 420px);
+			transform      : translate(-50%, -52%);
+			border-radius  : 50%;
+			background     : radial-gradient(circle, rgba(241, 249, 7, 0.36) 0%, rgba(142, 10, 69, 0.283) 38%, rgba(0, 0, 0, 0.176) 72%);
+			filter         : blur(24px);
+			opacity        : 0.5;
+			animation      : heroGlowPulse 10s ease-in-out infinite;
+			pointer-events : none;
+			z-index        : -1;
+
+			@include breakpoint(medium) {
+				width  : min(78vw, 900px);
+				height : min(46vw, 420px);
+			}
+		}
 	}
 	
 	.title {
@@ -51,6 +74,21 @@
 	.description {
 		margin: 2rem 0 0 1rem;
 		max-width: 300px;
+	}
+}
+
+@keyframes heroGlowPulse {
+	0%,
+	100% {
+		transform : translate(-50%, -52%) scale(0.94);
+		opacity   : 0.32;
+		filter    : blur(18px);
+	}
+
+	50% {
+		transform : translate(-50%, -52%) scale(1.06);
+		opacity   : 0.64;
+		filter    : blur(30px);
 	}
 }
 
