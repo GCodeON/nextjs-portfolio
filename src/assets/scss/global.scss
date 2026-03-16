@@ -99,7 +99,7 @@ body.app-ready .app-shell {
 		font-family: vortice-concept, sans-serif;
 		font-weight: 400;
 		color: var(--color-text);
-		font-size: 1rem;
+		font-size: 0.75rem;
 		cursor: pointer;
 		padding: 0.2rem 0.45rem;
 		border-radius: 0 12px 0 12px;
@@ -163,7 +163,8 @@ body.app-ready .app-shell {
 
 		.item {
 			&:hover {
-				color: var(--color-secondary);
+				color: white;
+				background-color: transparent;
 			}
 
 			&.current {
