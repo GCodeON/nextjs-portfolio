@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import styles from './blog-preview.module.scss'
+import styles from '../assets/scss/components/blog-preview.module.scss'
 
 const PAGE_TRANSITION_MS = 90
 const TRANSITION_RESET_MS = 650

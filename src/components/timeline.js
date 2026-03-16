@@ -1,13 +1,13 @@
-import React, { useRef, useState } from "react";
+import React from 'react'
+import styles from '../assets/scss/components/timeline.module.scss'
 
 // import AOS from 'aos';
 // import 'aos/dist/aos.css';
 
 
 export default class Timeline extends React.Component {
-
-  super(props) {
-
+  constructor(props) {
+    super(props)
   }
 
   componentDidMount() {
@@ -20,24 +20,24 @@ export default class Timeline extends React.Component {
 
   render() {
     return (
-      <div className="timeline-component container">
+      <div className={`${styles.timelineComponent} container`}>
         <h2 className="title">Experience</h2>
-        <div className="timeline">
+        <div className={styles.timeline}>
           {this.props.exp.map((position, i) => (
             <a 
               href={position.link} 
               target="_blank" key={i}>
               <div 
-                className={`position ${position.class}`} >
-                <div className="copy-content" >
-                  <h2 className="pretitle">
+                className={`${styles.position} ${position.class === 'left' ? styles.left : styles.right}`} >
+                <div className={styles.copyContent} >
+                  <h2 className={styles.pretitle}>
                     {position.company}
                   </h2>
-                  <p className="pos" dangerouslySetInnerHTML={{__html: position.title}}></p>
-                  <p className="type">
+                  <p className={styles.pos} dangerouslySetInnerHTML={{__html: position.title}}></p>
+                  <p className={styles.type}>
                     {position.type}
                   </p>
-                  <p className="date">
+                  <p className={styles.date}>
                     {position.dates}
                   </p>
                 </div>
