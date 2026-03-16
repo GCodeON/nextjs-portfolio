@@ -85,7 +85,7 @@
 	}
 
 	.overlay {
-		background-color : rgba(0, 0, 0, 0.4) !important;
+		// background-color : rgba(0, 0, 0, 0.1) !important;
 		width            : 100vw;
 		background-image : none;
 		pointer-events   : none;
@@ -97,6 +97,12 @@
 		transform: translateZ(0);
 		will-change: transform;
 		backface-visibility: hidden;
+		@media screen and (min-width: 767px) {
+			background-color : rgba(0, 0, 0, 0.3) !important;
+		}
+		@media screen and (min-width: 1024px) {
+			background-color : rgba(0, 0, 0, 0.4) !important;
+		}
 	}
 
 	.content p {
