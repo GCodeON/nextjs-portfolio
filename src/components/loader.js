@@ -229,7 +229,8 @@ export default class CircularText extends React.Component {
 
     let video = document.getElementById('video');
     if (video) {
-      video.play();
+      const p = video.play();
+      if (p !== undefined) p.catch(() => {});
     }
 
     this.scrollHashTargetWhenReady({ behavior: 'auto', block: 'start' })
@@ -383,7 +384,8 @@ export default class CircularText extends React.Component {
 
     let video = document.getElementById( 'video' );
     if(video) {
-      video.play();
+      const p = video.play();
+      if (p !== undefined) p.catch(() => {});
     }
     
     this.scrollHashTargetWhenReady({ behavior: 'smooth', block: 'end', delayMs: 2700 });

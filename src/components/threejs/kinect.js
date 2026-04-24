@@ -85,9 +85,14 @@ export default class Kinect extends React.Component {
     stopAnimation();
 
     if (this.video) {
-      this.video.pause();
-      this.video.removeAttribute('src');
-      this.video.load();
+      const video = this.video;
+      (this._playPromise || Promise.resolve())
+        .catch(() => {})
+        .finally(() => {
+          video.pause();
+          video.removeAttribute('src');
+          video.load();
+        });
     }
 
     geometry?.dispose?.();
@@ -233,7 +238,8 @@ export default class Kinect extends React.Component {
     mesh = new THREE.Points( geometry, material );
 		scene.add( mesh );
 
-    this.video.play();
+    this._playPromise = this.video.play();
+    if (this._playPromise !== undefined) this._playPromise.catch(() => {});
 
     renderer = new THREE.WebGLRenderer( {
       canvas: document.querySelector('.video')
