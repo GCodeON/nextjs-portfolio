@@ -56,7 +56,7 @@ export default class CircularText extends React.Component {
     gsap.set(this.content.children, { opacity: 0, scale: 0.98 });
     gsap.set(this.enterCtrl, { opacity: 0, scale: 1.2, pointerEvents: 'none' });
     gsap.set(this.enterText, { opacity: 0 });
-    gsap.set(this.circleText, { opacity: 1, scale: 0.5, rotation: -270 });
+    gsap.set(this.circleText, { opacity: 0, scale: 0.5, rotation: -270 });
     gsap.set(this.overlay, { background: 'none' });
   }
 
@@ -186,6 +186,7 @@ export default class CircularText extends React.Component {
       gsap.set('body', { overflow: 'visible' });
       gsap.set(this.content, { opacity: 1, display: 'flex' });
       gsap.set(this.content.children, { opacity: 1, scale: 1 });
+      gsap.set(this.circleText, { opacity: 1 });
       gsap.set(this.enterCtrl, { opacity: 0, pointerEvents: 'none' });
       gsap.set(this.enterText, { opacity: 0 });
       return this.scrollHashTargetWhenReady({ behavior: 'auto', block: 'start' })
@@ -198,11 +199,17 @@ export default class CircularText extends React.Component {
 
     gsap.timeline()
       .set('body', { overflow: 'visible' })
+      .to(this.circleText, {
+        duration: 0.7,
+        opacity: 1,
+        ease: 'power2.out',
+        stagger: { amount: 0.2 }
+      })
       .to(this.content, {
         duration: 0.9,
         opacity: 1,
         ease: 'power2.out'
-      })
+      }, '-=0.4')
       .to(this.content.children, {
         duration: 1.1,
         opacity: 1,
