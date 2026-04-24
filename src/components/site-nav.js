@@ -32,18 +32,6 @@ export default function SiteNav() {
       return undefined
     }
 
-    const syncHash = (sectionId) => {
-      const currentHash = window.location.hash || ''
-      const currentBase = currentHash.split('?')[0]
-      const targetHash = `#${sectionId}`
-
-      if (currentBase === targetHash) {
-        return
-      }
-
-      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${targetHash}`)
-    }
-
     let frameId = null
 
     const updateActiveSection = () => {
@@ -60,17 +48,7 @@ export default function SiteNav() {
         }
       }
 
-      setActiveSection((previous) => {
-        if (previous === nextId) {
-          return previous
-        }
-
-        if (nextId) {
-          syncHash(nextId)
-        }
-
-        return nextId
-      })
+      setActiveSection((previous) => (previous === nextId ? previous : nextId))
     }
 
     const requestUpdate = () => {
@@ -101,6 +79,22 @@ export default function SiteNav() {
       }
     }
   }, [isHome])
+
+  useEffect(() => {
+    if (!isHome || typeof window === 'undefined' || !activeSection) {
+      return
+    }
+
+    const currentHash = window.location.hash || ''
+    const currentBase = currentHash.split('?')[0]
+    const targetHash = `#${activeSection}`
+
+    if (currentBase === targetHash) {
+      return
+    }
+
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${targetHash}`)
+  }, [activeSection, isHome])
 
   if (isHome) {
     return (
