@@ -2,9 +2,11 @@ import React from 'react'
 
 import { gsap } from 'gsap';
 
-import Hero from './hero'
-
-
+import { 
+  waitForFonts, 
+  DESKTOP_TIMEOUT_MS, 
+  MOBILE_TIMEOUT_MS 
+} from '@/hooks/waitForFonts.util'
 export default class CircularText extends React.Component {
   constructor(props) {
       super(props);
@@ -16,7 +18,6 @@ export default class CircularText extends React.Component {
       this.enterText       = null
       this.startTL         = null
       this.active          = false
-      this.assetTimeoutMs  = 3000
       this.isMobileViewport = false
       this.isLoaderReady = false
       this.isLoaderOpened = false
@@ -34,10 +35,6 @@ export default class CircularText extends React.Component {
     this.enterText = document.querySelector('.enter__text')
     this.circleTextTotal = this.circleText.length
     this.isMobileViewport = window.matchMedia('(max-width: 768px)').matches
-
-    if (this.isMobileViewport) {
-      this.assetTimeoutMs = 1200
-    }
 
     this.setup();
     this.prepareInitialState();
@@ -61,11 +58,7 @@ export default class CircularText extends React.Component {
   }
 
   waitForFonts() {
-    if (typeof document === 'undefined' || !document.fonts || !document.fonts.ready) {
-      return Promise.resolve();
-    }
-
-    return document.fonts.ready.catch(() => Promise.resolve());
+    return waitForFonts({ timeoutMs: this.isMobileViewport ? MOBILE_TIMEOUT_MS : DESKTOP_TIMEOUT_MS });
   }
 
   waitForImages() {
@@ -98,13 +91,7 @@ export default class CircularText extends React.Component {
   }
 
   waitForAssets() {
-    const fontPromise = this.isMobileViewport ? Promise.resolve() : this.waitForFonts();
-    const assetPromise = Promise.all([fontPromise, this.waitForImages()]);
-    const timeoutPromise = new Promise((resolve) => {
-      setTimeout(resolve, this.assetTimeoutMs);
-    });
-
-    return Promise.race([assetPromise, timeoutPromise]);
+    return Promise.all([this.waitForFonts(), this.waitForImages()]);
   }
 
   getHashTarget() {

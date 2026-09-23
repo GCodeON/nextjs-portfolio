@@ -2,6 +2,12 @@
 
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { 
+  waitForFonts, 
+  isMobileViewport, 
+  DESKTOP_TIMEOUT_MS, 
+  MOBILE_TIMEOUT_MS 
+} from '@/hooks/waitForFonts.util'
 
 export default function AppReady() {
   const pathname = usePathname()
@@ -18,9 +24,13 @@ export default function AppReady() {
       document.body.classList.add('app-ready')
     }
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(reveal)
-    })
+    (async () => {
+      await waitForFonts({ timeoutMs: isMobileViewport() ? MOBILE_TIMEOUT_MS : DESKTOP_TIMEOUT_MS })
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(reveal)
+      })
+    })()
 
     return () => {
       cancelled = true
