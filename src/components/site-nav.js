@@ -81,13 +81,14 @@ export default function SiteNav() {
   }, [isHome])
 
   useEffect(() => {
-    if (!isHome || typeof window === 'undefined' || !activeSection) {
+    if (!isHome || typeof window === 'undefined') {
       return
     }
 
     const currentHash = window.location.hash || ''
     const currentBase = currentHash.split('?')[0]
-    const targetHash = `#${activeSection}`
+    // empty when back at the hero so the hash gets stripped from the URL
+    const targetHash = activeSection ? `#${activeSection}` : ''
 
     if (currentBase === targetHash) {
       return
