@@ -40,10 +40,10 @@ export default class Contact extends React.Component {
               className   = "email"
               value       = {this.state.email}
               onChange    = {this.handleEmail}
-              placeholder = "type subject here"
+              placeholder = "Email Address"
             />
             <textarea 
-              placeholder = "Reasons why you'd like to hire me!"
+              placeholder = "Your Message"
               value       = {this.state.message}
               onChange    = {this.handleMessage}
               rows        = "6"
